@@ -56,9 +56,6 @@ favicon: "/favicon.ico"
 author: '赛狗屁'
 nickname: 'SAIGOUPI'
 bio: '游戏行业老兵，Web开发新手'
-author: '赛狗屁'
-nickname: 'SAIGOUPI'
-bio: '游戏行业老兵，Web开发新手'
 avatar: '/assets/img/profile.webp'
 
 # Search
@@ -80,10 +77,8 @@ mathjax: true
 # Share
 social-share: true
 social-share-items: ['wechat', 'twitter']
-social-share-items: ['wechat', 'twitter']
 
 # theme color 主题皮肤
-theme-color: 'pink'  # pink or default
 theme-color: 'pink'  # pink or default
 
 # Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
@@ -95,17 +90,12 @@ sns:
   github: 'https://github.com/SAIGOUPI'
   twitter: 'https://x.com/betterthanshits'
   cnblogs: 'https://www.cnblogs.com/saigoupi/'
-  github: 'https://github.com/SAIGOUPI'
-  twitter: 'https://x.com/betterthanshits'
-  cnblogs: 'https://www.cnblogs.com/saigoupi/'
 
 # Links 友情链接
 links:
   'H2O主题配置说明': 'https://h2o-ac-doc.lisz.me/intro/quickstart.html'
-  'H2O主题配置说明': 'https://h2o-ac-doc.lisz.me/intro/quickstart.html'
 
 # Beian 备案号
-beian: ''
 beian: ''
 
 # CC License
