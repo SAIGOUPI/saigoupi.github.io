@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://saigoupi.github.io/hello-jekyll.html</loc>
-<lastmod>2017-04-18T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://saigoupi.github.io/tech/new-theme-h2o.html</loc>
-<lastmod>2017-04-18T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://saigoupi.github.io/test/mathjax-test.html</loc>
-<lastmod>2017-07-30T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://saigoupi.github.io/tech/new-theme-h2o-ac.html</loc>
-<lastmod>2021-12-22T11:50:00+00:00</lastmod>
-</url>
-<url>
 <loc>https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html</loc>
 <lastmod>2025-07-23T00:00:00+00:00</lastmod>
 </url>
