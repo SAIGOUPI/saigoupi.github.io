@@ -4,20 +4,22 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于博客主题的思考 - 赛狗屁的技术空间 | 游戏 WEB 金融</title>
+    <title>使用Github Pages + Jekyll搭建个人博客 - 赛狗屁的技术空间 | 游戏 WEB 金融</title>
     <meta name="author" content="赛狗屁">
     
-    <meta name="description" content="关于博客主题的思考">
+    <meta name="description" content="使用Github Pages + Jekyll搭建个人博客">
     <meta name="keywords"
         content="Jekyll, 博客">
     
+    <meta property="og:previous_url" content="/new-blog-theme.html">
     
-    <meta property="og:next_url" content="/%E5%8D%9A%E5%AE%A2/build-blog.html">
+    
+    <meta property="og:next_url" content="/tech/new-theme-h2o-ac.html">
     
     
     <meta property="post-date-format" content="0">
     
-    <meta property="post-date" content="2025-07-28 00:00:00 +0000" />
+    <meta property="post-date" content="2025-07-23 00:00:00 +0000" />
     
     
     <meta property="calendar-scale" content="year" />
@@ -26,9 +28,9 @@
     
     <!-- Open Graph -->
     <meta property="og:title"
-        content="关于博客主题的思考 - 赛狗屁的技术空间 | 游戏 WEB 金融">
+        content="使用Github Pages + Jekyll搭建个人博客 - 赛狗屁的技术空间 | 游戏 WEB 金融">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://saigoupi.github.io/new-blog-theme.html">
+    <meta property="og:url" content="https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html">
     <meta property="og:baseurl" content="">
     <meta property="og:description" content="欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。">
     <meta property="og:site_name" content="赛狗屁的技术空间 | 游戏 WEB 金融">
@@ -191,7 +193,7 @@
             
             
         </div>
-        <h1>关于博客主题的思考</h1>
+        <h1>使用Github Pages + Jekyll搭建个人博客</h1>
         <div class="post-meta">
             <span class="post-meta-item">
                 <svg class="icon" aria-hidden="true">
@@ -199,13 +201,13 @@
                 </svg>
                 赛狗屁
             </span>
-            <time class="post-meta-item" datetime=" 25-07-28">
+            <time class="post-meta-item" datetime=" 25-07-23">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-calendar"></use>
                 </svg>
                 <span class="create-at"></span>
             </time>
-            <time class="post-meta-item" datetime=" 25-07-28">
+            <time class="post-meta-item" datetime=" 25-07-23">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-update"></use>
                 </svg>
@@ -216,12 +218,12 @@
                     <use xlink:href="#icon-words"></use>
                 </svg>
                 
-                本文总共  718  字 </span>
+                本文总共  4.1k  字 </span>
                     <span class="post-meta-item">
                         <svg class="icon time" aria-hidden="true">
                             <use xlink:href="#icon-time"></use>
                         </svg>
-                        阅读全文大约需要 3 分钟
+                        阅读全文大约需要 12 分钟
                     </span>
                     
                     <span class="post-meta-item">
@@ -247,7 +249,7 @@
 
 <main class="post-content visible">
     
-    <h2 class="post-subtitle">文章内容才是最重要的</h2>
+    <h2 class="post-subtitle">搭建博客和使用Jekyll-Yat主题的一些坑</h2>
     
 
     
@@ -262,26 +264,257 @@
                 
 
 
-                <h2 id="新的主题">新的主题</h2>
+                <h2 id="写在开头">写在开头</h2>
 
-<p>我放弃了之前的<a href="https://github.com/jeffreytse/jekyll-theme-yat" rel="nofollow" target="_blank" class="extlinks">Jekyll-Yat主题</a>，换成了现在的<a href="https://github.com/zhonger/jekyll-theme-H2O-ac" rel="nofollow" target="_blank" class="extlinks">H2O-ac主题</a>，先就这样吧，不折腾了，准备安心写文了。</p>
+<p>最近在研究使用GitHub Pages搭建博客，好处有两点：</p>
+<ul>
+  <li>免费，简单，不用租服务器买域名，一键部署</li>
+  <li>教程多，出问题方便在网上找解决方案</li>
+</ul>
 
-<p><code class="language-plaintext highlighter-rouge">Yat</code>这个主题各方面都很好，甚至还支持了视频的markdown链接。</p>
+<p>GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll，当然用其他的Hexo，gitbook等等也都是可以的，网上教程也很多，部署流程也大同小异。</p>
 
-<p>可是我疏忽了最关键的一点，就是<strong>代码框</strong>的样式。</p>
+<p>今天总结一下我的搭建过程，以及中途遇到的一些坑，照着这篇文档，应该能一次搭建成功。</p>
 
-<p>我用上之后才发现默认的样式很丑，然后我开始找配置，改样式，因为我对web前端不了解，所以全程让AI帮我改，改了两天，什么rouge，什么css都改了一便，可是最终还是不满意。我觉得我在这个牛角尖里越钻越深了，所以我索性换成了现在的<code class="language-plaintext highlighter-rouge">H20</code>主题。</p>
+<h2 id="参考文档">参考文档</h2>
 
-<p>在搭建博客这个事情上，我已经花了快一周的时间了，每次看到个新主题，我都想东改改西改改，折腾了一圈，jekyll的模板和框架都了解一遍，可是离我本来要做的事情越来越远。</p>
+<p>如果只是搭建一个最简单的博客，直接参考官方教程和以下教程即可，十分钟搞定直接开写：</p>
 
-<p>说回博客的主题，主题再花哨也是空壳，写博客最关键的还是内容，选个能用的主题，搭上直接开始写文，才是最重要的事情。</p>
+<ul>
+  <li>
+    <p><a href="https://blog.csdn.net/zzy979481894/article/details/132678717" rel="nofollow" target="_blank" class="extlinks">使用Jekyll + GitHub Pages搭建个人博客</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.github.com/zh/pages/quickstart" rel="nofollow" target="_blank" class="extlinks">GitHub Pages快速入门</a></p>
+  </li>
+</ul>
 
-<h2 id="一些思考">一些思考</h2>
-<p>我个人有些强迫行为，在搭博客这件事情上也有所体现，换到<code class="language-plaintext highlighter-rouge">H20</code>主题过程中，我也在SNS图标上纠结了好久，去看了主题的源码，了解了IconFont，对Jekyll的模板的认识也加深了。然后又想在博客园上同步文章，引发了图床，防盗链这些问题，于是又去看解决方案。因为我对web的了解很少，所以每一个知识点都是新的，每一个知识点又引出新的点，吸引我不断往下看。这些知识未来或许有用，但是现在都不是最高优先级。</p>
+<p>但是刚开始搭建博客时，总喜欢折腾一些好看的主题，Jekyll的主题很多，更换主题也很方便，但是还是会有一些小坑。</p>
 
-<p>纠结了半天，只为换一个图标，传一张图片，我意识到自己又在钻牛角尖后，果断停止这一切，停止纠结这些表面的东西，开始按照计划学习新东西，打开vscode开始写文档，这些才是我的最高优先级。</p>
+<p>最主要的问题就是<a href="https://docs.github.com/zh/actions/tutorials" rel="nofollow" target="_blank" class="extlinks">GitHub Action</a>的配置，Jekyll可以使用在线主题，但是github默认支持的在线主题很少，如果想用其他的主题，就要修改博客项目中的默认的Action和workflow的配置，保证博客仓库有更新时，github可以自动部署博客到网页上。</p>
 
-<p>认识自己，才能改变自己。谨防提升技术的道路上这些吹毛求疵的行为，不要让他们影响到真正重要的事情。</p>
+<p>解决问题的方式很简单，只是第一次遇到有点懵而已。具体参考了以下链接：</p>
+
+<ul>
+  <li>
+    <p>在这里找到自己喜欢的主题：<a href="http://jekyllthemes.org/" rel="nofollow" target="_blank" class="extlinks">Jekyll主题大全</a></p>
+  </li>
+  <li>
+    <p>我使用的主题：<a href="https://github.com/jeffreytse/jekyll-theme-yat" rel="nofollow" target="_blank" class="extlinks">Jekyll-yat主题</a></p>
+  </li>
+  <li>
+    <p>使用以上主题时，需要使用配套的Github Action配置：<a href="https://github.com/jeffreytse/jekyll-deploy-action" rel="nofollow" target="_blank" class="extlinks">A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages</a></p>
+  </li>
+  <li>
+    <p>安装Jekyll：<a href="https://jekyllrb.com/docs/installation/windows/" rel="nofollow" target="_blank" class="extlinks">Jekyll On Windows</a></p>
+  </li>
+</ul>
+
+<p>一些疑难杂症的解决方案：</p>
+<ul>
+  <li>
+    <p><a href="https://www.ixiqin.com/2023/02/18/how-to-deal-with-making-the-action-report-remote-permission-denied-to-xx-x-to-making-the-actions-bot-problem/" rel="nofollow" target="_blank" class="extlinks">如何处理 Github Action 报出的 remote: Permission to xx x denied to github-actions[bot] 问题</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/jeffreytse/jekyll-theme-yat/issues/177" rel="nofollow" target="_blank" class="extlinks">Error: Invalid CSS after “ @if meta”: expected “{“, was “.function-exist…” on line 72</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/jeffreytse/jekyll-theme-yat/issues/173" rel="nofollow" target="_blank" class="extlinks">css conversion error with github pages</a></p>
+  </li>
+</ul>
+
+<h2 id="安装jekyll">安装Jekyll</h2>
+
+<p>先在Ruby官网下载安装Ruby</p>
+
+<p><a href="https://jekyllrb.com/docs/installation/windows/" rel="nofollow" target="_blank" class="extlinks">Jekyll On Windows</a></p>
+
+<p>在安装最后一步勾选以下选项</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image.png" alt=""></p>
+
+<p>在命令行中选3</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-1.png" alt=""></p>
+
+<p>检查是否安装成功，windows命令行运行</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby <span class="nt">-v</span>
+gem <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>然后更换ruby源为国内源，因为ruby默认的官方源在国外，不用梯子的话，下载速度非常慢！所以先更换为国内源，再下载Jekyll，打开命令行，输入以下命令添加ruby国内源</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources <span class="nt">-a</span> https://gems.ruby-china.com/
+</code></pre></div></div>
+
+<p>然后输入以下命令移除官方源</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources <span class="nt">-r</span> https://rubygems.org/
+</code></pre></div></div>
+
+<p>最后使用以下命令查看已有的源</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-3.png" alt=""></p>
+
+<p>接下来就可以安装Jekyll了，使用以下命令</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+
+<p>提示安装完成后，检查是否安装成功</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>至此Jekyll安装完成</p>
+
+<h2 id="安装jekyll-yat主题">安装Jekyll-Yat主题</h2>
+
+<p>在github上新建一个博客仓库，克隆或者直接下载此主题的zip包<a href="https://github.com/jeffreytse/jekyll-theme-yat" rel="nofollow" target="_blank" class="extlinks">Jekyll-yat主题</a>，将此项目中的所有文件复制到自己的博客仓库。</p>
+
+<p>参考<a href="https://github.com/SAIGOUPI/yat-blog/commit/98e81254675ddf3308b2312be9e81b284fefb584" rel="nofollow" target="_blank" class="extlinks">Jekyll-yat主题本地调试修改</a>这个提交的修改，在<code class="language-plaintext highlighter-rouge">Gemfile</code>文件中再修改一次国内源，并添加<code class="language-plaintext highlighter-rouge">gem "logger", "~&gt; 1.7"</code>和
+<code class="language-plaintext highlighter-rouge">gem "bigdecimal", "~&gt; 3.2"</code>，修改后完整文件如下：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> <span class="s2">"https://gems.ruby-china.com/"</span>
+gemspec
+
+gem <span class="s2">"logger"</span>, <span class="s2">"~&gt; 1.7"</span>
+
+gem <span class="s2">"bigdecimal"</span>, <span class="s2">"~&gt; 3.2"</span>
+</code></pre></div></div>
+
+<p>然后在根目录启动命令行，输入命令</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>开始在本地添加博客网站运行的依赖项，提示安装完成后，执行命令</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>就可以在本地<code class="language-plaintext highlighter-rouge">http://127.0.0.1:4000</code>访问渲染后的博客网站</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-2.png" alt=""></p>
+
+<p>至此，Yat主题初始化完毕</p>
+
+<h2 id="部署博客到github-pages">部署博客到GitHub Pages</h2>
+
+<p>来到自己的博客仓库，在<code class="language-plaintext highlighter-rouge">Settings</code>里第一行，修改仓库名字成<code class="language-plaintext highlighter-rouge">username.github.io</code>，<code class="language-plaintext highlighter-rouge">username</code>就是github的账户名。一定要按照这个格式输入，这个名字也是访问此博客的域名。</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-4.png" alt=""></p>
+
+<p>在部署GitHub Pages前，先回到自己的仓库，新建一个分支<code class="language-plaintext highlighter-rouge">gh-pages</code>，这个分支就用来部署博客页面。</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-5.png" alt=""></p>
+
+<p>分支创建完毕后，回到<code class="language-plaintext highlighter-rouge">master</code>分支上，需要修改一个文件<code class="language-plaintext highlighter-rouge">build-jekyll.yml</code>，路径如下：</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-6.png" alt=""></p>
+
+<p>然后将以下内容覆盖到<code class="language-plaintext highlighter-rouge">build-jekyll.yml</code>中，此配置来自Yat主题的作者</p>
+
+<p><a href="https://github.com/jeffreytse/jekyll-deploy-action" rel="nofollow" target="_blank" class="extlinks">A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages</a></p>
+
+<p>使用此Action就可以在master分支有更新时，通知github自动更新并部署博客页面到网站上，并且此配置也支持大部分Jekyll主题，部署时不会有报错：</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Build and Deploy to Github Pages</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">master</span>  <span class="c1"># Here source code branch is `master`, it could be other branch</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>
+    
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build_and_deploy</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+
+      <span class="c1"># Use GitHub Actions' cache to cache dependencies on servers</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">.asdf/**</span>
+            <span class="s">vendor/bundle</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}</span>
+          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">${{ runner.os }}-cache-</span>
+
+      <span class="c1"># Use GitHub Deploy Action to build and deploy to Github</span>
+      <span class="c1"># For latest version: `jeffreytse/jekyll-deploy-action@master`</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">jeffreytse/jekyll-deploy-action@v0.6.0</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">provider</span><span class="pi">:</span> <span class="s1">'</span><span class="s">github'</span>         <span class="c1"># Default is github</span>
+          <span class="na">token</span><span class="pi">:</span> <span class="s">${{ secrets.GITHUB_TOKEN }}</span> <span class="c1"># It's your Personal Access Token(PAT)</span>
+          <span class="na">repository</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>             <span class="c1"># Default is current repository</span>
+          <span class="na">branch</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gh-pages'</span>         <span class="c1"># Default is gh-pages for github provider</span>
+          <span class="na">jekyll_src</span><span class="pi">:</span> <span class="s1">'</span><span class="s">./'</span>           <span class="c1"># Default is root directory</span>
+          <span class="na">jekyll_cfg</span><span class="pi">:</span> <span class="s1">'</span><span class="s">_config.yml'</span>  <span class="c1"># Default is _config.yml</span>
+          <span class="na">jekyll_baseurl</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>         <span class="c1"># Default is according to _config.yml</span>
+          <span class="na">ruby_ver</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>               <span class="c1"># Default is 3.2.0 version</span>
+          <span class="na">bundler_ver</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>            <span class="c1"># Default is compatible bundler version (~&gt;2.5.0)</span>
+          <span class="na">cname</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>                  <span class="c1"># Default is to not use a cname</span>
+          <span class="na">actor</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>                  <span class="c1"># Default is the GITHUB_ACTOR</span>
+          <span class="na">pre_build_commands</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>     <span class="c1"># Installing additional dependencies (Arch Linux)</span>
+</code></pre></div></div>
+
+<p>然后又来到项目的<code class="language-plaintext highlighter-rouge">Settings</code>中，进入<code class="language-plaintext highlighter-rouge">Action</code>-<code class="language-plaintext highlighter-rouge">General</code>路径中，找到<code class="language-plaintext highlighter-rouge">Workflow permission</code>，设置为<code class="language-plaintext highlighter-rouge">Read and write permissions</code>。这样在部署时，github就不会有无法操作仓库的权限问题了。</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-7.png" alt=""></p>
+
+<p>最后一步了！进入<code class="language-plaintext highlighter-rouge">Pages</code>路径，选择<code class="language-plaintext highlighter-rouge">Deploy from a branch</code>，然后选择<code class="language-plaintext highlighter-rouge">gh-pages</code>，保存修改，大功告成~！</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-8.png" alt=""></p>
+
+<p>来到仓库的<code class="language-plaintext highlighter-rouge">Action</code>页面，找到刚刚修改的Action，点击右侧Run workflow，启动部署流程，部署完成后，可以在下面的<code class="language-plaintext highlighter-rouge">pages-build-deployment</code>里看到，<code class="language-plaintext highlighter-rouge">gh-pages</code>分支已经部署完成</p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-9.png" alt=""></p>
+
+<p><img src="/assets/img/posts/2025-07-23-build-blog/image-10.png" alt=""></p>
+
+<p>然后访问域名<code class="language-plaintext highlighter-rouge">username.github.io</code>就可以访问自己的博客了~!</p>
+
+<h2 id="本地写博客并更新到网站">本地写博客并更新到网站</h2>
+
+<p>在本地仓库内根目录下<code class="language-plaintext highlighter-rouge">\_posts</code>文件内，新建<code class="language-plaintext highlighter-rouge">date-blogTitle.md</code>文件，<code class="language-plaintext highlighter-rouge">date</code>是日期，<code class="language-plaintext highlighter-rouge">blogTitle</code>是文章标题，打开文件，在文章顶部填写基本信息</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Another test markdown</span>
+<span class="na">subtitle</span><span class="pi">:</span> <span class="s">Each post also has a subtitle</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">markdown</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">test</span><span class="pi">]</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>具体格式，可以参考<code class="language-plaintext highlighter-rouge">\_posts</code>文件内的其他实例文章，都是主题自带的案例，有图片，视频，Jekyll的基本格式，markdown基础语法等例子可以参考。</p>
+
+<p>写好文章后，推送到github仓库上，就会触发Action的workflow，工作流执行完毕后（大约3分钟），就可以访问域名，查看更新后的博客了~</p>
+
+<p>至此，就已经成功搭建起自己的博客了，完事开头难，基础搭建起来后，之后的各种玩法的探索才有了可能。接下来可以专注于博客的写作上，可以参考markdown的语法:</p>
+
+<p><a href="https://markdown.com.cn/basic-syntax/htmls.html" rel="nofollow" target="_blank" class="extlinks">Markdown语法</a></p>
+
+<p>也可以美化一下自己的博客，学习一下Jekyll主题的修改和制作</p>
+
+<h2 id="写在最后">写在最后</h2>
+
+<p>搭建博客时还是踩了不少坑，所以深知能从零搭起来才是最重要的，其他花里胡哨的外观主题都是次要的。按照这篇文章，应该能顺利地一次性搭建起来，如果有问题，可以看看这个仓库，里面的提交和文件都可以参考。</p>
+
+<p><a href="https://github.com/SAIGOUPI/yat-blog" rel="nofollow" target="_blank" class="extlinks">Yat主题博客案例仓库</a></p>
+
+<p>另外，现在的我在用vscode写这篇文章时，发现vscode写markdown真的非常方便，原生就支持直接粘贴图片到文章内，附上文档链接</p>
+
+<p><a href="https://juejin.cn/post/7244809769794289721" rel="nofollow" target="_blank" class="extlinks">vscode支持Markdwon中直接粘贴图片</a></p>
+
+<p>感谢看到这里~！!</p>
 
                 <div class="post-copyright">
                     <p>
@@ -298,8 +531,8 @@
                         许可协议进行授权）
                     </p>
                     
-                    <p><span>本文标题：</span>《 关于博客主题的思考 》</p>
-                    <p><span>本文链接：</span><a href="https://saigoupi.github.io/new-blog-theme.html" class="cplink">https://saigoupi.github.io/new-blog-theme.html</a></p>
+                    <p><span>本文标题：</span>《 使用Github Pages + Jekyll搭建个人博客 》</p>
+                    <p><span>本文链接：</span><a href="https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html" class="cplink">https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html</a></p>
                     <p class="tips">本文最后一次更新为 <span></span> 天前，文章中的某些内容可能已过时！
                     </p>
                 </div>
@@ -309,7 +542,7 @@
             <div class="table-of-contents">
                 <div class="toc-header"><h2>目录</h2></div>
                 <div class="toc-body">
-                    <ul><li><a onclick="scrollToAdjust('新的主题')">新的主题</a></li><li><a onclick="scrollToAdjust('一些思考')">一些思考</a></li></ul>
+                    <ul><li><a onclick="scrollToAdjust('写在开头')">写在开头</a></li><li><a onclick="scrollToAdjust('参考文档')">参考文档</a></li><li><a onclick="scrollToAdjust('安装jekyll')">安装Jekyll</a></li><li><a onclick="scrollToAdjust('安装jekyll-yat主题')">安装Jekyll-Yat主题</a></li><li><a onclick="scrollToAdjust('部署博客到github-pages')">部署博客到GitHub Pages</a></li><li><a onclick="scrollToAdjust('本地写博客并更新到网站')">本地写博客并更新到网站</a></li><li><a onclick="scrollToAdjust('写在最后')">写在最后</a></li></ul>
                 </div>
         
             </div>
@@ -362,18 +595,30 @@
     </section>
     <section class="post-footer-item read-next">
         
-
-        
         <div class="read-next-item">
-            <a href="/%E5%8D%9A%E5%AE%A2/build-blog.html" class="read-next-link"
-                aria-label="使用Github Pages + Jekyll搭建个人博客"></a>
+            <a href="/new-blog-theme.html" class="read-next-link" aria-label="关于博客主题的思考"></a>
             <section>
-                <span>使用Github Pages + Jekyll搭建个人博客</span>
-                <p>写在开头</p>
+                <span>关于博客主题的思考</span>
+                <p>新的主题</p>
             </section>
             
             <div class="filter"></div>
             <img src="https://i.lisz.top/cover/ao6Hd2.webp" alt="">
+            
+        </div>
+        
+
+        
+        <div class="read-next-item">
+            <a href="/tech/new-theme-h2o-ac.html" class="read-next-link"
+                aria-label="H2O-ac theme for Jekyll"></a>
+            <section>
+                <span>H2O-ac theme for Jekyll</span>
+                <p>前言</p>
+            </section>
+            
+            <div class="filter"></div>
+            <img src="https://images.unsplash.com/photo-1529322365446-6efd62aed02e?w=1600&q=900" alt="">
             
         </div>
         
@@ -549,7 +794,7 @@
 
         $(".post time span.create-at").html(local_post_date["date"]);
 
-        fetch("https://api.github.com/repos/zhonger/jekyll-theme-H2O-ac/commits?path=_posts/2025-07-28-new-blog-theme.md").then((response) => {
+        fetch("https://api.github.com/repos/zhonger/jekyll-theme-H2O-ac/commits?path=_posts/2025-07-23-build-blog.md").then((response) => {
             return response.json();
         }).then((commits) => {
             if (commits.length != 0) {
