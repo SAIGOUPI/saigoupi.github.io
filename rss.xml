@@ -5,8 +5,8 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 28 Jul 2025 07:28:07 +0000</pubDate>
-    <lastBuildDate>Mon, 28 Jul 2025 07:28:07 +0000</lastBuildDate>
+    <pubDate>Mon, 28 Jul 2025 07:31:23 +0000</pubDate>
+    <lastBuildDate>Mon, 28 Jul 2025 07:31:23 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -33,13 +33,15 @@
 &lt;p&gt;认识自己，才能改变自己。谨防提升技术的道路上这些吹毛求疵的行为，不要让他们影响到真正重要的事情。&lt;/p&gt;
 </description>
         <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
-        <link>https://saigoupi.github.io/new-blog-theme.html</link>
-        <guid isPermaLink="true">https://saigoupi.github.io/new-blog-theme.html</guid>
+        <link>https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/new-blog-theme.html</link>
+        <guid isPermaLink="true">https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/new-blog-theme.html</guid>
         
         <category>Jekyll</category>
         
         <category>博客</category>
         
+        
+        <category>博客</category>
         
       </item>
     
