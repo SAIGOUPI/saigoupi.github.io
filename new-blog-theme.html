@@ -4,20 +4,20 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello Jekyll - Mr Li</title>
+    <title>关于博客主题的思考 - Mr Li</title>
     <meta name="author" content="zhonger">
     
-    <meta name="description" content="Hello Jekyll">
+    <meta name="description" content="关于博客主题的思考">
     <meta name="keywords"
-        content="jekyll">
+        content="Jekyll, 博客">
     
-    <meta property="og:previous_url" content="/tech/new-theme-h2o.html">
     
+    <meta property="og:next_url" content="/tech/new-theme-h2o-ac.html">
     
     
     <meta property="post-date-format" content="0">
     
-    <meta property="post-date" content="2017-04-18 00:00:00 +0000" />
+    <meta property="post-date" content="2025-07-28 00:00:00 +0000" />
     
     
     <meta property="calendar-scale" content="year" />
@@ -26,9 +26,9 @@
     
     <!-- Open Graph -->
     <meta property="og:title"
-        content="Hello Jekyll - Mr Li">
+        content="关于博客主题的思考 - Mr Li">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://easy-h2o-ac.pages.dev/hello-jekyll.html">
+    <meta property="og:url" content="https://easy-h2o-ac.pages.dev/new-blog-theme.html">
     <meta property="og:baseurl" content="">
     <meta property="og:description" content="个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。">
     <meta property="og:site_name" content="Mr Li">
@@ -222,25 +222,27 @@
         <div class="post-tags">
             
             
-            <a href="/%20/tags.html#jekyll" class="post-tag">jekyll</a>
+            <a href="/%20/tags.html#Jekyll" class="post-tag">Jekyll</a>
+            
+            <a href="/%20/tags.html#%E5%8D%9A%E5%AE%A2" class="post-tag">博客</a>
             
             
         </div>
-        <h1>Hello Jekyll</h1>
+        <h1>关于博客主题的思考</h1>
         <div class="post-meta">
             <span class="post-meta-item">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-user"></use>
                 </svg>
-                Jekyll
+                zhonger
             </span>
-            <time class="post-meta-item" datetime=" 17-04-18">
+            <time class="post-meta-item" datetime=" 25-07-28">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-calendar"></use>
                 </svg>
                 <span class="create-at"></span>
             </time>
-            <time class="post-meta-item" datetime=" 17-04-18">
+            <time class="post-meta-item" datetime=" 25-07-28">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-update"></use>
                 </svg>
@@ -251,7 +253,7 @@
                     <use xlink:href="#icon-words"></use>
                 </svg>
                 
-                本文总共  941  字 </span>
+                本文总共  718  字 </span>
                     <span class="post-meta-item">
                         <svg class="icon time" aria-hidden="true">
                             <use xlink:href="#icon-time"></use>
@@ -271,25 +273,18 @@
                     </span>
                     
                     
-                    <span class="post-meta-item">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-image"></use>
-                        </svg>
-                        
-                        封面图片提供者 <a href="https://unsplash.com/@idoevolve" target="_blank">Adi Constantin</a>
-                        
-                    </span>
-                    
         </div>
     </div>
     
     <div class="filter"></div>
     <div class="post-cover"
-        style="background: url('https://unsplash.lisz.tk/1455459182396-ae46100617cb.webp') center no-repeat; background-size: cover;"></div>
+        style="background: url('https://i.lisz.top/cover/ao6Hd2.webp') center no-repeat; background-size: cover;"></div>
     
 </div>
 
 <main class="post-content visible">
+    
+    <h2 class="post-subtitle">文章内容才是最重要的</h2>
     
 
     
@@ -304,25 +299,26 @@
                 
 
 
-                <blockquote>
-  <p>Transform your plain text into static websites and blogs.</p>
-</blockquote>
+                <h2 id="新的主题">新的主题</h2>
 
-<h3 id="welcome">Welcome</h3>
+<p>我放弃了之前的<a href="https://github.com/jeffreytse/jekyll-theme-yat" rel="nofollow" target="_blank" class="extlinks">Jekyll-Yat主题</a>，换成了现在的<a href="https://github.com/zhonger/jekyll-theme-H2O-ac" rel="nofollow" target="_blank" class="extlinks">H2O-ac主题</a>，先就这样吧，不折腾了，准备安心写文了。</p>
 
-<p>This site aims to be a comprehensive guide to Jekyll. We’ll cover topics such as getting your site up and running, creating and managing your content, customizing the way your site works and looks, deploying to various environments, and give you some advice on participating in the future development of Jekyll itself.</p>
+<p><code class="language-plaintext highlighter-rouge">Yat</code>这个主题各方面都很好，甚至还支持了视频的markdown链接。</p>
 
-<h3 id="so-what-is-jekyll-exactlypermalink">So what is Jekyll, exactly?Permalink</h3>
+<p>可是我疏忽了最关键的一点，就是<strong>代码框</strong>的样式。</p>
 
-<p>Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like <a href="https://daringfireball.net/projects/markdown/" rel="nofollow" target="_blank" class="extlinks">Markdown</a>) and our <a href="https://github.com/Shopify/liquid/wiki" rel="nofollow" target="_blank" class="extlinks">Liquid</a> renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. Jekyll also happens to be the engine behind GitHub Pages, which means you can use Jekyll to host your project’s page, blog, or website from GitHub’s servers for free.</p>
+<p>我用上之后才发现默认的样式很丑，然后我开始找配置，改样式，因为我对web前端不了解，所以全程让AI帮我改，改了两天，什么rouge，什么css都改了一便，可是最终还是不满意。我觉得我在这个牛角尖里越钻越深了，所以我索性换成了现在的<code class="language-plaintext highlighter-rouge">H20</code>主题。</p>
 
-<h3 id="helpful-hintspermalink">Helpful HintsPermalink</h3>
+<p>在搭建博客这个事情上，我已经花了快一周的时间了，每次看到个新主题，我都想东改改西改改，折腾了一圈，jekyll的模板和框架都了解一遍，可是离我本来要做的事情越来越远。</p>
 
-<p>Throughout this guide there are a number of small-but-handy pieces of information that can make using Jekyll easier, more interesting, and less hazardous. Here’s what to look out for.</p>
+<p>说回博客的主题，主题再花哨也是空壳，写博客最关键的还是内容，选个能用的主题，搭上直接开始写文，才是最重要的事情。</p>
 
-<h3 id="video-test">Video Test</h3>
+<h2 id="一些思考">一些思考</h2>
+<p>我个人有些强迫行为，在搭博客这件事情上也有所体现，换到<code class="language-plaintext highlighter-rouge">H20</code>主题过程中，我也在SNS图标上纠结了好久，去看了主题的源码，了解了IconFont，对Jekyll的模板的认识也加深了。然后又想在博客园上同步文章，引发了图床，防盗链这些问题，于是又去看解决方案。因为我对web的了解很少，所以每一个知识点都是新的，每一个知识点又引出新的点，吸引我不断往下看。这些知识未来或许有用，但是现在都不是最高优先级。</p>
 
-<iframe type="text/html" width="100%" height="385" src="https://www.youtube.com/embed/gfmjMWjn-Xg" frameborder="0"></iframe>
+<p>纠结了半天，只为换一个图标，传一张图片，我意识到自己又在钻牛角尖后，果断停止这一切，停止纠结这些表面的东西，开始按照计划学习新东西，打开vscode开始写文档，这些才是我的最高优先级。</p>
+
+<p>认识自己，才能改变自己。谨防提升技术的道路上这些吹毛求疵的行为，不要让他们影响到真正重要的事情。</p>
 
                 <div class="post-copyright">
                     <p>
@@ -339,8 +335,8 @@
                         许可协议进行授权）
                     </p>
                     
-                    <p><span>本文标题：</span>《 Hello Jekyll 》</p>
-                    <p><span>本文链接：</span><a href="https://easy-h2o-ac.pages.dev/hello-jekyll.html" class="cplink">https://easy-h2o-ac.pages.dev/hello-jekyll.html</a></p>
+                    <p><span>本文标题：</span>《 关于博客主题的思考 》</p>
+                    <p><span>本文链接：</span><a href="https://easy-h2o-ac.pages.dev/new-blog-theme.html" class="cplink">https://easy-h2o-ac.pages.dev/new-blog-theme.html</a></p>
                     <p class="tips">本文最后一次更新为 <span></span> 天前，文章中的某些内容可能已过时！
                     </p>
                 </div>
@@ -350,7 +346,7 @@
             <div class="table-of-contents">
                 <div class="toc-header"><h2>目录</h2></div>
                 <div class="toc-body">
-                    <ul><li><a onclick="scrollToAdjust('welcome')">Welcome</a></li><li><a onclick="scrollToAdjust('so-what-is-jekyll,-exactly?permalink')">So what is Jekyll, exactly?Permalink</a></li><li><a onclick="scrollToAdjust('helpful-hintspermalink')">Helpful HintsPermalink</a></li><li><a onclick="scrollToAdjust('video-test')">Video Test</a></li></ul>
+                    <ul><li><a onclick="scrollToAdjust('新的主题')">新的主题</a></li><li><a onclick="scrollToAdjust('一些思考')">一些思考</a></li></ul>
                 </div>
         
             </div>
@@ -427,19 +423,20 @@
     </section>
     <section class="post-footer-item read-next">
         
+
+        
         <div class="read-next-item">
-            <a href="/tech/new-theme-h2o.html" class="read-next-link" aria-label="H2O theme for Jekyll"></a>
+            <a href="/tech/new-theme-h2o-ac.html" class="read-next-link"
+                aria-label="H2O-ac theme for Jekyll"></a>
             <section>
-                <span>H2O theme for Jekyll</span>
-                <p>正如我在微博上所说的，使用Jekyll半年以来一直没有令我满意的主题模板，所以开始计划自己写一套好看又好用的主题模...</p>
+                <span>H2O-ac theme for Jekyll</span>
+                <p>前言</p>
             </section>
             
             <div class="filter"></div>
-            <img src="https://unsplash.lisz.tk/1485470733090-0aae1788d5af.webp" alt="">
+            <img src="https://images.unsplash.com/photo-1529322365446-6efd62aed02e?w=1600&q=900" alt="">
             
         </div>
-        
-
         
     </section>
     
@@ -657,7 +654,7 @@
 
         $(".post time span.create-at").html(local_post_date["date"]);
 
-        fetch("https://api.github.com/repos/zhonger/jekyll-theme-H2O-ac/commits?path=_posts/2017-04-18-hello-jekyll.md").then((response) => {
+        fetch("https://api.github.com/repos/zhonger/jekyll-theme-H2O-ac/commits?path=_posts/2025-07-28-new-blog-theme.md").then((response) => {
             return response.json();
         }).then((commits) => {
             if (commits.length != 0) {

@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://easy-h2o-ac.pages.dev/feed.xml" rel="self" type="application/atom+xml" /><link href="https://easy-h2o-ac.pages.dev/" rel="alternate" type="text/html" /><updated>2024-03-27T14:10:59+00:00</updated><id>https://easy-h2o-ac.pages.dev/feed.xml</id><title type="html">Mr Li</title><subtitle>个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。</subtitle><author><name>zhonger</name></author><entry><title type="html">H2O-ac theme for Jekyll</title><link href="https://easy-h2o-ac.pages.dev/tech/new-theme-h2o-ac.html" rel="alternate" type="text/html" title="H2O-ac theme for Jekyll" /><published>2021-12-22T11:50:00+00:00</published><updated>2021-12-22T11:50:00+00:00</updated><id>https://easy-h2o-ac.pages.dev/tech/new-theme-h2o-ac</id><content type="html" xml:base="https://easy-h2o-ac.pages.dev/tech/new-theme-h2o-ac.html"><![CDATA[<h2 id="前言">前言</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://easy-h2o-ac.pages.dev/feed.xml" rel="self" type="application/atom+xml" /><link href="https://easy-h2o-ac.pages.dev/" rel="alternate" type="text/html" /><updated>2025-07-28T04:44:55+00:00</updated><id>https://easy-h2o-ac.pages.dev/feed.xml</id><title type="html">Mr Li</title><subtitle>个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。</subtitle><author><name>zhonger</name></author><entry><title type="html">关于博客主题的思考</title><link href="https://easy-h2o-ac.pages.dev/new-blog-theme.html" rel="alternate" type="text/html" title="关于博客主题的思考" /><published>2025-07-28T00:00:00+00:00</published><updated>2025-07-28T00:00:00+00:00</updated><id>https://easy-h2o-ac.pages.dev/new-blog-theme</id><content type="html" xml:base="https://easy-h2o-ac.pages.dev/new-blog-theme.html"><![CDATA[<h2 id="新的主题">新的主题</h2>
+
+<p>我放弃了之前的<a href="https://github.com/jeffreytse/jekyll-theme-yat">Jekyll-Yat主题</a>，换成了现在的<a href="https://github.com/zhonger/jekyll-theme-H2O-ac">H2O-ac主题</a>，先就这样吧，不折腾了，准备安心写文了。</p>
+
+<p><code class="language-plaintext highlighter-rouge">Yat</code>这个主题各方面都很好，甚至还支持了视频的markdown链接。</p>
+
+<p>可是我疏忽了最关键的一点，就是<strong>代码框</strong>的样式。</p>
+
+<p>我用上之后才发现默认的样式很丑，然后我开始找配置，改样式，因为我对web前端不了解，所以全程让AI帮我改，改了两天，什么rouge，什么css都改了一便，可是最终还是不满意。我觉得我在这个牛角尖里越钻越深了，所以我索性换成了现在的<code class="language-plaintext highlighter-rouge">H20</code>主题。</p>
+
+<p>在搭建博客这个事情上，我已经花了快一周的时间了，每次看到个新主题，我都想东改改西改改，折腾了一圈，jekyll的模板和框架都了解一遍，可是离我本来要做的事情越来越远。</p>
+
+<p>说回博客的主题，主题再花哨也是空壳，写博客最关键的还是内容，选个能用的主题，搭上直接开始写文，才是最重要的事情。</p>
+
+<h2 id="一些思考">一些思考</h2>
+<p>我个人有些强迫行为，在搭博客这件事情上也有所体现，换到<code class="language-plaintext highlighter-rouge">H20</code>主题过程中，我也在SNS图标上纠结了好久，去看了主题的源码，了解了IconFont，对Jekyll的模板的认识也加深了。然后又想在博客园上同步文章，引发了图床，防盗链这些问题，于是又去看解决方案。因为我对web的了解很少，所以每一个知识点都是新的，每一个知识点又引出新的点，吸引我不断往下看。这些知识未来或许有用，但是现在都不是最高优先级。</p>
+
+<p>纠结了半天，只为换一个图标，传一张图片，我意识到自己又在钻牛角尖后，果断停止这一切，停止纠结这些表面的东西，开始按照计划学习新东西，打开vscode开始写文档，这些才是我的最高优先级。</p>
+
+<p>认识自己，才能改变自己。谨防提升技术的道路上这些吹毛求疵的行为，不要让他们影响到真正重要的事情。</p>]]></content><author><name>zhonger</name></author><category term="Jekyll" /><category term="博客" /><summary type="html"><![CDATA[新的主题]]></summary></entry><entry><title type="html">H2O-ac theme for Jekyll</title><link href="https://easy-h2o-ac.pages.dev/tech/new-theme-h2o-ac.html" rel="alternate" type="text/html" title="H2O-ac theme for Jekyll" /><published>2021-12-22T11:50:00+00:00</published><updated>2021-12-22T11:50:00+00:00</updated><id>https://easy-h2o-ac.pages.dev/tech/new-theme-h2o-ac</id><content type="html" xml:base="https://easy-h2o-ac.pages.dev/tech/new-theme-h2o-ac.html"><![CDATA[<h2 id="前言">前言</h2>
 
 <p>  正如大家所知，Jekyll 是一款高可定制的、非常流行的静态博客生成工具。围绕着 Jekyll 也衍生出了很多优秀的 Jekyll 主题， 由 <a href="https://github.com/kaeyleo">廖柯宇</a> 开发的 <a href="https://github.com/kaeyleo/jekyll-theme-H2O">H2O</a> 主题就是其中之一。极简主义、风格扁平化、卡片式布局、Medium 及知乎专栏的视觉风格等等特点，为我们带来了或许是迄今为止最漂亮的 Jekyll 主题。</p>
 
@@ -99,7 +118,7 @@
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@font-face</span> <span class="p">{</span>
   <span class="nl">font-family</span><span class="p">:</span> <span class="s2">'Merriweather'</span><span class="p">;</span>
-  <span class="nl">src</span><span class="p">:</span> <span class="n">local</span><span class="p">(</span><span class="s2">'Merriweather'</span><span class="p">),</span> <span class="sx">url(https://fonts.gstatic.com/...)</span> <span class="n">format</span><span class="p">(</span><span class="s2">'woff2'</span><span class="p">);</span>
+  <span class="nl">src</span><span class="p">:</span> <span class="n">local</span><span class="p">(</span><span class="s2">'Merriweather'</span><span class="p">),</span> <span class="nf">url</span><span class="p">(</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">fonts</span><span class="p">.</span><span class="n">gstatic</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="p">...)</span> <span class="nf">format</span><span class="p">(</span><span class="s2">'woff2'</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -560,7 +579,7 @@
 <p>在Markdown中你可以这样写：</p>
 
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">css
-</span><span class="nt">p</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span> <span class="p">}</span>
+</span><span class="nt">p</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">red</span> <span class="p">}</span>
 <span class="p">```</span>
 </code></pre></div></div>
 
