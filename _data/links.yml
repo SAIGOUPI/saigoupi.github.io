@@ -8,7 +8,7 @@ links:
     img: "https://cdn-icons-png.flaticon.com/512/5969/5969044.png"
     url: "https://cloudflare.com"
 friends:
-  - name: "Mr Li"
-    info: "zhonger 的博客"
-    img: "https://lisz.me/assets/img/profile.webp"
-    url: "https://lisz.me"
+  - name: "板命"
+    info: "banming的博客"
+    img: "https://banming.github.io/favicon.ico"
+    url: "https://banming.github.io"
