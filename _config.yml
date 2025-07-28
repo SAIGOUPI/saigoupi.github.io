@@ -1,8 +1,8 @@
 # Site settings 配置站点
-title: 'Mr Li'
-description: '个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。'
-keyword: 'zhonger，zhonger的博客，nodejs，kvm, 机器学习'
-url: 'https://easy-h2o-ac.pages.dev' # your host
+title: '赛狗屁的技术空间 | 游戏 WEB 金融'
+description: '欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。'
+keyword: '游戏开发，web开发，经济学，金融，赛狗屁, 博客，编程，技术'
+url: 'https://saigoupi.github.io' # your host
 
 # when build blog on server, if you don't need baseurl, you should leave this value blank.
 # 在服务器上建站时，如果你不需要子域名，请将这一格留空
@@ -48,14 +48,10 @@ formats:
 # Favicon
 favicon: "/favicon.ico"
 
-# Footer
-footer:
-  since: 2015
-
 # Author 配置博主信息
-author: 'zhonger'
-nickname: 'zhonger'
-bio: '全栈开发者，热爱前端、运维和架构设计'
+author: '赛狗屁'
+nickname: 'SAIGOUPI'
+bio: '游戏行业老兵，Web开发新手'
 avatar: '/assets/img/profile.webp'
 
 # Search
@@ -76,10 +72,10 @@ mathjax: true
 
 # Share
 social-share: true
-social-share-items: ['wechat', 'weibo', 'douban', 'twitter']
+social-share-items: ['wechat', 'twitter']
 
 # theme color 主题皮肤
-theme-color: 'default'  # pink or default
+theme-color: 'pink'  # pink or default
 
 # Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
 postPatterns: 'circuitBoard'
@@ -87,19 +83,16 @@ postPatterns: 'circuitBoard'
 # SNS settings 配置社交网站
 # url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
-  google-scholar: 'https://scholar.google.com/citations?user=AUupIooAAAAJ'
-  researchgate: 'https://www.researchgate.net/profile/Shengzhou-Li'
-  ORCID: 'https://orcid.org/0000-0001-6973-3825'
-  github: 'https://github.com/zhonger'
-  linkedin: 'https://www.linkedin.com/in/shengzhouli/'
-  segmentfault: 'https://segmentfault.com/u/wuwozhonger'
+  github: 'https://github.com/SAIGOUPI'
+  twitter: 'https://x.com/betterthanshits'
+  cnblogs: 'https://www.cnblogs.com/saigoupi/'
 
 # Links 友情链接
 links:
-  'Mr Li': 'https://lisz.me'
+  'H2O主题配置说明': 'https://h2o-ac-doc.lisz.me/intro/quickstart.html'
 
 # Beian 备案号
-beian: '沪ICP备xxxxxxxx号'
+beian: ''
 
 # CC License
 cclicense: true
@@ -123,6 +116,9 @@ google_analytics:
 
 # Google Search
 google_search: 
+
+#### 站内搜索
+search: true
 
 # Tags 设置标签
 recommend-tags: true # whether or not display recommend-tags on the sidebar
@@ -172,3 +168,22 @@ notbyAI: true
 # Alive time
 alivetime: true
 alivestart: "12/23/2021"
+
+# Footer
+footer:
+  since: 2016
+
+# Alive time
+alivetime: true
+alivestart: "7/26/2025"
+supports:
+  upyun: false              # 又拍云
+  webify: false            # 腾讯云 Webify
+badges:  # 其他徽章
+  netlify: false            # Netlify
+  vercel: false             # Vercel
+  cloudflare: false         # Cloudfalre
+  foreverblog: false        # Foreverblog
+  wormhole: false           # Wormhole
+  travelling: false         # Travelling
+  notbyAI: false            # NotByAI
