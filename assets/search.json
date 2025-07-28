@@ -6,6 +6,12 @@
   } ,
 
   {
+    "title"    : "新建文章TEST",
+    "tags"     : "Jekyll test",
+    "url"      : "/test/new-blog-test.html"
+  } ,
+
+  {
     "title"    : "使用Github Pages + Jekyll搭建个人博客",
     "tags"     : "Jekyll 博客",
     "url"      : "/%E5%8D%9A%E5%AE%A2/build-blog.html"
