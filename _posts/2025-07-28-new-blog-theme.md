@@ -4,7 +4,10 @@ title: '关于博客主题的思考'
 subtitle: '文章内容才是最重要的'
 date: 2025-07-28
 cover: 'https://i.lisz.top/cover/ao6Hd2.webp'
-tags: [Jekyll, 博客]
+categories: 博客
+tags: 
+- Jekyll 
+- 博客
 ---
 
 ## 新的主题
