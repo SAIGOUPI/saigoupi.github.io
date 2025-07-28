@@ -3,6 +3,10 @@ title: '赛狗屁的技术空间 | 游戏 WEB 金融'
 description: '欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。'
 keyword: '游戏开发，web开发，经济学，金融，赛狗屁, 博客，编程，技术'
 url: 'https://saigoupi.github.io' # your host
+title: '赛狗屁的技术空间 | 游戏 WEB 金融'
+description: '欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。'
+keyword: '游戏开发，web开发，经济学，金融，赛狗屁, 博客，编程，技术'
+url: 'https://saigoupi.github.io' # your host
 
 # when build blog on server, if you don't need baseurl, you should leave this value blank.
 # 在服务器上建站时，如果你不需要子域名，请将这一格留空
@@ -52,6 +56,9 @@ favicon: "/favicon.ico"
 author: '赛狗屁'
 nickname: 'SAIGOUPI'
 bio: '游戏行业老兵，Web开发新手'
+author: '赛狗屁'
+nickname: 'SAIGOUPI'
+bio: '游戏行业老兵，Web开发新手'
 avatar: '/assets/img/profile.webp'
 
 # Search
@@ -73,8 +80,10 @@ mathjax: true
 # Share
 social-share: true
 social-share-items: ['wechat', 'twitter']
+social-share-items: ['wechat', 'twitter']
 
 # theme color 主题皮肤
+theme-color: 'pink'  # pink or default
 theme-color: 'pink'  # pink or default
 
 # Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
@@ -86,12 +95,17 @@ sns:
   github: 'https://github.com/SAIGOUPI'
   twitter: 'https://x.com/betterthanshits'
   cnblogs: 'https://www.cnblogs.com/saigoupi/'
+  github: 'https://github.com/SAIGOUPI'
+  twitter: 'https://x.com/betterthanshits'
+  cnblogs: 'https://www.cnblogs.com/saigoupi/'
 
 # Links 友情链接
 links:
   'H2O主题配置说明': 'https://h2o-ac-doc.lisz.me/intro/quickstart.html'
+  'H2O主题配置说明': 'https://h2o-ac-doc.lisz.me/intro/quickstart.html'
 
 # Beian 备案号
+beian: ''
 beian: ''
 
 # CC License
@@ -116,6 +130,9 @@ google_analytics:
 
 # Google Search
 google_search: 
+
+#### 站内搜索
+search: true
 
 #### 站内搜索
 search: true
