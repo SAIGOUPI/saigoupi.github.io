@@ -5,20 +5,22 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 07 Aug 2025 07:04:33 +0000</pubDate>
-    <lastBuildDate>Thu, 07 Aug 2025 07:04:33 +0000</lastBuildDate>
+    <pubDate>Thu, 07 Aug 2025 07:10:48 +0000</pubDate>
+    <lastBuildDate>Thu, 07 Aug 2025 07:10:48 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
         <title>CE（Cheat Engine）本地编译教程</title>
         <description>&lt;h2 id=&quot;为什么要本地编译ce&quot;&gt;为什么要本地编译CE？&lt;/h2&gt;
+
 &lt;p&gt;Cheat Engine（CE）是一个内存操控工具，可以通过修改扫描内存，并修改指定内存的数值的方式来修改游戏内数值，达到作弊的效果。大部分人都是用其来进行单机游戏的数值修改，我最近在玩怪物猎人荒野，到后期实在是不想刷了，于是也开始研究这些作弊工具。&lt;/p&gt;
 
 &lt;p&gt;CE官方其实提供了安装文件，不用自己编译。可是看网上说这个安装程序，会捆绑安装一些其他的流氓软件（可以在安装时通过勾选不安装），本来我对CE这类“开挂软件”就不太了解，所以还是有一些防备心理的。CE官方安装程序捆绑一些软件，也是为了生计着想，毕竟人家是免费开源软件。&lt;/p&gt;
 
-&lt;p&gt;另外，CE官方在Github上也为想本地编译的步骤写了说明，稍微研究一下，发现整个过程也很简单。所以我还是选择本地编译，安全放心。&lt;/p&gt;
+&lt;p&gt;另外，CE的Github上也有本地编译的步骤说明，稍微研究一下，发现整个过程也很简单。有源码，有教程，本地编一下其实也很快，而且还更加放心。&lt;/p&gt;
 
 &lt;h2 id=&quot;前期准备&quot;&gt;前期准备&lt;/h2&gt;
+
 &lt;p&gt;CE的Github官方库下载最新的release源码&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/cheat-engine/cheat-engine/releases/tag/7.5&quot;&gt;cheat-engine官方Git仓库&lt;/a&gt;&lt;/p&gt;
