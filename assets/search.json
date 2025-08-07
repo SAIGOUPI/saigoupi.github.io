@@ -1,14 +1,14 @@
 [
   {
-    "title"    : "关于博客主题的思考",
-    "tags"     : "Jekyll 博客",
-    "url"      : "/%E5%8D%9A%E5%AE%A2/new-blog-theme.html"
+    "title"    : "CE（Cheat Engine）本地编译教程",
+    "tags"     : "Cheat Engine Game",
+    "url"      : "/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/CE-localbuild.html"
   } ,
 
   {
-    "title"    : "新建文章TEST",
-    "tags"     : "Jekyll test",
-    "url"      : "/test/new-blog-test.html"
+    "title"    : "关于博客主题的思考",
+    "tags"     : "Jekyll 博客",
+    "url"      : "/%E5%8D%9A%E5%AE%A2/new-blog-theme.html"
   } ,
 
   {
