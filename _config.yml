@@ -74,12 +74,18 @@ comments:
 # MathJax 公式支持 by Ray-Eldath
 mathjax: true
 
+#### 文章最近更新时间自动更新
+github:
+  enabled: true                       # 是否开启
+  owner: SAIGOUPI                      # Github 命名空间，用户名或组织名
+  repository: saigoupi.github.io     # 项目名
+toc: true  # 是否开启文章页目录导航
 # Share
 social-share: true
 social-share-items: ['wechat', 'twitter']
 
 # theme color 主题皮肤
-theme-color: 'pink'  # pink or default
+theme-color: 'default'  # pink or default
 
 # Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
 postPatterns: 'circuitBoard'
