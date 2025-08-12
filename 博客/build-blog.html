@@ -77,7 +77,7 @@
     <![endif]-->
         
         
-        <div id="all" class="post" data-theme="pink">
+        <div id="all" class="post" data-theme="default">
         
             
             
@@ -85,7 +85,7 @@
             <div class="alert-tip" id="no-next">已经是最后一篇文章了！</div>
         
             <input id="nm-switch" type="hidden" value="false">
-            <header class="g-header" data-theme="pink">
+            <header class="g-header" data-theme="default">
     <div class="g-logo">
       <a href="/" aria-label="logo"></a>
     </div>
@@ -179,8 +179,8 @@
             
 
 
-<div class="g-banner post-header post-pattern-circuitBoard bgcolor-pink "
-    data-theme="pink">
+<div class="g-banner post-header post-pattern-circuitBoard bgcolor-default "
+    data-theme="default">
     <div class="post-wrapper">
         <div class="post-tags">
             
@@ -779,7 +779,7 @@ gem <span class="s2">"bigdecimal"</span>, <span class="s2">"~&gt; 3.2"</span>
 
         $(".post time span.create-at").html(local_post_date["date"]);
 
-        fetch("https://api.github.com/repos/zhonger/jekyll-theme-H2O-ac/commits?path=_posts/2025-07-23-build-blog.md").then((response) => {
+        fetch("https://api.github.com/repos/SAIGOUPI/saigoupi.github.io/commits?path=_posts/2025-07-23-build-blog.md").then((response) => {
             return response.json();
         }).then((commits) => {
             if (commits.length != 0) {
