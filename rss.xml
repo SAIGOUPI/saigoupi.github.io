@@ -5,9 +5,79 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 12 Aug 2025 14:49:36 +0000</pubDate>
-    <lastBuildDate>Tue, 12 Aug 2025 14:49:36 +0000</lastBuildDate>
+    <pubDate>Thu, 14 Aug 2025 16:28:44 +0000</pubDate>
+    <lastBuildDate>Thu, 14 Aug 2025 16:28:44 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>价值投资选股入门 - 企业盈利能力指标</title>
+        <description>&lt;h2 id=&quot;小白进来能先看什么&quot;&gt;小白进来能先看什么？&lt;/h2&gt;
+
+&lt;h3 id=&quot;公司财报&quot;&gt;公司财报&lt;/h3&gt;
+
+&lt;p&gt;先不要管财报造假什么的，这些问题自有监管来查。上市公司的财报还是具有很强的参考性的，而且作为韭菜来说，财报是了解公司的主要手段。先学会看财报，再进一步深入。&lt;/p&gt;
+
+&lt;h3 id=&quot;简单的会计学&quot;&gt;简单的会计学&lt;/h3&gt;
+
+&lt;p&gt;财报中的几个重要的表：&lt;strong&gt;资产负债表&lt;/strong&gt;，&lt;strong&gt;利润表&lt;/strong&gt;，&lt;strong&gt;现金流量表&lt;/strong&gt;。这几个表都是会计学知识，先简单学习一下这些表的定义和制作方法，再来看财报中的各个指标，事半功倍。&lt;/p&gt;
+
+&lt;h3 id=&quot;财报中的重要指标&quot;&gt;财报中的重要指标&lt;/h3&gt;
+
+&lt;p&gt;如何判断一个公司好不好的很重要的点，就是看这个公司能不能持续地制造高额利润，找到这样的公司，在合理的价位买入，就可以远离市场涨跌，从对其的投资中获得回报。&lt;/p&gt;
+
+&lt;p&gt;那么如何通过财报来看出一个公司的赚钱能力？以下指标可以用作参考。注意&lt;strong&gt;单看一个指标是没有用的！&lt;/strong&gt; 一个上市公司的构成非常复杂，无法通过几个指标就看透一个公司的真实情况，一切指标都只是基于基本面进行合理分析，辅助自己进行决策！&lt;/p&gt;
+
+&lt;p&gt;多分析，多动脑，锻炼自己的思维能力，提升认知，不做跟风的韭菜。&lt;/p&gt;
+
+&lt;p&gt;下面看看这些指标。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;净利润率&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;净利润/营业收入&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;净利润就是毛利润扣除营业费用，税收以及其他杂费后公司到手的利润，是实打实赚到的钱。毛利润就是营业收入减去营业成本后所得的利润，比如一个商品进价成本6块，售价10块，毛利就是4块，毛利率就是40%，不算人工交通运输管理等等各项费用。&lt;/p&gt;
+
+&lt;p&gt;所以有些公司的毛利率很高，说明公司的业务能力很强，资源强，公司的产品有护城河，能将毛利率拉到很高。但是一看净利率却很低，说明公司的业务中，杂费太多，可能是公司的管理有冗余或是公司研发投入很大，导致净利润太少。&lt;/p&gt;
+
+&lt;p&gt;所以净利润能很大程度上反映一个公司的赚钱能力，比如茅台的净利率就超过50%。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;四项费用率&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;上面说了影响净利润率的重要部分就是营业费用，细分一下就是&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;管理费用-房租水电人工&lt;/li&gt;
+  &lt;li&gt;财务费用-金融利息&lt;/li&gt;
+  &lt;li&gt;销售费用-广告营销&lt;/li&gt;
+  &lt;li&gt;研发费用-产品研发&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这四项费用率就可以体现公司的管理能力，可能公司毛利率不高，但是出色的管理依然可以控制成本，提高净利率。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;营业收入增长率&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;今年营业收入/去年营业收入 - 1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;营业收入增长率一般是看行业，有的新兴行业，增长率爆炸，而有些夕阳产业，业务成熟稳定，增长率自然不高。
+增长率大于10%就可以算成长股了，小于5%就算夕阳产业了。如果一个企业的增长率连年下降，那就要先看看他所处行业，是否整体受到了冲击，如果没有，那自然是企业经营出现了问题。&lt;/p&gt;
+
+&lt;h3 id=&quot;总结&quot;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;先看净利润率，然后看四项费用率，最后看营业收入增长率，一步步筛选。最后合格的就是一家赚钱能力强，管理好，成长性高的企业。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;当然这还远远不够，财报中还有其他的坑。&lt;/strong&gt; 下期再分析。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+        <link>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research.html</link>
+        <guid isPermaLink="true">https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research.html</guid>
+        
+        <category>价值投资</category>
+        
+        <category>股票</category>
+        
+        
+        <category>投资</category>
+        
+      </item>
     
       <item>
         <title>CE（Cheat Engine）本地编译教程</title>
