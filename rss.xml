@@ -5,9 +5,38 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 14 Aug 2025 16:28:44 +0000</pubDate>
-    <lastBuildDate>Thu, 14 Aug 2025 16:28:44 +0000</lastBuildDate>
+    <pubDate>Fri, 15 Aug 2025 03:49:27 +0000</pubDate>
+    <lastBuildDate>Fri, 15 Aug 2025 03:49:27 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>经济术语总结(持续更新中)</title>
+        <description>&lt;h2 id=&quot;同比和环比&quot;&gt;同比和环比&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;增长速度&lt;/strong&gt;是反映&lt;strong&gt;经济社会某一领域发展变化情况&lt;/strong&gt;的重要指标，而&lt;strong&gt;同比&lt;/strong&gt;和&lt;strong&gt;环比&lt;/strong&gt;是反映增长速度最基础、最核心的指标，也是国际上通用的指标。在统计中，同比和环比通常是&lt;strong&gt;同比变化率&lt;/strong&gt;和&lt;strong&gt;环比变化率&lt;/strong&gt;的简称，用于表示某一事物在对比期内发展变化的方向和程度。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;同比&lt;/strong&gt;是以上年同期为基期相比较，即&lt;strong&gt;本期&lt;/strong&gt;某一时间段（点）与&lt;strong&gt;上年&lt;/strong&gt;某一时间段（点）相比，可以理解为&lt;strong&gt;今年第n月&lt;/strong&gt;与&lt;strong&gt;去年第n月&lt;/strong&gt;的比较。同比增长率是指本期和上一年同期相比较的增长率，计算公式为：同比增长率＝（本期数－同期数）/同期数×100％。例如，某公司2022年上半年利润3000万元，为本期数，上年同期数是2021年上半年的利润2000万元，同比增长率为（3000－2000）/2000×100％＝50％，即某公司2022年上半年利润同比增长50％。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;环比&lt;/strong&gt;是与上一个相邻统计周期相比较，表明统计指标逐期的发展变化，可以理解为&lt;strong&gt;第n月&lt;/strong&gt;与&lt;strong&gt;第n－1月&lt;/strong&gt;的比较。环比增长率是指&lt;strong&gt;本期&lt;/strong&gt;和&lt;strong&gt;上期&lt;/strong&gt;相比较的增长率，计算公式为：环比增长率＝（本期数－上期数）/上期数×100％。例如，某公司2022年6月份营业收入额为100万元，为本期数，上期数是2022年5月份营业额80万元，环比增长率为（100－80）/80×100％＝25％，即某公司2022年6月份营业额环比增长25％。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;环比&lt;/strong&gt;侧重反映数据的&lt;strong&gt;短期变化&lt;/strong&gt;。用环比增长速度反映指标变化时，时效性强，比较灵敏。比如，对居民消费价格指数（CPI）的环比涨跌幅进行分析，可以判断短期内物价变化的方向（上升或下降）。环比的不足之处是，对一些随着季节变化而波动的指标，将当期的数据直接与上期相比时，容易受到&lt;strong&gt;季节因素的干扰&lt;/strong&gt;，使得用其反映的增长速度波动往往较大。比如，由于“双十一”促销影响，11月份网上零售额相比10月份增加较多，而12月份网上零售额相比11月份会减少较多，相应地，11月份的环比增长速度会比较高，而12月份的环比增长速度就可能是负的，但这并不能说明网上零售额发生了趋势性变化。所以进行环比计算之前一般需要先把经济指标变动中的季节性因素剔除掉，即进行季节调整后，再计算环比增长速度。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;同比&lt;/strong&gt;相对于环比，侧重反映&lt;strong&gt;长期趋势&lt;/strong&gt;，能够一定程度上克服季节性波动的影响。比如，同样是“双十一”促销，使用同比增长速度，10月、11月、12月的网上零售额增速波动不会像环比波动那样大，主要由于上年与今年11月“双十一”促销因素均存在。但另一方面，同比增长速度的缺点是易于受基期因素影响，比如，上年基期受灾害影响，数据波动大，而今年同期未受灾害影响，则同比增长速度会表现出波动变化。&lt;/p&gt;
+
+&lt;p&gt;总之，同比和环比所反映的虽然都是变化速度，但由于对比基期不同，反映的内涵不同。一般来说，环比可以与环比相比较，而不能拿同比与环比相比较。但是，对于同一个领域，当既要考虑历史发展趋势，又要考虑短期变化时，则应把同比与环比放在一起进行对照分析。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
+        <link>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html</link>
+        <guid isPermaLink="true">https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html</guid>
+        
+        <category>经济</category>
+        
+        <category>投资</category>
+        
+        
+        <category>投资</category>
+        
+      </item>
     
       <item>
         <title>价值投资选股入门 - 企业盈利能力指标</title>
