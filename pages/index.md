@@ -32,7 +32,7 @@ permalink: /index.html
     <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-tuite"></use>
     </svg>
-    <a href="https://x.com/betterthanshits">我的推特主页(分享投资心得)</a>
+    <a href="https://x.com/SSSAIGOUPI">我的推特主页(分享投资心得)</a>
 </span>
 
 <span style="display: inline-flex; align-items: center; gap: 5px;">
