@@ -5,13 +5,19 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 18 Aug 2025 06:05:54 +0000</pubDate>
-    <lastBuildDate>Mon, 18 Aug 2025 06:05:54 +0000</lastBuildDate>
+    <pubDate>Tue, 19 Aug 2025 08:15:53 +0000</pubDate>
+    <lastBuildDate>Tue, 19 Aug 2025 08:15:53 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
-        <title>经济术语总结(持续更新中)</title>
-        <description>&lt;h2 id=&quot;同比和环比&quot;&gt;同比和环比&lt;/h2&gt;
+        <title>经济学统计学术语总结(持续更新中)</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://www.stats.gov.cn/sj/ndsj/&quot;&gt;国家统计局年鉴&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://sousuo.www.gov.cn/zcwjk/policyDocumentLibrary?q=&amp;amp;t=zhengcelibrary&amp;amp;orpro=&quot;&gt;国务院政策文件库&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;同比和环比&quot;&gt;同比和环比&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;增长速度&lt;/strong&gt;是反映&lt;strong&gt;经济社会某一领域发展变化情况&lt;/strong&gt;的重要指标，而&lt;strong&gt;同比&lt;/strong&gt;和&lt;strong&gt;环比&lt;/strong&gt;是反映增长速度最基础、最核心的指标，也是国际上通用的指标。在统计中，同比和环比通常是&lt;strong&gt;同比变化率&lt;/strong&gt;和&lt;strong&gt;环比变化率&lt;/strong&gt;的简称，用于表示某一事物在对比期内发展变化的方向和程度。&lt;/p&gt;
 
@@ -24,14 +30,39 @@
 &lt;p&gt;&lt;strong&gt;同比&lt;/strong&gt;相对于环比，侧重反映&lt;strong&gt;长期趋势&lt;/strong&gt;，能够一定程度上克服季节性波动的影响。比如，同样是“双十一”促销，使用同比增长速度，10月、11月、12月的网上零售额增速波动不会像环比波动那样大，主要由于上年与今年11月“双十一”促销因素均存在。但另一方面，同比增长速度的缺点是易于受基期因素影响，比如，上年基期受灾害影响，数据波动大，而今年同期未受灾害影响，则同比增长速度会表现出波动变化。&lt;/p&gt;
 
 &lt;p&gt;总之，同比和环比所反映的虽然都是变化速度，但由于对比基期不同，反映的内涵不同。一般来说，环比可以与环比相比较，而不能拿同比与环比相比较。但是，对于同一个领域，当既要考虑历史发展趋势，又要考虑短期变化时，则应把同比与环比放在一起进行对照分析。&lt;/p&gt;
+
+&lt;h2 id=&quot;第一第二第三产业&quot;&gt;第一、第二、第三产业&lt;/h2&gt;
+
+&lt;p&gt;“第一产业”、“第二产业”和“第三产业”是中国国民经济的三大产业划分，分别代表不同的经济活动类型。&lt;/p&gt;
+
+&lt;p&gt;第一产业主要指农业、林业、牧业和渔业等直接利用自然资源的产业。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;定义:直接利用自然资源，从事农、林、牧、渔等生产活动的产业。&lt;/li&gt;
+  &lt;li&gt;主要包括:种植业、林业、畜牧业、渔业等。&lt;/li&gt;
+  &lt;li&gt;特点:以获取自然资源为基础，产品多为初级产品。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第二产业主要指采矿业、制造业、电力、燃气及水的生产和供应业，以及建筑业等，这些产业对原材料进行加工，生产出制成品。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;定义:对第一产业提供的原材料进行加工，生产出制成品或进行能源生产的产业。&lt;/li&gt;
+  &lt;li&gt;主要包括:采矿业、制造业、电力、热力、燃气及水的生产和供应业，建筑业等。&lt;/li&gt;
+  &lt;li&gt;特点:以工业生产活动为主，是国民经济发展的重要支柱。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第三产业则包括除第一和第二产业以外的其他所有行业，主要提供各种服务，如批发零售、交通运输、金融、教育、医疗等。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/img/posts/2025-08-14-invest-economic-terms/image.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
         <link>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html</link>
         <guid isPermaLink="true">https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html</guid>
         
-        <category>经济</category>
+        <category>经济学</category>
         
         <category>投资</category>
+        
+        <category>统计学</category>
         
         
         <category>投资</category>
