@@ -5,8 +5,8 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 20 Aug 2025 10:27:39 +0000</pubDate>
-    <lastBuildDate>Wed, 20 Aug 2025 10:27:39 +0000</lastBuildDate>
+    <pubDate>Wed, 20 Aug 2025 10:30:47 +0000</pubDate>
+    <lastBuildDate>Wed, 20 Aug 2025 10:30:47 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -33,7 +33,9 @@
 
 &lt;p&gt;利润表反映的是企业的赚钱能力，其中&lt;strong&gt;毛利率&lt;/strong&gt;这个指标，和净利率不同，毛利是销售收入-销售成本。&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;毛利率 = 销售收入-销售成本/销售收入&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;«««&amp;lt; HEAD
+«««&amp;lt; HEAD
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;毛利率 = （销售收入-销售成本）/销售收入&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;体现的是公司业务的护城河能力。大家熟悉的餐饮行业的毛利率一般都是高于50%。即卖出一份产品，除去产品的成本后，到手的利润要大于50%。这部分利润之后还要减去人工房租等费用，才是实际赚到的钱，也就是净利润。&lt;/p&gt;
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-08-20T10:27:39+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">价值投资选股入门 - 三个基础指标</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick.html" rel="alternate" type="text/html" title="价值投资选股入门 - 三个基础指标" /><published>2025-08-20T00:00:00+00:00</published><updated>2025-08-20T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick.html"><![CDATA[<h2 id="财报中的三个表">财报中的三个表</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-08-20T10:30:47+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">价值投资选股入门 - 三个基础指标</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick.html" rel="alternate" type="text/html" title="价值投资选股入门 - 三个基础指标" /><published>2025-08-20T00:00:00+00:00</published><updated>2025-08-20T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick.html"><![CDATA[<h2 id="财报中的三个表">财报中的三个表</h2>
 
 <p>上期说了财报中的几个重要的表：<strong>资产负债表</strong>，<strong>利润表</strong>，<strong>现金流量表</strong>。</p>
 
@@ -20,7 +20,9 @@
 
 <p>利润表反映的是企业的赚钱能力，其中<strong>毛利率</strong>这个指标，和净利率不同，毛利是销售收入-销售成本。</p>
 
-<p><code class="language-plaintext highlighter-rouge">毛利率 = 销售收入-销售成本/销售收入</code></p>
+<p>«««&lt; HEAD
+«««&lt; HEAD
+<code class="language-plaintext highlighter-rouge">毛利率 = （销售收入-销售成本）/销售收入</code></p>
 
 <p>体现的是公司业务的护城河能力。大家熟悉的餐饮行业的毛利率一般都是高于50%。即卖出一份产品，除去产品的成本后，到手的利润要大于50%。这部分利润之后还要减去人工房租等费用，才是实际赚到的钱，也就是净利润。</p>
 
