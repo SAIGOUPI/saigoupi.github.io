@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-08-19T08:15:53+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">经济学统计学术语总结(持续更新中)</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html" rel="alternate" type="text/html" title="经济学统计学术语总结(持续更新中)" /><published>2025-08-15T00:00:00+00:00</published><updated>2025-08-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-08-20T10:27:39+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">价值投资选股入门 - 三个基础指标</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick.html" rel="alternate" type="text/html" title="价值投资选股入门 - 三个基础指标" /><published>2025-08-20T00:00:00+00:00</published><updated>2025-08-20T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-stock-pick.html"><![CDATA[<h2 id="财报中的三个表">财报中的三个表</h2>
+
+<p>上期说了财报中的几个重要的表：<strong>资产负债表</strong>，<strong>利润表</strong>，<strong>现金流量表</strong>。</p>
+
+<p>这些就像是一个人的身高体重一样，是公司最基本的数据。想要调研一家公司，最先看的就是财报中的这三张表。</p>
+
+<p>表中的数据也各有侧重，想要快速分析一家公司，可以先看以下三个指标。</p>
+
+<h3 id="资产负债率">资产负债率</h3>
+
+<p>资产负债表是财报中最基础的表，可以分析公司的整体规模，表中主要展示了公司的资产、负债以及所有者权益。</p>
+
+<p><strong>资产负债率</strong>则是表中的一项重要指标，资产负债表中，左边 = 资产 = 右边 = 负债 + 所有者权益。资产负债率体现的是企业的资产中有多少是借贷。如果资产负债率过高，那企业就是背负了巨额贷款在经营，无异于高空走钢丝，非常危险。</p>
+
+<p><code class="language-plaintext highlighter-rouge">资产负债率 = 总负债/总资产</code></p>
+
+<p>但是这个指标的评判标准也不固定，要以行业的平均值来做基准。因为像银行、地产这样的行业，贷款经营是商业模式的一环，所以资产负债率都很高。比如中国银行，常年都是91%左右；像一些百货零售企业，60%往下才算比较健康。而一些科技创业公司，则50%往下才算正常。</p>
+
+<h3 id="毛利率">毛利率</h3>
+
+<p>利润表反映的是企业的赚钱能力，其中<strong>毛利率</strong>这个指标，和净利率不同，毛利是销售收入-销售成本。</p>
+
+<p><code class="language-plaintext highlighter-rouge">毛利率 = 销售收入-销售成本/销售收入</code></p>
+
+<p>体现的是公司业务的护城河能力。大家熟悉的餐饮行业的毛利率一般都是高于50%。即卖出一份产品，除去产品的成本后，到手的利润要大于50%。这部分利润之后还要减去人工房租等费用，才是实际赚到的钱，也就是净利润。</p>
+
+<p>所以，毛利率越高，说明产品的附加值越高，公司业务的成本控制，供应链，品牌效应都比较好，不用低价内卷，有自己的护城河。同样的，这个指标的标准也要以行业平均值来看。制造业的毛利率有30%就很好了。消费行业则要高于40%才算正常。</p>
+
+<h3 id="经营性现金流量净额">经营性现金流量净额</h3>
+
+<p>上面两张表已经可以大致看出企业的实力，但是，企业经营中最最重要的东西，是现金流。赚钱能力再强，没有现金，企业就无法持续经营。所以现金流量表诞生了，这张表里记录了企业每一次经营的现金流变化，反映的是企业真实的现金流情况。</p>
+
+<p>其中<strong>经营性现金流量净额</strong>这个指标，就可以表现出企业在实际经营中，到手了多少现金。</p>
+
+<p>这个指标需要看企业的同比增长是否为正，如果逐年递增，说明企业的经营情况稳步向好。然后还需要和净利润去做比较。现金流量净额大于净利润的公司才是健康的公司。如果现金流净额小于净利润，说明企业的现金流萎缩，净利润中有非现金利润，比如赊账，然后就是企业可能有借款利息需要偿还，或者投资收益减少等等情况。</p>
+
+<p>反正谨记现金流是企业的生命线，现金流不充裕的企业，肯定是有地方出了问题，这时候就要谨慎再谨慎。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>先看企业的资产负债率，同比一下往年的数据，再看看行业的平均水平。剔除负债率过高的。然后查看企业的毛利率，一样同比往年数据和行业水平。然后再和经营性现金流量净额对比。这样过滤之后的公司就是一家有着稳定现金流和护城河，并且负债健康的公司。</p>
+
+<p>但是，这三个指标也只是初级筛选，就像看一个人一样，外表好看，不代表真的是一个好人或者合适的人。筛选下来的公司，还需要根据具体情况具体分析。</p>]]></content><author><name>赛狗屁</name></author><category term="投资" /><category term="价值投资" /><category term="股票" /><summary type="html"><![CDATA[财报中的三个表]]></summary></entry><entry><title type="html">经济学统计学术语总结(持续更新中)</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html" rel="alternate" type="text/html" title="经济学统计学术语总结(持续更新中)" /><published>2025-08-15T00:00:00+00:00</published><updated>2025-08-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html"><![CDATA[<blockquote>
   <p><a href="https://www.stats.gov.cn/sj/ndsj/">国家统计局年鉴</a></p>
 
   <p><a href="https://sousuo.www.gov.cn/zcwjk/policyDocumentLibrary?q=&amp;t=zhengcelibrary&amp;orpro=">国务院政策文件库</a></p>
