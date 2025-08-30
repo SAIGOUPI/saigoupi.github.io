@@ -5,9 +5,45 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 20 Aug 2025 10:37:43 +0000</pubDate>
-    <lastBuildDate>Wed, 20 Aug 2025 10:37:43 +0000</lastBuildDate>
+    <pubDate>Sat, 30 Aug 2025 08:26:40 +0000</pubDate>
+    <lastBuildDate>Sat, 30 Aug 2025 08:26:40 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>使用GPT-SoVITS克隆任意角色的声音</title>
+        <description>&lt;h2 id=&quot;准备材料&quot;&gt;准备材料&lt;/h2&gt;
+&lt;p&gt;Windows系统&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;独立N卡&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;目标效果&quot;&gt;目标效果&lt;/h2&gt;
+&lt;p&gt;本工具属于TTS大模型，训练完成的模型可以实现任意文本到目标语音的转换。&lt;br /&gt;
+我用十分钟的小当家语音训练后的效果可以参考我的小红书：&lt;br /&gt;
+&lt;a href=&quot;https://www.xiaohongshu.com/explore/689ca47a000000001c0337e7?xsec_token=ABLHH3DhLOaE5legnyu-94WGoO5g_PIlXI6R_cDTSl72M=&amp;amp;xsec_source=pc_user&quot;&gt;小当家做红烧排骨&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;教程&quot;&gt;教程&lt;/h2&gt;
+&lt;p&gt;全程参考b站的教学视频即可，非常简单&lt;/p&gt;
+
+&lt;p&gt;AI语音生成零基础入门教学（GPT-Sovits）&lt;/p&gt;
+&lt;iframe src=&quot;//player.bilibili.com/player.html?isOutside=true&amp;amp;aid=113201312173790&amp;amp;bvid=BV1nexGebELa&amp;amp;cid=26008092788&amp;amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;仓库链接
+&lt;a href=&quot;https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/cn/README.md&quot;&gt;GPT-SoVITS仓库&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
+        <link>https://saigoupi.github.io/ai/GPT-SoVITS.html</link>
+        <guid isPermaLink="true">https://saigoupi.github.io/ai/GPT-SoVITS.html</guid>
+        
+        <category>AI</category>
+        
+        <category>GPT-SoVITS</category>
+        
+        
+        <category>AI</category>
+        
+      </item>
     
       <item>
         <title>价值投资选股入门 - 三个基础指标</title>
