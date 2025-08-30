@@ -23,7 +23,9 @@ Windows系统
 全程参考b站的教学视频即可，非常简单
 
 AI语音生成零基础入门教学（GPT-Sovits）
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113201312173790&bvid=BV1nexGebELa&cid=26008092788&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-
+<div style="position: relative; padding: 30% 45%;">
+<iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="//player.bilibili.com/player.html?isOutside=true&aid=113201312173790&bvid=BV1nexGebELa&cid=26008092788&p=1&high_quality=1" frameborder="no" scrolling="no"></iframe>
+</div>
+<p></p>
 仓库链接
 [GPT-SoVITS仓库](https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/cn/README.md)
