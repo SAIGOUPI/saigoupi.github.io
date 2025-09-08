@@ -5,8 +5,8 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 30 Aug 2025 08:36:58 +0000</pubDate>
-    <lastBuildDate>Sat, 30 Aug 2025 08:36:58 +0000</lastBuildDate>
+    <pubDate>Mon, 08 Sep 2025 08:59:00 +0000</pubDate>
+    <lastBuildDate>Mon, 08 Sep 2025 08:59:00 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -149,7 +149,112 @@
 
 &lt;p&gt;第三产业则包括除第一和第二产业以外的其他所有行业，主要提供各种服务，如批发零售、交通运输、金融、教育、医疗等。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;../assets/img/posts/2025-08-14-invest-economic-terms/image.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/SAIGOUPI/saigoupi.github.io/blob/master/assets/img/posts/2025-08-14-invest-economic-terms/image.png?raw=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;上行风险和下行风险&quot;&gt;上行风险和下行风险&lt;/h2&gt;
+
+&lt;p&gt;本为投资概念，在经济学中，也可以用于描述其他指标的变化，如通胀上行风险、就业下行风险。&lt;/p&gt;
+
+&lt;p&gt;上行风险和下行风险是从两个相反的角度来衡量投资的不确定性（即风险）。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下行风险：指的是投资出现亏损的可能性（坏的不确定性）。这是传统意义上人们所理解的风险。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;上行风险：指的是投资表现远超预期的可能性（好的不确定性）。它衡量的是你可能会“错过”的潜在超额收益。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;方面&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;下行风险&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;上行风险&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;关注点&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;亏损的可能性（不好的结果）&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;超越预期收益的可能性（好的结果）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;核心问题&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;“我可能会亏多少？”&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;“我可能会错过多少？”&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;传统视角&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;这是需要避免和管理的“真正的风险”&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;这常被视为“机会”而非风险&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;现代视角&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;是风险的一个方面&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;是风险的另一面，代表潜在机会成本&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;投资者偏好&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;几乎所有投资者都希望规避&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;因人而异：保守者规避，进取者追求&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;在&lt;strong&gt;经济学指标&lt;/strong&gt;中，通胀上行风险指的是，未来通货膨胀率高于当前预期水平（或政策目标水平）的可能性与严重程度。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;当前经济面临显著的通胀上行风险&lt;/strong&gt;则表示：专家们非常担心，由于某些因素的存在，未来的通货膨胀情况可能会比现在大家预估的更加严峻，这将迫使央行采取更严厉的手段来应对。比如加息，收紧货币政策。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;术语&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;含义&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;关注点&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;通常对应的政策倾向&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;通胀上行风险&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;通胀率高于预期的可能性&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;“通胀会不会失控？会不会比想的更糟？”&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;鹰派（倾向于加息、收紧货币）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;通胀下行风险&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;通胀率低于预期的可能性&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;“经济会不会太冷？会不会陷入通缩？”&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;鸽派（倾向于降息、刺激经济）&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;流动资产和非流动资产&quot;&gt;流动资产和非流动资产&lt;/h2&gt;
+
+&lt;h3 id=&quot;流动资产&quot;&gt;流动资产&lt;/h3&gt;
+
+&lt;p&gt;流动资产是指企业在一个营业周期内（通常为一年）可以转换为现金或被消耗的资产。具体包括：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;货币资金&lt;/strong&gt;：包括库存现金和银行存款等，是企业流动性最强的资产。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;应收账款&lt;/strong&gt;：因销售商品或提供劳务而形成的债权，是流动资产的重要组成部分。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;存货&lt;/strong&gt;：企业为了销售或生产而储备的物资，包括原材料、在产品、半成品和成品等。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;短期投资&lt;/strong&gt;：指企业购入能够随时变现并且持有时间不超过一年的投资，如购买国债等。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;其他应收款&lt;/strong&gt;：包括预付款项和其他应收款项等。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;非流动资产&quot;&gt;非流动资产&lt;/h3&gt;
+
+&lt;p&gt;非流动资产是指不能在一个营业周期内变现或耗用的资产，通常具有较长的使用寿命。具体包括：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;固定资产&lt;/strong&gt;：企业长期使用并持有的资产，如房屋、机器设备等，使用寿命超过一个会计年度。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;长期投资&lt;/strong&gt;：企业长期持有的投资，如股权投资等，通常持有时间超过一年。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;无形资产&lt;/strong&gt;：企业拥有但没有实物形态的资产，如专利、商标、版权等。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;在建工程&lt;/strong&gt;：正在建设中的固定资产，尚未投入使用的部分。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;长期待摊费用&lt;/strong&gt;：指企业已经发生但尚未在当期费用中摊销的费用。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
         <link>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-economic-terms.html</link>

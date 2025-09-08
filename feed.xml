@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-08-30T08:36:58+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">使用GPT-SoVITS克隆任意角色的声音</title><link href="https://saigoupi.github.io/ai/GPT-SoVITS.html" rel="alternate" type="text/html" title="使用GPT-SoVITS克隆任意角色的声音" /><published>2025-08-30T00:00:00+00:00</published><updated>2025-08-30T00:00:00+00:00</updated><id>https://saigoupi.github.io/ai/GPT-SoVITS</id><content type="html" xml:base="https://saigoupi.github.io/ai/GPT-SoVITS.html"><![CDATA[<h2 id="准备材料">准备材料</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-09-08T08:59:00+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">使用GPT-SoVITS克隆任意角色的声音</title><link href="https://saigoupi.github.io/ai/GPT-SoVITS.html" rel="alternate" type="text/html" title="使用GPT-SoVITS克隆任意角色的声音" /><published>2025-08-30T00:00:00+00:00</published><updated>2025-08-30T00:00:00+00:00</updated><id>https://saigoupi.github.io/ai/GPT-SoVITS</id><content type="html" xml:base="https://saigoupi.github.io/ai/GPT-SoVITS.html"><![CDATA[<h2 id="准备材料">准备材料</h2>
 <p>Windows系统</p>
 <ul>
   <li>Python</li>
@@ -102,7 +102,112 @@
 
 <p>第三产业则包括除第一和第二产业以外的其他所有行业，主要提供各种服务，如批发零售、交通运输、金融、教育、医疗等。</p>
 
-<p><img src="../assets/img/posts/2025-08-14-invest-economic-terms/image.png" alt="" /></p>]]></content><author><name>赛狗屁</name></author><category term="投资" /><category term="经济学" /><category term="投资" /><category term="统计学" /><summary type="html"><![CDATA[国家统计局年鉴 国务院政策文件库]]></summary></entry><entry><title type="html">价值投资选股入门 - 企业盈利能力指标</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research.html" rel="alternate" type="text/html" title="价值投资选股入门 - 企业盈利能力指标" /><published>2025-08-14T00:00:00+00:00</published><updated>2025-08-14T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research.html"><![CDATA[<h2 id="小白进来能先看什么">小白进来能先看什么？</h2>
+<p><img src="https://github.com/SAIGOUPI/saigoupi.github.io/blob/master/assets/img/posts/2025-08-14-invest-economic-terms/image.png?raw=true" alt="" /></p>
+
+<h2 id="上行风险和下行风险">上行风险和下行风险</h2>
+
+<p>本为投资概念，在经济学中，也可以用于描述其他指标的变化，如通胀上行风险、就业下行风险。</p>
+
+<p>上行风险和下行风险是从两个相反的角度来衡量投资的不确定性（即风险）。</p>
+
+<ul>
+  <li>
+    <p>下行风险：指的是投资出现亏损的可能性（坏的不确定性）。这是传统意义上人们所理解的风险。</p>
+  </li>
+  <li>
+    <p>上行风险：指的是投资表现远超预期的可能性（好的不确定性）。它衡量的是你可能会“错过”的潜在超额收益。</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">方面</th>
+      <th style="text-align: left">下行风险</th>
+      <th style="text-align: left">上行风险</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>关注点</strong></td>
+      <td style="text-align: left">亏损的可能性（不好的结果）</td>
+      <td style="text-align: left">超越预期收益的可能性（好的结果）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>核心问题</strong></td>
+      <td style="text-align: left">“我可能会亏多少？”</td>
+      <td style="text-align: left">“我可能会错过多少？”</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>传统视角</strong></td>
+      <td style="text-align: left">这是需要避免和管理的“真正的风险”</td>
+      <td style="text-align: left">这常被视为“机会”而非风险</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>现代视角</strong></td>
+      <td style="text-align: left">是风险的一个方面</td>
+      <td style="text-align: left">是风险的另一面，代表潜在机会成本</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>投资者偏好</strong></td>
+      <td style="text-align: left">几乎所有投资者都希望规避</td>
+      <td style="text-align: left">因人而异：保守者规避，进取者追求</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在<strong>经济学指标</strong>中，通胀上行风险指的是，未来通货膨胀率高于当前预期水平（或政策目标水平）的可能性与严重程度。</p>
+
+<p><strong>当前经济面临显著的通胀上行风险</strong>则表示：专家们非常担心，由于某些因素的存在，未来的通货膨胀情况可能会比现在大家预估的更加严峻，这将迫使央行采取更严厉的手段来应对。比如加息，收紧货币政策。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">术语</th>
+      <th style="text-align: left">含义</th>
+      <th style="text-align: left">关注点</th>
+      <th style="text-align: left">通常对应的政策倾向</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">通胀上行风险</td>
+      <td style="text-align: left">通胀率高于预期的可能性</td>
+      <td style="text-align: left">“通胀会不会失控？会不会比想的更糟？”</td>
+      <td style="text-align: left">鹰派（倾向于加息、收紧货币）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">通胀下行风险</td>
+      <td style="text-align: left">通胀率低于预期的可能性</td>
+      <td style="text-align: left">“经济会不会太冷？会不会陷入通缩？”</td>
+      <td style="text-align: left">鸽派（倾向于降息、刺激经济）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="流动资产和非流动资产">流动资产和非流动资产</h2>
+
+<h3 id="流动资产">流动资产</h3>
+
+<p>流动资产是指企业在一个营业周期内（通常为一年）可以转换为现金或被消耗的资产。具体包括：</p>
+<ul>
+  <li><strong>货币资金</strong>：包括库存现金和银行存款等，是企业流动性最强的资产。</li>
+  <li><strong>应收账款</strong>：因销售商品或提供劳务而形成的债权，是流动资产的重要组成部分。</li>
+  <li><strong>存货</strong>：企业为了销售或生产而储备的物资，包括原材料、在产品、半成品和成品等。</li>
+  <li><strong>短期投资</strong>：指企业购入能够随时变现并且持有时间不超过一年的投资，如购买国债等。</li>
+  <li><strong>其他应收款</strong>：包括预付款项和其他应收款项等。</li>
+</ul>
+
+<h3 id="非流动资产">非流动资产</h3>
+
+<p>非流动资产是指不能在一个营业周期内变现或耗用的资产，通常具有较长的使用寿命。具体包括：</p>
+<ul>
+  <li><strong>固定资产</strong>：企业长期使用并持有的资产，如房屋、机器设备等，使用寿命超过一个会计年度。</li>
+  <li><strong>长期投资</strong>：企业长期持有的投资，如股权投资等，通常持有时间超过一年。</li>
+  <li><strong>无形资产</strong>：企业拥有但没有实物形态的资产，如专利、商标、版权等。</li>
+  <li><strong>在建工程</strong>：正在建设中的固定资产，尚未投入使用的部分。</li>
+  <li><strong>长期待摊费用</strong>：指企业已经发生但尚未在当期费用中摊销的费用。</li>
+</ul>]]></content><author><name>赛狗屁</name></author><category term="投资" /><category term="经济学" /><category term="投资" /><category term="统计学" /><summary type="html"><![CDATA[国家统计局年鉴 国务院政策文件库]]></summary></entry><entry><title type="html">价值投资选股入门 - 企业盈利能力指标</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research.html" rel="alternate" type="text/html" title="价值投资选股入门 - 企业盈利能力指标" /><published>2025-08-14T00:00:00+00:00</published><updated>2025-08-14T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/invest-profitability-research.html"><![CDATA[<h2 id="小白进来能先看什么">小白进来能先看什么？</h2>
 
 <h3 id="公司财报">公司财报</h3>
 
