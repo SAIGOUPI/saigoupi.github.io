@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python实现监控BSC链上FOUR平台发射的代币 - 赛狗屁的技术空间 | 游戏 WEB 金融</title>
+    <meta name="author" content="赛狗屁">
+    
+    <meta name="description" content="Python实现监控BSC链上FOUR平台发射的代币">
+    <meta name="keywords"
+        content="web3, 加密货币">
+    
+    
+    <meta property="og:next_url" content="/%E6%8A%95%E8%B5%84/Tech-Analysis.html">
+    
+    
+    <meta property="post-date-format" content="0">
+    
+    <meta property="post-date" content="2025-10-15 00:00:00 +0000" />
+    
+    
+    <meta property="calendar-scale" content="year" />
+    <meta property="calendar-scheme" content="null" />
+    <meta property="calendar-color" content="null" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="Python实现监控BSC链上FOUR平台发射的代币 - 赛狗屁的技术空间 | 游戏 WEB 金融">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saigoupi.github.io/web3/bscscan.html">
+    <meta property="og:baseurl" content="">
+    <meta property="og:description" content="欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。">
+    <meta property="og:site_name" content="赛狗屁的技术空间 | 游戏 WEB 金融">
+    <meta property="og:gray" content="false">
+    <meta property="og:lang" content="zh-Hans">
+    
+    <meta name="alivestart" content="7/26/2025">
+    
+    
+    <meta name="theme-color" content="#81BBFF" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/assets/img/touch/apple-touch-icon.png" />
+    <link rel="Shortcut Icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.min.css" async>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown-light.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css">
+    
+    
+
+
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/prism-themes/themes/prism-one-light.min.css" />
+
+
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
+
+    
+
+    
+    
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+</head>
+    
+    <body class="line-numbers" ontouchstart="">
+    
+    <!--[if lt IE 10]>
+    <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+    <![endif]-->
+        
+        
+        <div id="all" class="post" data-theme="default">
+        
+            
+            
+            <div class="alert-tip" id="no-previous">已经是最新一篇文章了！</div>
+            <div class="alert-tip" id="no-next">已经是最后一篇文章了！</div>
+        
+            <input id="nm-switch" type="hidden" value="false">
+            <header class="g-header" data-theme="default">
+    <div class="g-logo">
+      <a href="/" aria-label="logo"></a>
+    </div>
+    <!-- <i id="menu-toggle" class="iconfont icon-menu"></i> -->
+    
+    
+    <div id="mode-toggle">
+        <svg class="icon icon-day" aria-hidden="true">
+            <use xlink:href="#icon-day"></use>
+        </svg>
+        <svg class="icon icon-night" aria-hidden="true">
+            <use xlink:href="#icon-night"></use>
+        </svg>
+    </div>
+    <svg id="menu-toggle" class="icon-menu" aria-hidden="true">
+        <use xlink:href="#icon-menu"></use>
+    </svg>
+    <nav class="g-nav">
+        <ul>
+            
+                
+                <li>
+                    <a href="/" aria-label="home">
+                        home
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a href="/blog/index.html" aria-label="blog">
+                        blog
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a href="/archives.html" aria-label="archives">
+                        archives
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a href="/tags.html" aria-label="tags">
+                        tags
+                    </a>
+                </li>
+                
+            
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);"> about </a>
+                    <ul class="dropdown-menu">
+                    
+                        <li>
+                            <a href="/feed.xml" aria-label="RSS">
+                                RSS
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/links.html" aria-label="links">
+                                links
+                            </a>
+                        </li>
+                    
+                    </ul> 
+                </li>
+                
+            
+            <li class="random">
+                <a href="#" aria-label="Random Article" target="_blank">🎲</a>
+            </li>
+            
+            <li class="mode">
+                <svg class="icon day" aria-hidden="true">
+                    <use xlink:href="#icon-day"></use>
+                </svg>
+                <svg class="icon night" aria-hidden="true">
+                    <use xlink:href="#icon-night"></use>
+                </svg>
+            </li>
+            
+        </ul>
+    </nav>
+</header>
+
+            
+
+
+<div class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default">
+    <div class="post-wrapper">
+        <div class="post-tags">
+            
+            
+            <a href="/%20/tags.html#web3" class="post-tag">web3</a>
+            
+            <a href="/%20/tags.html#%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81" class="post-tag">加密货币</a>
+            
+            
+        </div>
+        <h1>Python实现监控BSC链上FOUR平台发射的代币</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-user"></use>
+                </svg>
+                赛狗屁
+            </span>
+            <time class="post-meta-item" datetime=" 25-10-15">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-calendar"></use>
+                </svg>
+                <span class="create-at"></span>
+            </time>
+            <time class="post-meta-item" datetime=" 25-10-15">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-update"></use>
+                </svg>
+                <span class="update-at"></span>
+            </time>
+            <span class="post-meta-item">
+                <svg class="icon words" aria-hidden="true">
+                    <use xlink:href="#icon-words"></use>
+                </svg>
+                
+                本文总共  6.4k  字 </span>
+                    <span class="post-meta-item">
+                        <svg class="icon time" aria-hidden="true">
+                            <use xlink:href="#icon-time"></use>
+                        </svg>
+                        阅读全文大约需要 19 分钟
+                    </span>
+                    
+                    <span class="post-meta-item">
+                        <svg class="icon pv" aria-hidden="true">
+                            <use xlink:href="#icon-pv"></use>
+                        </svg>
+                        本文总阅读量 
+                        
+                        <span id="busuanzi_value_page_pv"></span>
+                        
+                        次
+                    </span>
+                    
+                    
+        </div>
+    </div>
+    
+</div>
+
+<main class="post-content visible">
+    
+    <h2 class="post-subtitle">Python的web3库的简单案例</h2>
+    
+
+    
+
+    <div class="container">
+        
+<div class="submenu hidden">
+
+</div>
+        <div class="contents">
+            <article class="markdown-body post">
+                
+
+
+                <h2 id="为什么要做这个">为什么要做这个</h2>
+<ul>
+  <li>Python的web3库的练习</li>
+  <li>最近BSC的MEME很火，写这个工具玩一玩</li>
+</ul>
+
+<h2 id="工具准备">工具准备</h2>
+<ul>
+  <li>Python</li>
+  <li><a href="https://etherscan.io/apis" rel="nofollow" target="_blank" class="extlinks">Etherscan官网注册获取免费API</a></li>
+</ul>
+
+<h2 id="设计思路">设计思路</h2>
+<ul>
+  <li>
+    <p>在<a href="https://bscscan.com/" rel="nofollow" target="_blank" class="extlinks">BSC浏览器</a>里查看<a href="https://four.meme/zh-TW" rel="nofollow" target="_blank" class="extlinks">FOUR</a>平台发射出来的代币，发现其代币的智能合约是通过工厂模式创建的。
+<img src="../assets/img/posts/2025-10-15-bscscan/image.png" alt="alt text"></p>
+  </li>
+  <li>
+    <p>很容易找到FOUR的工厂合约地址： <code class="language-plaintext highlighter-rouge">0x5c952063c7fc8610FFDB798152D69F0B9550762b</code>
+<img src="../assets/img/posts/2025-10-15-bscscan/image-2.png" alt="alt text"></p>
+  </li>
+  <li>
+    <p>查看这条哈希，然后在 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 内部交易中找到CREATE方法的调用，就说明这笔交易创建了一个新代币，在交易的 <code class="language-plaintext highlighter-rouge">To</code> 值里，找到新代币的合约地址
+<img src="../assets/img/posts/2025-10-15-bscscan/image-1.png" alt="alt text"></p>
+  </li>
+  <li>
+    <p>所以代码的执行思路：
+1.轮询BSC的区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 是FOUR工厂合约的哈希
+2.提取每个哈希里的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 交易，如果里面有CREATE方法的调用，那么这次交易则创建了一个新代币，代币的合约地址就是 <code class="language-plaintext highlighter-rouge">To</code> 的地址
+3.调用代币合约的方法，获得代币的名称</p>
+  </li>
+</ul>
+
+<h2 id="代码实现">代码实现</h2>
+
+<p>轮询区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 为工厂合约的哈希</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="n">block</span><span class="p">[</span><span class="sh">'</span><span class="s">transactions</span><span class="sh">'</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="n">FACTORY_ADDRESS</span><span class="p">:</span>
+        <span class="n">txStr</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">hash</span><span class="sh">'</span><span class="p">].</span><span class="nf">hex</span><span class="p">())</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">检查交易:</span><span class="si">{</span><span class="n">txStr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">new_addrs</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">txStr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>检查哈希的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 里是否有CREATE的函数调用，如果有，获取 <code class="language-plaintext highlighter-rouge">To</code> 的合约即为新代币合约地址</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">,</span> <span class="n">use_batch</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">使用Etherscan V2 API获取Internal TXNs（chainid=56）</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.etherscan.io/v2/api</span><span class="sh">"</span>  <span class="c1"># V2统一端点
+</span>    <span class="bp">...</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 单tx
+</span>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">chainid</span><span class="sh">'</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">module</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">account</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">txlistinternal</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">txhash</span><span class="sh">'</span><span class="p">:</span> <span class="n">tx_hash</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">apikey</span><span class="sh">'</span><span class="p">:</span> <span class="n">ETHERSCAN_API_KEY</span>
+        <span class="p">}</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: V2 URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">, 状态码: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: 响应内容: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">300</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 截断调试
+</span>        
+        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">HTTP </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">1</span><span class="sh">'</span> <span class="ow">and</span> <span class="sh">'</span><span class="s">result</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">new_addresses</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">txn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="n">contractAddr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">contractAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>  <span class="c1"># e.g., "create2_0_1_1_1"
+</span>                <span class="n">txn_type</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">lower</span><span class="p">()</span>
+                <span class="n">to_addr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">txn_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">create2</span><span class="sh">'</span> <span class="ow">and</span> <span class="n">to_addr</span> <span class="o">==</span> <span class="sh">''</span> <span class="ow">and</span> <span class="n">contractAddr</span><span class="p">:</span>
+                    <span class="n">new_addresses</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">Web3</span><span class="p">.</span><span class="nf">to_checksum_address</span><span class="p">(</span><span class="n">contractAddr</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">new_addresses</span><span class="p">,</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">API错误: </span><span class="si">{</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">未知</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">JSON解析失败 (可能是404/非JSON): </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">V2 API调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<p>检查代币的合约地址，获取代币的名字</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_bep20_token</span><span class="p">(</span><span class="n">contract_address</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">验证BEP-20代币</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">get_code</span><span class="p">(</span><span class="n">contract_address</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sh">"</span><span class="s">非合约地址</span><span class="sh">"</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">contract</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">contract_address</span><span class="p">,</span> <span class="n">abi</span><span class="o">=</span><span class="n">BEP20_ABI</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">name</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="n">symbol</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">symbol</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">非BEP-20或调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<p>完整代码如下，其中<code class="language-plaintext highlighter-rouge">ETHERSCAN_API_KEY</code>需要更换成自己的API Key，去这里注册<a href="https://etherscan.io/apis" rel="nofollow" target="_blank" class="extlinks">Etherscan官网注册获取免费API</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">web3</span> <span class="kn">import</span> <span class="n">Web3</span>
+<span class="kn">from</span> <span class="n">web3.middleware</span> <span class="kn">import</span> <span class="n">ExtraDataToPOAMiddleware</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">hexbytes</span> <span class="kn">import</span> <span class="n">HexBytes</span>
+
+<span class="c1"># BSC RPC（测试debug_trace支持；若失败，换Ankr: https://rpc.ankr.com/bsc）
+</span><span class="n">RPC_URL</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://bsc-dataseed1.binance.org/</span><span class="sh">'</span>  <span class="c1"># 或 'https://bsc.rpc.blxrbdn.com/' 支持trace
+</span><span class="n">w3</span> <span class="o">=</span> <span class="nc">Web3</span><span class="p">(</span><span class="n">Web3</span><span class="p">.</span><span class="nc">HTTPProvider</span><span class="p">(</span><span class="n">RPC_URL</span><span class="p">))</span>
+
+<span class="c1"># 添加POA中间件,因为BSC有一部分POA网络血统,需要添加POA中间件
+</span><span class="n">w3</span><span class="p">.</span><span class="n">middleware_onion</span><span class="p">.</span><span class="nf">inject</span><span class="p">(</span><span class="n">ExtraDataToPOAMiddleware</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+
+<span class="c1"># BEP-20验证ABI
+</span><span class="n">BEP20_ABI</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">symbol</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># FORM工厂地址
+</span><span class="n">FACTORY_ADDRESS</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x5c952063c7fc8610FFDB798152D69F0B9550762b</span><span class="sh">'</span>
+
+<span class="c1"># Etherscan/BscScan V2 API Key（免费：https://etherscan.io/myapikey 或 bscscan.com/myapikey）
+</span><span class="n">ETHERSCAN_API_KEY</span> <span class="o">=</span> <span class="sh">''</span>  <span class="c1"># 共享key
+</span>
+<span class="c1"># BEP-20验证ABI
+</span><span class="n">BEP20_ABI</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">symbol</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">is_bep20_token</span><span class="p">(</span><span class="n">contract_address</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">验证BEP-20代币</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">get_code</span><span class="p">(</span><span class="n">contract_address</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sh">"</span><span class="s">非合约地址</span><span class="sh">"</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">contract</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">contract_address</span><span class="p">,</span> <span class="n">abi</span><span class="o">=</span><span class="n">BEP20_ABI</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">name</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="n">symbol</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">symbol</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">非BEP-20或调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">,</span> <span class="n">use_batch</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">使用Etherscan V2 API获取Internal TXNs（chainid=56）</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.etherscan.io/v2/api</span><span class="sh">"</span>  <span class="c1"># V2统一端点
+</span>    <span class="k">if</span> <span class="n">use_batch</span><span class="p">:</span>
+        <span class="c1"># 批量：用address + 区块范围（更高效，避免单tx 404）
+</span>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">chainid</span><span class="sh">'</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span>  <span class="c1"># BSC
+</span>            <span class="sh">'</span><span class="s">module</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">account</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">txlistinternal</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">address</span><span class="sh">'</span><span class="p">:</span> <span class="n">FACTORY_ADDRESS</span><span class="p">,</span>  <span class="c1"># 工厂地址
+</span>            <span class="sh">'</span><span class="s">startblock</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">0</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">endblock</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">latest</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 或指定recent block
+</span>            <span class="sh">'</span><span class="s">page</span><span class="sh">'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">offset</span><span class="sh">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># 最近10笔
+</span>            <span class="sh">'</span><span class="s">sort</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">desc</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">apikey</span><span class="sh">'</span><span class="p">:</span> <span class="n">ETHERSCAN_API_KEY</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 单tx
+</span>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">chainid</span><span class="sh">'</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">module</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">account</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">txlistinternal</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">txhash</span><span class="sh">'</span><span class="p">:</span> <span class="n">tx_hash</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">apikey</span><span class="sh">'</span><span class="p">:</span> <span class="n">ETHERSCAN_API_KEY</span>
+        <span class="p">}</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: V2 URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">, 状态码: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: 响应内容: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">300</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 截断调试
+</span>        
+        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">HTTP </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">1</span><span class="sh">'</span> <span class="ow">and</span> <span class="sh">'</span><span class="s">result</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">new_addresses</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">txn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="n">contractAddr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">contractAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>  <span class="c1"># e.g., "create2_0_1_1_1"
+</span>                <span class="n">txn_type</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">lower</span><span class="p">()</span>
+                <span class="n">to_addr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">txn_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">create2</span><span class="sh">'</span> <span class="ow">and</span> <span class="n">to_addr</span> <span class="o">==</span> <span class="sh">''</span> <span class="ow">and</span> <span class="n">contractAddr</span><span class="p">:</span>
+                    <span class="n">new_addresses</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">Web3</span><span class="p">.</span><span class="nf">to_checksum_address</span><span class="p">(</span><span class="n">contractAddr</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">new_addresses</span><span class="p">,</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">API错误: </span><span class="si">{</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">未知</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">JSON解析失败 (可能是404/非JSON): </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">V2 API调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+
+<span class="c1"># 此功能实现有问题，暂时不用
+</span><span class="k">def</span> <span class="nf">methodCheck</span><span class="p">(</span><span class="n">tx</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">检查交易是否为CREATE2</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">input</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s">0x</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">input_data</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="n">method_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="o">+</span> <span class="p">(</span><span class="n">input_data</span><span class="p">).</span><span class="nf">hex</span><span class="p">()</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">519ebb10</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">method_id</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">方法检查失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">monitor_factory_create2</span><span class="p">(</span><span class="n">last_block</span><span class="o">=</span><span class="sh">'</span><span class="s">latest</span><span class="sh">'</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">监控工厂交易，使用V2 API检测CREATE2</span><span class="sh">"""</span>
+    <span class="n">last_block_num</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="n">block_number</span> <span class="k">if</span> <span class="n">last_block</span> <span class="o">==</span> <span class="sh">'</span><span class="s">latest</span><span class="sh">'</span> <span class="k">else</span> <span class="nf">int</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span>
+    <span class="n">current_block</span> <span class="o">=</span> <span class="n">last_block_num</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_block</span> <span class="o">&gt;</span> <span class="n">last_block_num</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">检测到新区块: </span><span class="si">{</span><span class="n">current_block</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">get_block</span><span class="p">(</span><span class="n">current_block</span><span class="p">,</span> <span class="n">full_transactions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="n">block</span><span class="p">[</span><span class="sh">'</span><span class="s">transactions</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="n">FACTORY_ADDRESS</span><span class="p">:</span>
+                    <span class="n">txStr</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">hash</span><span class="sh">'</span><span class="p">].</span><span class="nf">hex</span><span class="p">())</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">检查交易:</span><span class="si">{</span><span class="n">txStr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="n">new_addrs</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">txStr</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+                        <span class="c1">#print(f"V2单tx失败: {error}")
+</span>                        <span class="k">continue</span>
+                    <span class="c1"># 处理new_addrs...
+</span>                    <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">new_addrs</span><span class="p">:</span>
+                        <span class="n">is_token</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="nf">is_bep20_token</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">is_token</span><span class="p">:</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">🚀 FORM CREATE2新代币: </span><span class="si">{</span><span class="n">addr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">   详情: </span><span class="si">{</span><span class="n">details</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">   交易哈希: </span><span class="si">{</span><span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">hash</span><span class="sh">'</span><span class="p">].</span><span class="nf">hex</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">   区块: </span><span class="si">{</span><span class="n">current_block</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+            
+            <span class="n">last_block_num</span> <span class="o">=</span> <span class="n">current_block</span>
+        <span class="n">current_block</span> <span class="o">=</span> <span class="n">last_block_num</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 轮询间隔
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">w3</span><span class="p">.</span><span class="nf">is_connected</span><span class="p">():</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">❌ 无法连接BSC</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">✅ 开始监控FORM工厂 </span><span class="si">{</span><span class="n">FACTORY_ADDRESS</span><span class="si">}</span><span class="s"> 的CREATE2部署（Etherscan V2 + chainid=56）...</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">monitor_factory_create2</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="后续优化">后续优化</h2>
+<ul>
+  <li>
+    <p>这个程序仅仅只能基本实现找到新代币的功能，和DEX上的那些扫链功能完全不能比，DEX基本上都是和FOUR平台合作的，应该有平台提供的专用API，我这里是为了学习Web3，使用的都是免费的公共的节点和API。</p>
+  </li>
+  <li>
+    <p>我在BscScan里看到每条哈希都有一个<code class="language-plaintext highlighter-rouge">Method</code>字段，在浏览器里可以看到<code class="language-plaintext highlighter-rouge">CreateToken</code>的方法。所以我想在轮询工厂合约的哈希时，先将CreateToken的方法的哈希分离出来，再对这些哈希进行提取操作，可以提高查询速度。
+但是尝试了一下，暂时没有找到代码里辨别Method的方法，肯定是可以做到的，只不过需要时间去测试，后续可以优化这一点。</p>
+  </li>
+</ul>
+
+<p><img src="../assets/img/posts/2025-10-15-bscscan/image-3.png" alt="alt text"></p>
+
+<ul>
+  <li>公共的BSC节点很慢，然后Etherscan API的免费套餐也对每天的请求数量和速度有限制，如果有钱的话，可以买更好的套餐，还会有更方便的API可以使用。</li>
+</ul>
+
+                <div class="post-copyright">
+                    <p>
+                        <span>版权声明：</span>
+                        如无特别声明，本文版权归
+                        <a href="https://saigoupi.github.io" class="cplink">赛狗屁的技术空间 | 游戏 WEB 金融</a>
+                        所有，转载请注明本文链接。
+                    </p>
+                    
+                    <p>
+                        （采用 
+                        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="extlinks">CC
+                            BY-NC-SA 4.0</a>
+                        许可协议进行授权）
+                    </p>
+                    
+                    <p><span>本文标题：</span>《 Python实现监控BSC链上FOUR平台发射的代币 》</p>
+                    <p><span>本文链接：</span><a href="https://saigoupi.github.io/web3/bscscan.html" class="cplink">https://saigoupi.github.io/web3/bscscan.html</a></p>
+                    <p class="tips">本文最后一次更新为 <span></span> 天前，文章中的某些内容可能已过时！
+                    </p>
+                </div>
+            </article>
+        </div>
+        
+            <div class="table-of-contents">
+                <div class="toc-header"><h2>目录</h2></div>
+                <div class="toc-body">
+                    <ul><li><a onclick="scrollToAdjust('为什么要做这个')">为什么要做这个</a></li><li><a onclick="scrollToAdjust('工具准备')">工具准备</a></li><li><a onclick="scrollToAdjust('设计思路')">设计思路</a></li><li><a onclick="scrollToAdjust('代码实现')">代码实现</a></li><li><a onclick="scrollToAdjust('后续优化')">后续优化</a></li></ul>
+                </div>
+        
+            </div>
+        </div>
+        
+<div class="social-share-wrapper">
+    <div class="social-share"></div>
+</div>
+
+</main>
+
+<section class="author-detail">
+    <section class="post-footer-item author-card">
+        <div class="avatar">
+            <img src="/assets/img/profile.webp" alt="">
+        </div>
+        <div class="author-name" rel="author">赛狗屁</div>
+        <div class="bio">
+            <p>游戏行业老兵 | Web开发新手 | 金融学徒</p>
+        </div>
+        
+        <ul class="sns-links">
+            
+            <li>
+                <a href="https://github.com/SAIGOUPI" target="_blank" aria-label="github">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://x.com/SSSAIGOUPI" target="_blank" aria-label="twitter">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-twitter"></use>
+                    </svg>
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://www.cnblogs.com/saigoupi/" target="_blank" aria-label="cnblogs">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-cnblogs"></use>
+                    </svg>
+                </a>
+            </li>
+            
+        </ul>
+        
+    </section>
+    <section class="post-footer-item read-next">
+        
+
+        
+        <div class="read-next-item">
+            <a href="/%E6%8A%95%E8%B5%84/Tech-Analysis.html" class="read-next-link"
+                aria-label="炒币指标技术分析"></a>
+            <section>
+                <span>炒币指标技术分析</span>
+                <p>指数平滑移动平均线（MACD）</p>
+            </section>
+            
+        </div>
+        
+    </section>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+</section>
+            
+
+
+<footer class="g-footer">
+  <div class="g-container">
+    <div class="g-left">
+      <section class="links">
+        本站由 <a href="//jekyllrb.com" target="_blank" class="extlinks">Jekyll</a> 和 (基于 <a href="https://github.com/kaeyleo/jekyll-theme-H2O" target="_blank" class="extlinks">H2O</a> 的) <a href="https://github.com/zhonger/jekyll-theme-H2O-ac" target="_blank" class="extlinks">H2O-ac</a> 强力驱动
+         (<a href="https://github.com/zhonger/jekyll-theme-H2O-ac/releases/tag/v1.5.1"
+          target="_blank" class="extlinks">v1.5.1</a>)
+        
+      </section>
+      <section class="links">赛狗屁的技术空间 | 游戏 WEB 金融 ©
+        <input type="hidden" id="footer-since" value="2025">
+        <span id="footer-year"></span>
+        
+        
+        <a href="/rss.xml" target="_blank" aria-label="Terms of Service" class="others">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-rss"></use>
+          </svg> RSS
+        </a>
+        <a href="/tos" target="_blank" aria-label="Terms of Service" class="others">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-tos"></use>
+          </svg> 使用条款
+        </a>
+      </section>
+      
+      <section class="links">
+        <span id="busuanzi_container_site_pv">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-pv"></use>
+          </svg> 总浏览量
+          
+            <span id="busuanzi_value_site_pv"></span>
+            
+            <b>·</b>
+          </span>
+        </span>
+        <span id="busuanzi_container_site_uv">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-user"></use>
+          </svg> 总访问量
+          
+          <span id="busuanzi_value_site_uv"></span>
+          
+        </span>
+      </section>
+      
+      <section>
+        
+        本站已运行
+        <span class="alivetime_days"></span> 天
+        <span class="alivetime_hours"></span> 小时
+        <span class="alivetime_minutes"></span> 分
+        <span class="alivetime_seconds"></span> 秒
+        
+      </section>
+    </div>
+    <div class="g-right">
+      
+      
+      
+    </div>
+    
+  </div>
+</footer>
+<div class="cookie-tip">
+   为了提升本站的使用体验和必要功能的正常使用，本站会使用本地 Cookie。详细请查看「 <a href="/tos.html">本站使用条款</a> 」了解更多。
+
+  <button id="accept-tos">同意</button>
+</div>
+
+<section id="tools">
+  
+  
+  <div class="tool toc">
+    <svg class="icon b1 active" aria-hidden="true">
+      <use xlink:href="#icon-toc"></use>
+    </svg>
+    <svg class="icon b2" aria-hidden="true">
+      <use xlink:href="#icon-exit"></use>
+    </svg>
+  </div>
+  
+</section>
+<section id="bttb" aria-label="Scroll back to top" class="bttb">
+  <div class="tool">
+    <svg class="icon top" aria-hidden="true">
+      <use xlink:href="#icon-top"></use>
+    </svg>
+  </div>
+</section>
+        </div>
+        
+<div class="modal">
+    <div class="modal-content">
+        <header>
+            <span class="close">&times;</span>
+        </header>
+        <div class="container"></div>
+    </div>
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lazysizes/lazysizes.min.js" async></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/dayjs/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/customParseFormat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/relativeTime.js"></script>
+<script>
+    $(document).ready(function () {
+        var time_formats = ['YYYY-MM-DD HH:mm:ss ZZ', 'YYYY DD MMM HH:mm:ss ZZ', 'YYYY年MM月DD日 HH:mm:ss ZZ'];
+        function dateFormat(date, format) {
+            var date_org = dayjs(date, time_formats[format]);
+            var date = date_org.format(time_formats[format]);
+            return { "date_org": date_org, "date": date }
+        }
+
+        dayjs.extend(window.dayjs_plugin_customParseFormat);
+        dayjs.extend(window.dayjs_plugin_relativeTime);
+        var post_date = $("meta[property='post-date']").attr('content');
+        var post_date_format = $("meta[property='post-date-format']").attr('content');
+        var local_post_date = dateFormat(post_date, post_date_format);
+
+        $(".post time span.create-at").html(local_post_date["date"]);
+
+        fetch("https://api.github.com/repos/SAIGOUPI/saigoupi.github.io/commits?path=_posts/2025-10-15-bscscan.md").then((response) => {
+            return response.json();
+        }).then((commits) => {
+            if (commits.length != 0) {
+                var update_at = dayjs(commits[0]['commit']['committer']['date']);
+            } else {
+                var update_at = post_date
+            }
+
+            var local_update_at = dateFormat(update_at, post_date_format);
+            $('.post time span.update-at').html(local_update_at["date"]);
+
+            var relative_time = dayjs().diff(local_update_at["date_org"], 'day');
+            $(".post-copyright .tips span").append(relative_time);
+            if (relative_time > 365) {
+                $(".post-copyright .tips").addClass("active");
+            }
+        });
+    });
+</script>
+            <script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+<script>
+    socialShare('.social-share', {
+        sites: [
+            
+            'wechat', 
+            
+            'twitter'
+            
+        ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+        wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+      });
+    $("a.social-share-icon").each(function () {
+        $(this).attr("aria-label", $(this).attr("class").split(' ')[1])
+    });
+</script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script>
+        <script>
+            /**
+            * Better Scroll Experience
+            */
+            function scrollToAdjust(id){
+              var element = document.getElementById(id);
+              var headerOffset = 90;
+              var elementPosition = element.getBoundingClientRect().top;
+              var offsetPosition = elementPosition + window.scrollY - headerOffset;
+              window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth"
+              });
+            }
+        </script>
+        <script src="/assets/js/app.min.js"></script>
+        <script src="https://at.alicdn.com/t/c/font_3046306_ujr2yq34hw.js"></script>
+        
+
+
+
+
+
+
+
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax-full/es5/tex-mml-svg.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [['$', '$'], ["\\(", "\\)"]],
+			processEscapes: true,
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var baseurl = $("meta[property='og:baseurl']").attr('content');
+        $("p img").each(function () {
+            $(this).attr('data-src', $(this).attr('src')).removeAttr('src').addClass("lazyload").attr('src', baseurl + '/assets/img/loading.gif');
+            var strA = "<a data-fancybox='gallery' ref='gallery' href='" + $(this).attr('data-src') + "' data-caption='" + $(this).attr('alt') + "'></a>";
+            $(this).wrapAll(strA);
+            var caption = $(this)[0].alt;
+            $(this).parent().after('<span class="caption">' + caption + '</span>');
+        });
+        Fancybox.bind('[data-fancybox]', {
+            on: {
+                load: (fancybox, slide) => {
+                    var gray = $("meta[property='og:gray']").attr('content');
+                    if (gray == "true") {
+                        $(".fancybox__content img").addClass("gray");
+                        $(".carousel__track .fancybox__thumb").addClass("gray");
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/hotkeys-js/dist/hotkeys.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var previous_url = $("meta[property='og:previous_url']").attr('content');
+        var next_url = $("meta[property='og:next_url']").attr('content');
+
+        hotkeys('left', function (event, handler) {
+            // Prevent the default refresh event under WINDOWS system
+            event.preventDefault();
+            if (previous_url) {
+                console.log('you pressed left!');
+                window.location.href = previous_url;
+            } else {
+                $("#no-previous").addClass("active");
+                setTimeout(function () { $("#no-previous").removeClass("active"); }, 1500);
+            }
+        });
+
+        hotkeys('right', function (event, handler) {
+            // Prevent the default refresh event under WINDOWS system
+            event.preventDefault();
+            if (next_url) {
+                console.log('you pressed right!');
+                window.location.href = next_url;
+            } else {
+                $("#no-next").addClass("active");
+                setTimeout(function () { $("#no-next").removeClass("active"); }, 1500);
+            }
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    $(document).ready(function () {
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: "default",
+        });
+        mermaid.init(undefined, $('.mermaid2'));
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+        
+
+
+
+
+<script>
+    $(document).ready(function () {
+        if ($(".comment").length == 3) {
+            var comment_status = $("#cmn-toggle-4")[0].checked;
+            if (comment_status) {
+                $(".comment:last > div").addClass("active");
+            } else {
+                $(".comment:nth-last-child(2) > div").addClass("active");
+            }
+            $("#cmn-toggle-4").click(function () {
+                $(".comment:nth-last-child(2) > div").toggleClass("active");
+                $(".comment:last > div").toggleClass("active");
+            })
+        } else {
+            if ($(".comment").length == 2) {
+                $(".comment:last > div").addClass("active")
+            }
+        }
+    })
+</script>
+        <script>
+    if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+            console.log("An active service worker found, no need to register");
+        } else {
+            // Register the service worker
+            navigator.serviceWorker
+            .register("/sw.js", {
+                scope: "/"
+            })
+            .then(function (reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    }
+
+// 检测浏览器是否支持SW
+// if(navigator.serviceWorker != null){
+//     navigator.serviceWorker.register("/sw.js")
+//         .then(function(registartion){
+//             console.log('支持sw:',registartion.scope)
+//         })
+// } else {
+//     console.log('不支持sw')
+// }
+</script>
+        
+        
+  </body>
+
+</html>

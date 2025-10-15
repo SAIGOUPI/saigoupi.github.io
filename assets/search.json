@@ -1,5 +1,23 @@
 [
   {
+    "title"    : "Python实现监控BSC链上FOUR平台发射的代币",
+    "tags"     : "web3 加密货币",
+    "url"      : "/web3/bscscan.html"
+  } ,
+
+  {
+    "title"    : "炒币指标技术分析",
+    "tags"     : "股票 加密货币",
+    "url"      : "/%E6%8A%95%E8%B5%84/Tech-Analysis.html"
+  } ,
+
+  {
+    "title"    : "使用RVC克隆声音教程(AI唱歌)",
+    "tags"     : "AI歌手 RVC",
+    "url"      : "/ai/RVC-tutorial.html"
+  } ,
+
+  {
     "title"    : "使用GPT-SoVITS克隆任意角色的声音",
     "tags"     : "AI GPT-SoVITS",
     "url"      : "/ai/GPT-SoVITS.html"

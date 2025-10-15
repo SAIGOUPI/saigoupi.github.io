@@ -1,4 +1,344 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-09-08T08:59:00+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">使用GPT-SoVITS克隆任意角色的声音</title><link href="https://saigoupi.github.io/ai/GPT-SoVITS.html" rel="alternate" type="text/html" title="使用GPT-SoVITS克隆任意角色的声音" /><published>2025-08-30T00:00:00+00:00</published><updated>2025-08-30T00:00:00+00:00</updated><id>https://saigoupi.github.io/ai/GPT-SoVITS</id><content type="html" xml:base="https://saigoupi.github.io/ai/GPT-SoVITS.html"><![CDATA[<h2 id="准备材料">准备材料</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-10-15T14:40:30+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">Python实现监控BSC链上FOUR平台发射的代币</title><link href="https://saigoupi.github.io/web3/bscscan.html" rel="alternate" type="text/html" title="Python实现监控BSC链上FOUR平台发射的代币" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/web3/bscscan</id><content type="html" xml:base="https://saigoupi.github.io/web3/bscscan.html"><![CDATA[<h2 id="为什么要做这个">为什么要做这个</h2>
+<ul>
+  <li>Python的web3库的练习</li>
+  <li>最近BSC的MEME很火，写这个工具玩一玩</li>
+</ul>
+
+<h2 id="工具准备">工具准备</h2>
+<ul>
+  <li>Python</li>
+  <li><a href="https://etherscan.io/apis">Etherscan官网注册获取免费API</a></li>
+</ul>
+
+<h2 id="设计思路">设计思路</h2>
+<ul>
+  <li>
+    <p>在<a href="https://bscscan.com/">BSC浏览器</a>里查看<a href="https://four.meme/zh-TW">FOUR</a>平台发射出来的代币，发现其代币的智能合约是通过工厂模式创建的。
+<img src="../assets/img/posts/2025-10-15-bscscan/image.png" alt="alt text" /></p>
+  </li>
+  <li>
+    <p>很容易找到FOUR的工厂合约地址： <code class="language-plaintext highlighter-rouge">0x5c952063c7fc8610FFDB798152D69F0B9550762b</code>
+<img src="../assets/img/posts/2025-10-15-bscscan/image-2.png" alt="alt text" /></p>
+  </li>
+  <li>
+    <p>查看这条哈希，然后在 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 内部交易中找到CREATE方法的调用，就说明这笔交易创建了一个新代币，在交易的 <code class="language-plaintext highlighter-rouge">To</code> 值里，找到新代币的合约地址
+<img src="../assets/img/posts/2025-10-15-bscscan/image-1.png" alt="alt text" /></p>
+  </li>
+  <li>
+    <p>所以代码的执行思路：
+1.轮询BSC的区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 是FOUR工厂合约的哈希
+2.提取每个哈希里的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 交易，如果里面有CREATE方法的调用，那么这次交易则创建了一个新代币，代币的合约地址就是 <code class="language-plaintext highlighter-rouge">To</code> 的地址
+3.调用代币合约的方法，获得代币的名称</p>
+  </li>
+</ul>
+
+<h2 id="代码实现">代码实现</h2>
+
+<p>轮询区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 为工厂合约的哈希</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="n">block</span><span class="p">[</span><span class="sh">'</span><span class="s">transactions</span><span class="sh">'</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="n">FACTORY_ADDRESS</span><span class="p">:</span>
+        <span class="n">txStr</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">hash</span><span class="sh">'</span><span class="p">].</span><span class="nf">hex</span><span class="p">())</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">检查交易:</span><span class="si">{</span><span class="n">txStr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">new_addrs</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">txStr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>检查哈希的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 里是否有CREATE的函数调用，如果有，获取 <code class="language-plaintext highlighter-rouge">To</code> 的合约即为新代币合约地址</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">,</span> <span class="n">use_batch</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">使用Etherscan V2 API获取Internal TXNs（chainid=56）</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.etherscan.io/v2/api</span><span class="sh">"</span>  <span class="c1"># V2统一端点
+</span>    <span class="bp">...</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 单tx
+</span>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">chainid</span><span class="sh">'</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">module</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">account</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">txlistinternal</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">txhash</span><span class="sh">'</span><span class="p">:</span> <span class="n">tx_hash</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">apikey</span><span class="sh">'</span><span class="p">:</span> <span class="n">ETHERSCAN_API_KEY</span>
+        <span class="p">}</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: V2 URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">, 状态码: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: 响应内容: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">300</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 截断调试
+</span>        
+        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">HTTP </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">1</span><span class="sh">'</span> <span class="ow">and</span> <span class="sh">'</span><span class="s">result</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">new_addresses</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">txn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="n">contractAddr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">contractAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>  <span class="c1"># e.g., "create2_0_1_1_1"
+</span>                <span class="n">txn_type</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">lower</span><span class="p">()</span>
+                <span class="n">to_addr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">txn_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">create2</span><span class="sh">'</span> <span class="ow">and</span> <span class="n">to_addr</span> <span class="o">==</span> <span class="sh">''</span> <span class="ow">and</span> <span class="n">contractAddr</span><span class="p">:</span>
+                    <span class="n">new_addresses</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">Web3</span><span class="p">.</span><span class="nf">to_checksum_address</span><span class="p">(</span><span class="n">contractAddr</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">new_addresses</span><span class="p">,</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">API错误: </span><span class="si">{</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">未知</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">JSON解析失败 (可能是404/非JSON): </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">V2 API调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<p>检查代币的合约地址，获取代币的名字</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_bep20_token</span><span class="p">(</span><span class="n">contract_address</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">验证BEP-20代币</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">get_code</span><span class="p">(</span><span class="n">contract_address</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sh">"</span><span class="s">非合约地址</span><span class="sh">"</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">contract</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">contract_address</span><span class="p">,</span> <span class="n">abi</span><span class="o">=</span><span class="n">BEP20_ABI</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">name</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="n">symbol</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">symbol</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">非BEP-20或调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<p>完整代码如下，其中<code class="language-plaintext highlighter-rouge">ETHERSCAN_API_KEY</code>需要更换成自己的API Key，去这里注册<a href="https://etherscan.io/apis">Etherscan官网注册获取免费API</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">web3</span> <span class="kn">import</span> <span class="n">Web3</span>
+<span class="kn">from</span> <span class="n">web3.middleware</span> <span class="kn">import</span> <span class="n">ExtraDataToPOAMiddleware</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">hexbytes</span> <span class="kn">import</span> <span class="n">HexBytes</span>
+
+<span class="c1"># BSC RPC（测试debug_trace支持；若失败，换Ankr: https://rpc.ankr.com/bsc）
+</span><span class="n">RPC_URL</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://bsc-dataseed1.binance.org/</span><span class="sh">'</span>  <span class="c1"># 或 'https://bsc.rpc.blxrbdn.com/' 支持trace
+</span><span class="n">w3</span> <span class="o">=</span> <span class="nc">Web3</span><span class="p">(</span><span class="n">Web3</span><span class="p">.</span><span class="nc">HTTPProvider</span><span class="p">(</span><span class="n">RPC_URL</span><span class="p">))</span>
+
+<span class="c1"># 添加POA中间件,因为BSC有一部分POA网络血统,需要添加POA中间件
+</span><span class="n">w3</span><span class="p">.</span><span class="n">middleware_onion</span><span class="p">.</span><span class="nf">inject</span><span class="p">(</span><span class="n">ExtraDataToPOAMiddleware</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+
+<span class="c1"># BEP-20验证ABI
+</span><span class="n">BEP20_ABI</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">symbol</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># FORM工厂地址
+</span><span class="n">FACTORY_ADDRESS</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x5c952063c7fc8610FFDB798152D69F0B9550762b</span><span class="sh">'</span>
+
+<span class="c1"># Etherscan/BscScan V2 API Key（免费：https://etherscan.io/myapikey 或 bscscan.com/myapikey）
+</span><span class="n">ETHERSCAN_API_KEY</span> <span class="o">=</span> <span class="sh">''</span>  <span class="c1"># 共享key
+</span>
+<span class="c1"># BEP-20验证ABI
+</span><span class="n">BEP20_ABI</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">constant</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="sh">"</span><span class="s">inputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">symbol</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">outputs</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">""</span><span class="p">,</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">string</span><span class="sh">"</span><span class="p">}],</span> <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">is_bep20_token</span><span class="p">(</span><span class="n">contract_address</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">验证BEP-20代币</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">get_code</span><span class="p">(</span><span class="n">contract_address</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sh">"</span><span class="s">非合约地址</span><span class="sh">"</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">contract</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">contract_address</span><span class="p">,</span> <span class="n">abi</span><span class="o">=</span><span class="n">BEP20_ABI</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">name</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="n">symbol</span> <span class="o">=</span> <span class="n">contract</span><span class="p">.</span><span class="n">functions</span><span class="p">.</span><span class="nf">symbol</span><span class="p">().</span><span class="nf">call</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">非BEP-20或调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">,</span> <span class="n">use_batch</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">使用Etherscan V2 API获取Internal TXNs（chainid=56）</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.etherscan.io/v2/api</span><span class="sh">"</span>  <span class="c1"># V2统一端点
+</span>    <span class="k">if</span> <span class="n">use_batch</span><span class="p">:</span>
+        <span class="c1"># 批量：用address + 区块范围（更高效，避免单tx 404）
+</span>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">chainid</span><span class="sh">'</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span>  <span class="c1"># BSC
+</span>            <span class="sh">'</span><span class="s">module</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">account</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">txlistinternal</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">address</span><span class="sh">'</span><span class="p">:</span> <span class="n">FACTORY_ADDRESS</span><span class="p">,</span>  <span class="c1"># 工厂地址
+</span>            <span class="sh">'</span><span class="s">startblock</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">0</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">endblock</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">latest</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 或指定recent block
+</span>            <span class="sh">'</span><span class="s">page</span><span class="sh">'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">offset</span><span class="sh">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># 最近10笔
+</span>            <span class="sh">'</span><span class="s">sort</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">desc</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">apikey</span><span class="sh">'</span><span class="p">:</span> <span class="n">ETHERSCAN_API_KEY</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 单tx
+</span>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">chainid</span><span class="sh">'</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">module</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">account</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">txlistinternal</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">txhash</span><span class="sh">'</span><span class="p">:</span> <span class="n">tx_hash</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">apikey</span><span class="sh">'</span><span class="p">:</span> <span class="n">ETHERSCAN_API_KEY</span>
+        <span class="p">}</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: V2 URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">, 状态码: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">DEBUG: 响应内容: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">300</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 截断调试
+</span>        
+        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">HTTP </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">1</span><span class="sh">'</span> <span class="ow">and</span> <span class="sh">'</span><span class="s">result</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">new_addresses</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">txn</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="n">contractAddr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">contractAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>  <span class="c1"># e.g., "create2_0_1_1_1"
+</span>                <span class="n">txn_type</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">lower</span><span class="p">()</span>
+                <span class="n">to_addr</span> <span class="o">=</span> <span class="n">txn</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">txn_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">create2</span><span class="sh">'</span> <span class="ow">and</span> <span class="n">to_addr</span> <span class="o">==</span> <span class="sh">''</span> <span class="ow">and</span> <span class="n">contractAddr</span><span class="p">:</span>
+                    <span class="n">new_addresses</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">Web3</span><span class="p">.</span><span class="nf">to_checksum_address</span><span class="p">(</span><span class="n">contractAddr</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">new_addresses</span><span class="p">,</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">API错误: </span><span class="si">{</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">未知</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">JSON解析失败 (可能是404/非JSON): </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">[</span><span class="si">:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">V2 API调用失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span>
+
+<span class="c1"># 此功能实现有问题，暂时不用
+</span><span class="k">def</span> <span class="nf">methodCheck</span><span class="p">(</span><span class="n">tx</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">检查交易是否为CREATE2</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">input</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s">0x</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">input_data</span> <span class="o">==</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="n">method_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="o">+</span> <span class="p">(</span><span class="n">input_data</span><span class="p">).</span><span class="nf">hex</span><span class="p">()</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">519ebb10</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">method_id</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">方法检查失败: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">monitor_factory_create2</span><span class="p">(</span><span class="n">last_block</span><span class="o">=</span><span class="sh">'</span><span class="s">latest</span><span class="sh">'</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">监控工厂交易，使用V2 API检测CREATE2</span><span class="sh">"""</span>
+    <span class="n">last_block_num</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="n">block_number</span> <span class="k">if</span> <span class="n">last_block</span> <span class="o">==</span> <span class="sh">'</span><span class="s">latest</span><span class="sh">'</span> <span class="k">else</span> <span class="nf">int</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span>
+    <span class="n">current_block</span> <span class="o">=</span> <span class="n">last_block_num</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_block</span> <span class="o">&gt;</span> <span class="n">last_block_num</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">检测到新区块: </span><span class="si">{</span><span class="n">current_block</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="n">w3</span><span class="p">.</span><span class="n">eth</span><span class="p">.</span><span class="nf">get_block</span><span class="p">(</span><span class="n">current_block</span><span class="p">,</span> <span class="n">full_transactions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">tx</span> <span class="ow">in</span> <span class="n">block</span><span class="p">[</span><span class="sh">'</span><span class="s">transactions</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">to</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="n">FACTORY_ADDRESS</span><span class="p">:</span>
+                    <span class="n">txStr</span> <span class="o">=</span> <span class="sh">'</span><span class="s">0x</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">hash</span><span class="sh">'</span><span class="p">].</span><span class="nf">hex</span><span class="p">())</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">检查交易:</span><span class="si">{</span><span class="n">txStr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="n">new_addrs</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="nf">v2_internal_txns</span><span class="p">(</span><span class="n">txStr</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+                        <span class="c1">#print(f"V2单tx失败: {error}")
+</span>                        <span class="k">continue</span>
+                    <span class="c1"># 处理new_addrs...
+</span>                    <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">new_addrs</span><span class="p">:</span>
+                        <span class="n">is_token</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="nf">is_bep20_token</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">is_token</span><span class="p">:</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">🚀 FORM CREATE2新代币: </span><span class="si">{</span><span class="n">addr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">   详情: </span><span class="si">{</span><span class="n">details</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">   交易哈希: </span><span class="si">{</span><span class="n">tx</span><span class="p">[</span><span class="sh">'</span><span class="s">hash</span><span class="sh">'</span><span class="p">].</span><span class="nf">hex</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">   区块: </span><span class="si">{</span><span class="n">current_block</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+            
+            <span class="n">last_block_num</span> <span class="o">=</span> <span class="n">current_block</span>
+        <span class="n">current_block</span> <span class="o">=</span> <span class="n">last_block_num</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 轮询间隔
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">w3</span><span class="p">.</span><span class="nf">is_connected</span><span class="p">():</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">❌ 无法连接BSC</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">✅ 开始监控FORM工厂 </span><span class="si">{</span><span class="n">FACTORY_ADDRESS</span><span class="si">}</span><span class="s"> 的CREATE2部署（Etherscan V2 + chainid=56）...</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">monitor_factory_create2</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="后续优化">后续优化</h2>
+<ul>
+  <li>
+    <p>这个程序仅仅只能基本实现找到新代币的功能，和DEX上的那些扫链功能完全不能比，DEX基本上都是和FOUR平台合作的，应该有平台提供的专用API，我这里是为了学习Web3，使用的都是免费的公共的节点和API。</p>
+  </li>
+  <li>
+    <p>我在BscScan里看到每条哈希都有一个<code class="language-plaintext highlighter-rouge">Method</code>字段，在浏览器里可以看到<code class="language-plaintext highlighter-rouge">CreateToken</code>的方法。所以我想在轮询工厂合约的哈希时，先将CreateToken的方法的哈希分离出来，再对这些哈希进行提取操作，可以提高查询速度。
+但是尝试了一下，暂时没有找到代码里辨别Method的方法，肯定是可以做到的，只不过需要时间去测试，后续可以优化这一点。</p>
+  </li>
+</ul>
+
+<p><img src="../assets/img/posts/2025-10-15-bscscan/image-3.png" alt="alt text" /></p>
+
+<ul>
+  <li>公共的BSC节点很慢，然后Etherscan API的免费套餐也对每天的请求数量和速度有限制，如果有钱的话，可以买更好的套餐，还会有更方便的API可以使用。</li>
+</ul>]]></content><author><name>赛狗屁</name></author><category term="Web3" /><category term="web3" /><category term="加密货币" /><summary type="html"><![CDATA[为什么要做这个 Python的web3库的练习 最近BSC的MEME很火，写这个工具玩一玩]]></summary></entry><entry><title type="html">炒币指标技术分析</title><link href="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/Tech-Analysis.html" rel="alternate" type="text/html" title="炒币指标技术分析" /><published>2025-09-26T00:00:00+00:00</published><updated>2025-09-26T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/Tech-Analysis</id><content type="html" xml:base="https://saigoupi.github.io/%E6%8A%95%E8%B5%84/Tech-Analysis.html"><![CDATA[<h2 id="指数平滑移动平均线macd">指数平滑移动平均线（MACD）</h2>
+
+<p>移动平均线收敛差异（MACD）是一种振荡类型的指标，该指标被交易者广泛用于技术分析（TA）中。MACD是一种趋势跟踪工具，利用移动平均线来确定股票、加密货币或其他可交易资产的走势。</p>
+
+<h3 id="macd工作原理">MACD工作原理</h3>
+
+<p>MACD指标通过将两个指数移动平均线（EMAs）相减生成主线（MACD线），然后再将其用于计算另一个表示信号线的指数移动平均线（EMA）。</p>
+
+<p>此外，还有MACD直方图，它是根据这两条线之间的差异计算出来的。直方图以及其他两条线在中心线的上方和下方波动，中心线也称为零线。</p>
+
+<p>因此，MACD指标由围绕零线移动的三个元素组成：</p>
+
+<p>MACD线（1）：有助于确定向上或向下的走势（市场趋势）。它通过将两个指数移动平均值（EMA）相减计算而得。</p>
+
+<p>信号线（2）：MACD线的EMA（周期间隔为9的EMA）。信号线与MACD线的组合分析有助于发现潜在的反转或进入和退出时机。</p>
+
+<p>直方图（3）：MACD线和信号线的发散和收敛的图形表示。换句话说，是基于两条线之间的差异来计算直方图。</p>
+
+<p><img src="../assets/img/posts/2025-9-26-Tech-Analysis/image.png" alt="alt text" /></p>
+
+<h3 id="怎么看macd图">怎么看MACD图</h3>
+
+<p>顾名思义，移动平均收敛差异指标关注移动平均线之间的关系，两条线之间的关系可以描述为收敛或发散。<strong>当两条线相互接近时则称为收敛，当它们互相分开时则为发散</strong>。</p>
+
+<p>尽管如此，MACD指标相关信号与所谓的<strong>交叉点</strong>相关，这种交叉发生在MACD线穿过<strong>中心线</strong>（出现中心线交叉）之上或之下，高于或低于信号线（信号线交叉）时。</p>
+
+<p>当MACD线在中心线上方或下方区域移动时，会发生中心线交叉。当它穿过中心线向上时，则为正向MACD，表明12天的EMA平均值大于26天。相反，当MACD线穿过中心线向下时，则为负向MACD，表明26天的EMA平均值高于12天。换句话说，<strong>正向MACD表示上行势头较强</strong>，而<strong>负向则表明下行势头较强</strong>。</p>
+
+<p>当<strong>MACD线超过信号线</strong>时，交易者通常会认为存在潜在的<strong>买入机会</strong>（进入点）。另一方面，当MACD线穿过信号线<strong>向下</strong>时，交易者倾向于将其视为<strong>卖出机会</strong>（退出点）。</p>
+
+<p>虽然信号线交叉信号可能有所帮助，但它们<strong>并不总是可靠</strong>的。我们同样需要考虑它们在<strong>图表中的位置</strong>，从而最大限度地降低风险。例如，如果信号线交叉出现买入信号，但MACD线指标低于中心线（负值），市场状况可能仍被视为看跌。相反，如果信号线交叉出现卖出信号，但MACD线指标高于中心线（正值），则市场状况仍可能看涨。在这种情况下，跟随信号交叉线的卖出信号则可能带来更多风险（更大下行的趋势）。</p>
+
+<h3 id="macd和价格差异">MACD和价格差异</h3>
+
+<p>除了中心线和信号线交叉外，还可以通过MACD图表和资产价格之间的差异来发现信号。</p>
+
+<p>例如，如果加密货币的<strong>价格走势上升，但MACD出现一个较低的高点</strong>，我们就认为出现<strong>顶背离</strong>，这种情况表明尽管价格上涨，但上行势头（买入压力）并不如之前强劲。顶背离通常被解释为卖出机会，因为它们往往会出现于价格逆转之前。</p>
+
+<p>相反，如果MACD线形成两个<strong>上升低点，与资产价格的两个下跌低点一致</strong>，那么被认为是<strong>底背离</strong>，表明尽管价格下跌，但购买压力更强。底背离如果出现在价格变化之前，可能表明短期底部将发生逆转（从下降趋势到上升趋势）。</p>
+
+<h2 id="相对强弱指数rsi">相对强弱指数（RSI）</h2>
+
+<h2 id="移动平均线ma">移动平均线（MA）</h2>
+
+<h2 id="随即相对强弱指数stochrsi">随即相对强弱指数（StochRSI）</h2>
+
+<h2 id="布林线bb">布林线（BB）</h2>
+
+<h2 id="成交量可视范围vpvr">成交量可视范围（VPVR）</h2>]]></content><author><name>赛狗屁</name></author><category term="投资" /><category term="股票" /><category term="加密货币" /><summary type="html"><![CDATA[指数平滑移动平均线（MACD）]]></summary></entry><entry><title type="html">使用RVC克隆声音教程(AI唱歌)</title><link href="https://saigoupi.github.io/ai/RVC-tutorial.html" rel="alternate" type="text/html" title="使用RVC克隆声音教程(AI唱歌)" /><published>2025-08-31T00:00:00+00:00</published><updated>2025-08-31T00:00:00+00:00</updated><id>https://saigoupi.github.io/ai/RVC-tutorial</id><content type="html" xml:base="https://saigoupi.github.io/ai/RVC-tutorial.html"><![CDATA[<h2 id="准备材料">准备材料</h2>
+<p>Windows系统</p>
+<ul>
+  <li>Python</li>
+  <li>独立N卡</li>
+</ul>
+
+<h2 id="目标效果">目标效果</h2>
+<p>本工具属于TTS大模型，训练完成的模型可以实现任意文本到目标语音的转换。<br />
+我用十分钟的小当家语音训练后的效果可以参考我的小红书：<br />
+<a href="https://www.xiaohongshu.com/explore/689ca47a000000001c0337e7?xsec_token=ABLHH3DhLOaE5legnyu-94WGoO5g_PIlXI6R_cDTSl72M=&amp;xsec_source=pc_user">小当家做红烧排骨</a></p>
+
+<h2 id="教程">教程</h2>
+<p>全程参考b站的教学视频即可，非常简单</p>
+
+<p>AI语音生成零基础入门教学（GPT-Sovits）</p>
+<div style="position: relative; padding: 30% 45%;">
+<iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="//player.bilibili.com/player.html?isOutside=true&amp;aid=113201312173790&amp;bvid=BV1nexGebELa&amp;cid=26008092788&amp;p=1&amp;high_quality=1" frameborder="no" scrolling="no"></iframe>
+</div>
+<p></p>
+<p>仓库链接
+<a href="https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/cn/README.md">GPT-SoVITS仓库</a></p>]]></content><author><name>赛狗屁</name></author><category term="AI" /><category term="AI歌手" /><category term="RVC" /><summary type="html"><![CDATA[准备材料 Windows系统 Python 独立N卡]]></summary></entry><entry><title type="html">使用GPT-SoVITS克隆任意角色的声音</title><link href="https://saigoupi.github.io/ai/GPT-SoVITS.html" rel="alternate" type="text/html" title="使用GPT-SoVITS克隆任意角色的声音" /><published>2025-08-30T00:00:00+00:00</published><updated>2025-08-30T00:00:00+00:00</updated><id>https://saigoupi.github.io/ai/GPT-SoVITS</id><content type="html" xml:base="https://saigoupi.github.io/ai/GPT-SoVITS.html"><![CDATA[<h2 id="准备材料">准备材料</h2>
 <p>Windows系统</p>
 <ul>
   <li>Python</li>
