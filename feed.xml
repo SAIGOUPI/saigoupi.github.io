@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-10-15T14:40:30+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">Python实现监控BSC链上FOUR平台发射的代币</title><link href="https://saigoupi.github.io/web3/bscscan.html" rel="alternate" type="text/html" title="Python实现监控BSC链上FOUR平台发射的代币" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/web3/bscscan</id><content type="html" xml:base="https://saigoupi.github.io/web3/bscscan.html"><![CDATA[<h2 id="为什么要做这个">为什么要做这个</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-10-16T06:40:33+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">Python实现监控BSC链上FOUR平台发射的代币</title><link href="https://saigoupi.github.io/web3/bscscan.html" rel="alternate" type="text/html" title="Python实现监控BSC链上FOUR平台发射的代币" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/web3/bscscan</id><content type="html" xml:base="https://saigoupi.github.io/web3/bscscan.html"><![CDATA[<h2 id="为什么要做这个">为什么要做这个</h2>
 <ul>
   <li>Python的web3库的练习</li>
   <li>最近BSC的MEME很火，写这个工具玩一玩</li>
@@ -14,23 +14,26 @@
 <ul>
   <li>
     <p>在<a href="https://bscscan.com/">BSC浏览器</a>里查看<a href="https://four.meme/zh-TW">FOUR</a>平台发射出来的代币，发现其代币的智能合约是通过工厂模式创建的。
-<img src="../assets/img/posts/2025-10-15-bscscan/image.png" alt="alt text" /></p>
+<img src="../assets/img/posts/2025-10-15-bscscan/image.png" alt="" /></p>
   </li>
   <li>
     <p>很容易找到FOUR的工厂合约地址： <code class="language-plaintext highlighter-rouge">0x5c952063c7fc8610FFDB798152D69F0B9550762b</code>
-<img src="../assets/img/posts/2025-10-15-bscscan/image-2.png" alt="alt text" /></p>
+<img src="../assets/img/posts/2025-10-15-bscscan/image-2.png" alt="" /></p>
   </li>
   <li>
-    <p>查看这条哈希，然后在 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 内部交易中找到CREATE方法的调用，就说明这笔交易创建了一个新代币，在交易的 <code class="language-plaintext highlighter-rouge">To</code> 值里，找到新代币的合约地址
-<img src="../assets/img/posts/2025-10-15-bscscan/image-1.png" alt="alt text" /></p>
+    <p>查看这条哈希，然后在 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 内部交易中找到CREATE方法的调用，就说明这笔交易创建了一个新代币，在交易的 <code class="language-plaintext highlighter-rouge">To</code> 值里，找到新代币的合约地址。
+<img src="../assets/img/posts/2025-10-15-bscscan/image-1.png" alt="" /></p>
   </li>
   <li>
-    <p>所以代码的执行思路：
-1.轮询BSC的区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 是FOUR工厂合约的哈希
-2.提取每个哈希里的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 交易，如果里面有CREATE方法的调用，那么这次交易则创建了一个新代币，代币的合约地址就是 <code class="language-plaintext highlighter-rouge">To</code> 的地址
-3.调用代币合约的方法，获得代币的名称</p>
+    <p>所以代码的执行思路：</p>
   </li>
 </ul>
+
+<p>1.轮询BSC的区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 是FOUR工厂合约的哈希。</p>
+
+<p>2.提取每个哈希里的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 交易，如果里面有CREATE方法的调用，那么这次交易则创建了一个新代币，代币的合约地址就是 <code class="language-plaintext highlighter-rouge">To</code> 的地址。</p>
+
+<p>3.调用代币合约的方法，获得代币的名称。</p>
 
 <h2 id="代码实现">代码实现</h2>
 
@@ -265,7 +268,7 @@
   </li>
 </ul>
 
-<p><img src="../assets/img/posts/2025-10-15-bscscan/image-3.png" alt="alt text" /></p>
+<p><img src="../assets/img/posts/2025-10-15-bscscan/image-3.png" alt="" /></p>
 
 <ul>
   <li>公共的BSC节点很慢，然后Etherscan API的免费套餐也对每天的请求数量和速度有限制，如果有钱的话，可以买更好的套餐，还会有更方便的API可以使用。</li>

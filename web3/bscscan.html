@@ -274,23 +274,26 @@
 <ul>
   <li>
     <p>在<a href="https://bscscan.com/" rel="nofollow" target="_blank" class="extlinks">BSC浏览器</a>里查看<a href="https://four.meme/zh-TW" rel="nofollow" target="_blank" class="extlinks">FOUR</a>平台发射出来的代币，发现其代币的智能合约是通过工厂模式创建的。
-<img src="../assets/img/posts/2025-10-15-bscscan/image.png" alt="alt text"></p>
+<img src="../assets/img/posts/2025-10-15-bscscan/image.png" alt=""></p>
   </li>
   <li>
     <p>很容易找到FOUR的工厂合约地址： <code class="language-plaintext highlighter-rouge">0x5c952063c7fc8610FFDB798152D69F0B9550762b</code>
-<img src="../assets/img/posts/2025-10-15-bscscan/image-2.png" alt="alt text"></p>
+<img src="../assets/img/posts/2025-10-15-bscscan/image-2.png" alt=""></p>
   </li>
   <li>
-    <p>查看这条哈希，然后在 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 内部交易中找到CREATE方法的调用，就说明这笔交易创建了一个新代币，在交易的 <code class="language-plaintext highlighter-rouge">To</code> 值里，找到新代币的合约地址
-<img src="../assets/img/posts/2025-10-15-bscscan/image-1.png" alt="alt text"></p>
+    <p>查看这条哈希，然后在 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 内部交易中找到CREATE方法的调用，就说明这笔交易创建了一个新代币，在交易的 <code class="language-plaintext highlighter-rouge">To</code> 值里，找到新代币的合约地址。
+<img src="../assets/img/posts/2025-10-15-bscscan/image-1.png" alt=""></p>
   </li>
   <li>
-    <p>所以代码的执行思路：
-1.轮询BSC的区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 是FOUR工厂合约的哈希
-2.提取每个哈希里的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 交易，如果里面有CREATE方法的调用，那么这次交易则创建了一个新代币，代币的合约地址就是 <code class="language-plaintext highlighter-rouge">To</code> 的地址
-3.调用代币合约的方法，获得代币的名称</p>
+    <p>所以代码的执行思路：</p>
   </li>
 </ul>
+
+<p>1.轮询BSC的区块，找到 <code class="language-plaintext highlighter-rouge">To</code> 是FOUR工厂合约的哈希。</p>
+
+<p>2.提取每个哈希里的 <code class="language-plaintext highlighter-rouge">Internal Txns</code> 交易，如果里面有CREATE方法的调用，那么这次交易则创建了一个新代币，代币的合约地址就是 <code class="language-plaintext highlighter-rouge">To</code> 的地址。</p>
+
+<p>3.调用代币合约的方法，获得代币的名称。</p>
 
 <h2 id="代码实现">代码实现</h2>
 
@@ -525,7 +528,7 @@
   </li>
 </ul>
 
-<p><img src="../assets/img/posts/2025-10-15-bscscan/image-3.png" alt="alt text"></p>
+<p><img src="../assets/img/posts/2025-10-15-bscscan/image-3.png" alt=""></p>
 
 <ul>
   <li>公共的BSC节点很慢，然后Etherscan API的免费套餐也对每天的请求数量和速度有限制，如果有钱的话，可以买更好的套餐，还会有更方便的API可以使用。</li>
