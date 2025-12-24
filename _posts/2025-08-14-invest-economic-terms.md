@@ -1,3 +1,15 @@
+---
+layout: post
+title: '经济学统计学术语总结(持续更新中)'
+subtitle: '一些重要的术语解释'
+date: 2025-08-15
+categories: 投资
+tags: 
+- 经济学
+- 投资
+- 统计学
+---
+
 > [国家统计局年鉴](https://www.stats.gov.cn/sj/ndsj/)
 >
 > [国务院政策文件库](https://sousuo.www.gov.cn/zcwjk/policyDocumentLibrary?q=&t=zhengcelibrary&orpro=)
