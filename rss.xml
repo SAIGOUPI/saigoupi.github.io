@@ -5,8 +5,8 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 01 Apr 2026 08:23:50 +0000</pubDate>
-    <lastBuildDate>Wed, 01 Apr 2026 08:23:50 +0000</lastBuildDate>
+    <pubDate>Wed, 01 Apr 2026 08:24:37 +0000</pubDate>
+    <lastBuildDate>Wed, 01 Apr 2026 08:24:37 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -615,7 +615,7 @@
     
       <item>
         <title>炒币指标技术分析</title>
-        <description>&lt;h2 id=&quot;指数平滑移动平均线macd&quot;&gt;指数平滑移动平均线（MACD）&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;指数平滑移动平均线macd&quot;&gt;指数平滑移动平均线(MACD)&lt;/h2&gt;
 
 &lt;p&gt;移动平均线收敛差异（MACD）是一种振荡类型的指标，该指标被交易者广泛用于技术分析（TA）中。MACD是一种趋势跟踪工具，利用移动平均线来确定股票、加密货币或其他可交易资产的走势。&lt;/p&gt;
 
@@ -655,15 +655,39 @@
 
 &lt;p&gt;相反，如果MACD线形成两个&lt;strong&gt;上升低点，与资产价格的两个下跌低点一致&lt;/strong&gt;，那么被认为是&lt;strong&gt;底背离&lt;/strong&gt;，表明尽管价格下跌，但购买压力更强。底背离如果出现在价格变化之前，可能表明短期底部将发生逆转（从下降趋势到上升趋势）。&lt;/p&gt;
 
-&lt;h2 id=&quot;相对强弱指数rsi&quot;&gt;相对强弱指数（RSI）&lt;/h2&gt;
+&lt;h2 id=&quot;超级趋势supertrend&quot;&gt;超级趋势(SuperTrend)&lt;/h2&gt;
+&lt;p&gt;超级趋势指标是一种技术分析工具，用于识别&lt;strong&gt;趋势方向和提供买卖信号&lt;/strong&gt;。 它通过结合价格走势和波动率（使用平均真实波幅/ATR）来绘制图表。 当指标显示为绿色且位于价格下方时，表示上升趋势；当指标为红色且位于价格上方时，表示下降趋势。 它可用于确定趋势追踪和设置动态止损位。&lt;/p&gt;
 
-&lt;h2 id=&quot;移动平均线ma&quot;&gt;移动平均线（MA）&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/img/posts/2025-9-26-Tech-Analysis/image-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;随即相对强弱指数stochrsi&quot;&gt;随即相对强弱指数（StochRSI）&lt;/h2&gt;
+&lt;h3 id=&quot;超级趋势指标的特点&quot;&gt;超级趋势指标的特点&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;趋势识别&lt;/strong&gt;: 能够清晰地指示当前市场是处于上升趋势还是下降趋势。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;动态支撑与阻力&lt;/strong&gt;: 指标线在图表上会根据价格变动而改变，充当动态的支撑或阻力位。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;买卖信号&lt;/strong&gt;: 指标颜色变化和位置（在价格上方或下方）可作为生成交易信号的依据。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;波动率考量&lt;/strong&gt;: 该指标基于ATR（平均真实波幅），考虑了价格的波动性，使信号更可靠。&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&quot;布林线bb&quot;&gt;布林线（BB）&lt;/h2&gt;
+&lt;h3 id=&quot;超级趋势的用法&quot;&gt;超级趋势的用法&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;上升趋势时做多/卖出，下降趋势时做空/买入。&lt;/li&gt;
+  &lt;li&gt;指标有两个主要参数：周期（例如10）和乘数（例如3），它们可以调整以适应不同的市场和交易风格。&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&quot;成交量可视范围vpvr&quot;&gt;成交量可视范围（VPVR）&lt;/h2&gt;
+&lt;h3 id=&quot;超级趋势注意事项&quot;&gt;超级趋势注意事项&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;盘整区间失灵: 在市场横盘整理时，该指标可能会发出错误信号。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;相对强弱指数rsi&quot;&gt;相对强弱指数(RSI)&lt;/h2&gt;
+
+&lt;h2 id=&quot;移动平均线ma&quot;&gt;移动平均线(MA)&lt;/h2&gt;
+
+&lt;h2 id=&quot;随即相对强弱指数stochrsi&quot;&gt;随即相对强弱指数(StochRSI)&lt;/h2&gt;
+
+&lt;h2 id=&quot;布林线bb&quot;&gt;布林线(BB)&lt;/h2&gt;
+
+&lt;h2 id=&quot;成交量可视范围vpvr&quot;&gt;成交量可视范围(VPVR)&lt;/h2&gt;
 </description>
         <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
         <link>https://saigoupi.github.io/%E6%8A%95%E8%B5%84/Tech-Analysis.html</link>
