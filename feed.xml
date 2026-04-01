@@ -1,4 +1,302 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2025-12-24T15:15:08+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">Python实现监控BSC链上FOUR平台发射的代币</title><link href="https://saigoupi.github.io/web3/bscscan.html" rel="alternate" type="text/html" title="Python实现监控BSC链上FOUR平台发射的代币" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/web3/bscscan</id><content type="html" xml:base="https://saigoupi.github.io/web3/bscscan.html"><![CDATA[<h2 id="为什么要做这个">为什么要做这个</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://saigoupi.github.io/" rel="alternate" type="text/html" /><updated>2026-04-01T08:23:50+00:00</updated><id>https://saigoupi.github.io/feed.xml</id><title type="html">赛狗屁的技术空间 | 游戏 WEB 金融</title><subtitle>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</subtitle><author><name>赛狗屁</name></author><entry><title type="html">游戏开发面试记录</title><link href="https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html" rel="alternate" type="text/html" title="游戏开发面试记录" /><published>2026-03-11T00:00:00+00:00</published><updated>2026-03-11T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview</id><content type="html" xml:base="https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html"><![CDATA[<h2 id="网络同步"><strong>网络同步</strong></h2>
+<h3 id="帧同步">帧同步</h3>
+<h3 id="tcp-udp">TCP UDP</h3>
+
+<h2 id="骨骼动画"><strong>骨骼动画</strong></h2>
+<h3 id="ik">IK</h3>
+
+<h2 id="ui数据输入输出闭环"><strong>UI数据输入输出闭环</strong></h2>
+
+<h2 id="lua"><strong>Lua</strong></h2>
+
+<h2 id="计算机动画"><strong>计算机动画</strong></h2>
+
+<h2 id="寻路算法"><strong>寻路算法</strong></h2>
+<h3 id="a">A*</h3>
+<h3 id="流场寻路">流场寻路</h3>
+
+<h2 id="避障算法"><strong>避障算法</strong></h2>
+<h3 id="rvo相对速度障碍物算法">RVO(相对速度障碍物算法)</h3>
+
+<h2 id="unreal"><strong>Unreal</strong></h2>
+<h3 id="tarray"><strong>TArray</strong></h3>
+<h4 id="为什么ue要自创tarray而不是直接用vector">为什么UE要自创TArray而不是直接用Vector</h4>
+
+<p><strong>1. 垃圾回收和反射系统</strong></p>
+<ul>
+  <li>
+    <p>TArray：可以被标记为 UPROPERTY()。这意味着它能被 UE 的反射系统识别。如果 TArray 中存储的是 UObject*，引擎的垃圾回收器（GC）会自动追踪这些引用，防止对象在数组还在使用时被销毁。</p>
+  </li>
+  <li>
+    <p>std::vector：无法被 UPROPERTY() 标记，引擎无法追踪其内部存储的指针。如果你在 std::vector 中存储了一个 UObject*，即便数组还在，该对象也可能被 GC 回收，导致悬空指针和崩溃。</p>
+  </li>
+</ul>
+
+<p><strong>2. 内存分配和对齐</strong></p>
+<ul>
+  <li>
+    <p>FMemory：TArray 使用 UE 的 FMemory 分配器，这允许引擎在不同平台（如 PS5、Xbox、Switch）上执行特定的内存优化，并方便开发者进行内存快照（Memory Profiling）分析。</p>
+  </li>
+  <li>
+    <p>对齐要求：在处理 SIMD（单指令多数据流）指令时，数据需要特定字节对齐。TArray 的分配器可以轻松支持这些硬件级的内存对齐要求，而 std::vector 通常使用通用分配器，控制力较弱。</p>
+  </li>
+</ul>
+
+<p><strong>3. 序列化与网络复制</strong></p>
+<ul>
+  <li>
+    <p>序列化：通过 FArchive，TArray 可以实现“一键式”保存和加载，并能自动处理大小端转换等跨平台问题。</p>
+  </li>
+  <li>
+    <p>网络同步：UE 的网络架构（Replication）专门针对 TArray 做了同步优化。你可以标记一个 TArray 进行同步，引擎会处理数据的增量更新，而 std::vector 无法直接集成到这个网络协议栈中。</p>
+  </li>
+</ul>
+
+<p><strong>4. 总结</strong>
+| 特性 | TArray | std::vector |
+|——|——–|————-|
+| UE 反射系统支持 | 支持 (可标记 UPROPERTY) | 不支持 |
+| 垃圾回收 (GC) | 自动追踪内部 UObject | 无法追踪，易导致野指针 |
+| 内存分配器 | FMemory (跨平台优化) | 标准 C++ 分配器 (STL) |
+| 序列化/保存 | 内置支持 | 需手动实现遍历存储 |
+| 网络同步 | 支持属性复制 | 不支持 |</p>
+
+<p>UE开发中优先使用TArray，使数据和内存都在引擎的管理下，安全和性能都有保证。</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Add</code>和<code class="language-plaintext highlighter-rouge">Emplace</code>的区别</strong></p>
+<ul>
+  <li>Add()和Emplace()方法向数组末尾添加元素</li>
+  <li>Emplace 可以使用参数直接构造元素，避免产生临时对象，Emplace()不创建临时变量，在容器内 “原地构造” 元素</li>
+  <li>Add 底层调用的也是 Emplace，但是会先去构造一个对象，添加时创建临时变量，复制到数组中</li>
+</ul>
+
+<h4 id="tarray高级用法">TArray高级用法</h4>
+<p><strong>1. 预分配内存：使用 <code class="language-plaintext highlighter-rouge">Reserve</code></strong>
+当数组元素超过当前容量时，引擎会申请更大的内存块并拷贝旧元素。</p>
+<ul>
+  <li><strong>优化逻辑</strong>：如果你预先知道数组的大致规模，调用 <code class="language-plaintext highlighter-rouge">Reserve(ExpectedSize)</code>。</li>
+  <li><strong>收益</strong>：将多次昂贵的内存分配和拷贝操作合并为一次。</li>
+</ul>
+
+<p><strong>2. 避免冗余拷贝：<code class="language-plaintext highlighter-rouge">Emplace</code> 优于 <code class="language-plaintext highlighter-rouge">Add</code></strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Add</code></strong>：通常会先创建一个临时对象，再将其拷贝或移动到数组中。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Emplace</code></strong>：利用 C++ 完美转发，直接在数组预留的内存中构造对象。</li>
+  <li><strong>收益</strong>：减少了临时对象的构造与析构开销。</li>
+</ul>
+
+<p><strong>3. 高效删除：<code class="language-plaintext highlighter-rouge">RemoveAtSwap</code></strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">RemoveAt</code></strong>：删除元素后，后续所有元素都会前移以保持顺序，复杂度为 $O(n)$。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">RemoveAtSwap</code></strong>：将数组最后一个元素覆盖到被删除位置，不保证顺序，复杂度为 $O(1)$。</li>
+  <li><strong>收益</strong>：在大规模数组删除操作中性能提升巨大。</li>
+</ul>
+
+<p><strong>4. 内存池化：<code class="language-plaintext highlighter-rouge">Reset</code> 与 <code class="language-plaintext highlighter-rouge">Empty</code></strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Empty()</code></strong>：删除所有元素并释放内存。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Reset()</code></strong>：删除所有元素但<strong>保留内存（Slack）</strong>。</li>
+  <li><strong>收益</strong>：在循环反复填充同一个数组时，使用 <code class="language-plaintext highlighter-rouge">Reset()</code> 可避免反复触发堆分配。</li>
+</ul>
+
+<p><strong>5. 栈空间优化：<code class="language-plaintext highlighter-rouge">TInlineAllocator</code></strong>
+默认情况下 <code class="language-plaintext highlighter-rouge">TArray</code> 在堆（Heap）上分配内存。</p>
+<ul>
+  <li><strong>用法</strong>：<code class="language-plaintext highlighter-rouge">TArray&lt;FVector, TInlineAllocator&lt;16&gt;&gt; MyArray;</code></li>
+  <li><strong>收益</strong>：前 16 个元素直接分配在栈上。对于生命周期短、元素少的小数组，完全消除了堆分配的开销。</li>
+</ul>
+
+<p><strong>6. 参数传递：使用 <code class="language-plaintext highlighter-rouge">const TArray&amp;</code></strong></p>
+<ul>
+  <li><strong>规则</strong>：函数传参时严禁使用值传递（会触发整组拷贝）。</li>
+  <li><strong>写法</strong>：<code class="language-plaintext highlighter-rouge">void Process(const TArray&lt;int32&gt;&amp; Data)</code>。</li>
+</ul>
+
+<p><strong>7. 总结</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">场景</th>
+      <th style="text-align: left">推荐方式</th>
+      <th style="text-align: left">复杂度/收益</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>已知元素数量</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Reserve(N)</code></td>
+      <td style="text-align: left">减少内存重新分配</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>添加复杂对象</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Emplace(...)</code></td>
+      <td style="text-align: left">避免临时对象拷贝</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>删除（不计顺序）</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">RemoveAtSwap(Index)</code></td>
+      <td style="text-align: left">从 $O(n)$ 降至 $O(1)$</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>高频重用数组</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Reset()</code></td>
+      <td style="text-align: left">复用现有内存空间</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>局部临时小数组</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TInlineAllocator&lt;N&gt;</code></td>
+      <td style="text-align: left">消除堆分配开销</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>参考文章：</strong></p>
+<ul>
+  <li><a href="https://www.unrealengine.com/zh-CN/blog/optimizing-tarray-usage-for-performance">为性能表现最优化TArray的使用</a></li>
+</ul>
+
+<h3 id="gas网络同步"><strong>GAS网络同步</strong></h3>
+<h3 id="移动组件网络同步"><strong>移动组件网络同步</strong></h3>
+<h3 id="ds优化"><strong>DS优化</strong></h3>
+
+<h3 id="uobject生命周期"><strong>UObject生命周期</strong></h3>
+<p>UObject的生命周期可分为以下几个阶段：</p>
+
+<p><strong>1. 创建阶段：内存分配和初始化</strong></p>
+<ul>
+  <li>UObject通过NewObject<T>()创建</T></li>
+  <li>ClassConstructor()调用类的构造函数，C++成员变量，组件默认值(CreateDefaultSubobject&lt;&gt;())真正被初始化</li>
+  <li>PostInitProperties() 子类自定义函数</li>
+</ul>
+
+<p>NewObject<T>()
+│
+│  ① 打包参数
+├─→ FStaticConstructObjectParameters
+│
+│  ② 进入引擎内部
+├─→ StaticConstructObject_Internal()
+│   │
+│   │  ▼▼▼ 阶段一：分配 + 注册 ▼▼▼
+│   ├─→ StaticAllocateObject()
+│   │   ├── AllocateUObject()         // 分配原始内存
+│   │   ├── Memzero()                 // 清零（安全保障）
+│   │   ├── placement new UObjectBase // 填充元数据
+│   │   └── AddObject()
+│   │       ├── AllocateUObjectIndex() // 注册到全局数组（GC用）
+│   │       └── HashObject()           // 注册到全局哈希表（查找用）
+│   │
+│   │  ▼▼▼ 阶段二：构造 + 初始化 ▼▼▼
+│   └─→ ClassConstructor(FObjectInitializer)
+│       ├── C++ 构造函数              // 你的代码在这里跑
+│       └── ~FObjectInitializer()     // RAII 自动触发
+│           ├── InitProperties()      // 从 CDO/Template 拷贝属性
+│           ├── PostInitProperties()  // 虚函数回调（子类自定义）
+│           └── ClearFlags(RF_NeedInitialization)  // 标记：完成！
+│
+▼
+返回完全可用的 UObject*</T></p>
+
+<p><strong>2. 激活阶段：BeginPlay和Tick</strong></p>
+<ul>
+  <li>AActor或者UActorComponent会触发BeginPlay()和Tick</li>
+</ul>
+
+<p><strong>3. 标记阶段：标记准备GC</strong></p>
+<ul>
+  <li>当没有任何被UPROPERTY()宏标记的指针指向该对象时，下一次GC扫描中会被标记销毁</li>
+  <li>对于 AActor，调用 Destroy()</li>
+  <li>对于普通 UObject，可以调用 MarkAsGarbage() 或 ConditionalBeginDestroy()。</li>
+  <li>对象被标记销毁后，并不会立即从内存消失，而是进入一个“待回收”的队列。</li>
+</ul>
+
+<p><strong>4. 回收阶段：销毁和内存回收</strong></p>
+<ul>
+  <li>BeginDestroy()：销毁前最后一次机会处理非托管资源</li>
+  <li>IsReadyForFinishDestroy()：检查异步操作（如物理线程计算）是否完成</li>
+  <li>FinishDestroy()：UObject释放内部资源</li>
+  <li>调用C++析构函数</li>
+</ul>
+
+<p><strong>参考文章：</strong></p>
+
+<ul>
+  <li><a href="https://blog.jcmz.art/archives/ue-uobject-system-reflection-gc-memory">UE UObject 系统底层机制解析：反射、GC 与内存管理</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/2020970695018979988">UE UObject 创建流程详解</a></li>
+</ul>
+
+<h3 id="行为树">行为树</h3>
+
+<h2 id="数据结构和算法"><strong>数据结构和算法</strong></h2>
+<h3 id="求二维平面上一个点p是否在一个三角形abc内">求二维平面上一个点P是否在一个三角形ABC内</h3>
+<ul>
+  <li>用向量叉乘 P和三角形的各个顶点，检查向量是否都在在三角形边的同侧</li>
+  <li>面积法 底*高/2</li>
+</ul>
+
+<h3 id="洗牌算法">洗牌算法</h3>
+<ul>
+  <li>100个数内，取n个数字，要求不能重复。
+解法：先对数组洗牌，然后取头n个树</li>
+</ul>
+
+<h2 id="c"><strong>C++</strong></h2>
+
+<h3 id="引用">引用</h3>
+<p>参考文章：</p>
+<ul>
+  <li><a href="https://zhuanlan.zhihu.com/p/335994370]">一文读懂C++右值引用和std::move</a></li>
+</ul>
+
+<h3 id="内存对齐">内存对齐</h3>
+<p><strong>1. 什么是内存对齐</strong></p>
+
+<p>现代计算机系统对于基本类型数据在内存中存放的位置有限制，要求这些数据的首地址的值是4或者8的倍数。因为处理器在读取内存时，一般按照双字节,四字节,8字节,16字节甚至32字节为单位来存取内存。按照内存对齐的规则存放数据后，处理器读取数据时能更快，且避免内存浪费</p>
+
+<p>比如一个数据地址以2开头，占4个字节，那处理器按照4字节读取内存时，就要先从0地址开始读，然后截取地址2开头后的数据，再从4地址读取，截取地址5前面的数据，两次数据拼凑才能获得原始数据；如果数据从地址0或者地址4开始存储，那么处理器一次就能读取完整的数据</p>
+
+<p><strong>2. 内存对齐规则</strong></p>
+
+<p>有的数据就只有1个字节，那么要满足上面的内存对齐原则，方便处理器读取，就要对源数据进行内存对齐的操作，这样的操作要遵守一定的规则：</p>
+
+<ul>
+  <li>基本类型的对齐值就是sizeof值</li>
+  <li>结构体的对齐值是结构体的sizeof值</li>
+  <li>编译器可以设置一个最大对齐值(#pragma pack(n))，实际对齐值是此类型与最大对齐值中的最小值</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别</span>
+<span class="cp">#pragma pack(4) //默认对齐数修改成4
+</span><span class="k">struct</span> <span class="nc">One</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//0-7偏移</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//8偏移</span>
+	           <span class="c1">//9-11偏移浪费</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
+<span class="p">};</span>             <span class="c1">//结构体one占16字节</span>
+<span class="k">struct</span> <span class="nc">Two</span> <span class="p">{</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//0偏移</span>
+	           <span class="c1">//1-3偏移浪费</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//4-11偏移</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
+<span class="p">};</span>             <span class="c1">//结构体two占16字节</span>
+
+<span class="cp">#pragma pack(8) //默认对齐数修改成8
+</span><span class="k">struct</span> <span class="nc">One</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//0-7偏移</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//8偏移</span>
+			   <span class="c1">//9-11偏移浪费</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
+<span class="p">};</span>             <span class="c1">//结构体one占16字节</span>
+<span class="k">struct</span> <span class="nc">Two</span> <span class="p">{</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//0偏移</span>
+			   <span class="c1">//1-3偏移浪费</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//8-15偏移</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//16-19偏移</span>
+	           <span class="c1">//20-23偏移浪费</span>
+<span class="p">};</span>             <span class="c1">//结构体two占24字节</span>
+
+</code></pre></div></div>]]></content><author><name>赛狗屁</name></author><category term="游戏开发" /><category term="游戏开发" /><summary type="html"><![CDATA[网络同步 帧同步 TCP UDP]]></summary></entry><entry><title type="html">Python实现监控BSC链上FOUR平台发射的代币</title><link href="https://saigoupi.github.io/web3/bscscan.html" rel="alternate" type="text/html" title="Python实现监控BSC链上FOUR平台发射的代币" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-15T00:00:00+00:00</updated><id>https://saigoupi.github.io/web3/bscscan</id><content type="html" xml:base="https://saigoupi.github.io/web3/bscscan.html"><![CDATA[<h2 id="为什么要做这个">为什么要做这个</h2>
 <ul>
   <li>Python的web3库的练习</li>
   <li>最近BSC的MEME很火，写这个工具玩一玩</li>
@@ -730,254 +1028,4 @@ Click Ok.</p>
 
 <p>纠结了半天，只为换一个图标，传一张图片，我意识到自己又在钻牛角尖后，果断停止这一切，停止纠结这些表面的东西，开始按照计划学习新东西，打开vscode开始写文档，这些才是我的最高优先级。</p>
 
-<p>认识自己，才能改变自己。谨防提升技术的道路上这些吹毛求疵的行为，不要让他们影响到真正重要的事情。</p>]]></content><author><name>赛狗屁</name></author><category term="博客" /><category term="Jekyll" /><category term="博客" /><summary type="html"><![CDATA[新的主题]]></summary></entry><entry><title type="html">使用Github Pages + Jekyll搭建个人博客</title><link href="https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html" rel="alternate" type="text/html" title="使用Github Pages + Jekyll搭建个人博客" /><published>2025-07-23T00:00:00+00:00</published><updated>2025-07-23T00:00:00+00:00</updated><id>https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog</id><content type="html" xml:base="https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html"><![CDATA[<h2 id="写在开头">写在开头</h2>
-
-<p>最近在研究使用GitHub Pages搭建博客，好处有两点：</p>
-<ul>
-  <li>免费，简单，不用租服务器买域名，一键部署</li>
-  <li>教程多，出问题方便在网上找解决方案</li>
-</ul>
-
-<p>GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll，当然用其他的Hexo，gitbook等等也都是可以的，网上教程也很多，部署流程也大同小异。</p>
-
-<p>今天总结一下我的搭建过程，以及中途遇到的一些坑，照着这篇文档，应该能一次搭建成功。</p>
-
-<h2 id="参考文档">参考文档</h2>
-
-<p>如果只是搭建一个最简单的博客，直接参考官方教程和以下教程即可，十分钟搞定直接开写：</p>
-
-<ul>
-  <li>
-    <p><a href="https://blog.csdn.net/zzy979481894/article/details/132678717">使用Jekyll + GitHub Pages搭建个人博客</a></p>
-  </li>
-  <li>
-    <p><a href="https://docs.github.com/zh/pages/quickstart">GitHub Pages快速入门</a></p>
-  </li>
-</ul>
-
-<p>但是刚开始搭建博客时，总喜欢折腾一些好看的主题，Jekyll的主题很多，更换主题也很方便，但是还是会有一些小坑。</p>
-
-<p>最主要的问题就是<a href="https://docs.github.com/zh/actions/tutorials">GitHub Action</a>的配置，Jekyll可以使用在线主题，但是github默认支持的在线主题很少，如果想用其他的主题，就要修改博客项目中的默认的Action和workflow的配置，保证博客仓库有更新时，github可以自动部署博客到网页上。</p>
-
-<p>解决问题的方式很简单，只是第一次遇到有点懵而已。具体参考了以下链接：</p>
-
-<ul>
-  <li>
-    <p>在这里找到自己喜欢的主题：<a href="http://jekyllthemes.org/">Jekyll主题大全</a></p>
-  </li>
-  <li>
-    <p>我使用的主题：<a href="https://github.com/jeffreytse/jekyll-theme-yat">Jekyll-yat主题</a></p>
-  </li>
-  <li>
-    <p>使用以上主题时，需要使用配套的Github Action配置：<a href="https://github.com/jeffreytse/jekyll-deploy-action">A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages</a></p>
-  </li>
-  <li>
-    <p>安装Jekyll：<a href="https://jekyllrb.com/docs/installation/windows/">Jekyll On Windows</a></p>
-  </li>
-</ul>
-
-<p>一些疑难杂症的解决方案：</p>
-<ul>
-  <li>
-    <p><a href="https://www.ixiqin.com/2023/02/18/how-to-deal-with-making-the-action-report-remote-permission-denied-to-xx-x-to-making-the-actions-bot-problem/">如何处理 Github Action 报出的 remote: Permission to xx x denied to github-actions[bot] 问题</a></p>
-  </li>
-  <li>
-    <p><a href="https://github.com/jeffreytse/jekyll-theme-yat/issues/177">Error: Invalid CSS after “ @if meta”: expected “{“, was “.function-exist…” on line 72</a></p>
-  </li>
-  <li>
-    <p><a href="https://github.com/jeffreytse/jekyll-theme-yat/issues/173">css conversion error with github pages</a></p>
-  </li>
-</ul>
-
-<h2 id="安装jekyll">安装Jekyll</h2>
-
-<p>先在Ruby官网下载安装Ruby</p>
-
-<p><a href="https://jekyllrb.com/docs/installation/windows/">Jekyll On Windows</a></p>
-
-<p>在安装最后一步勾选以下选项</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image.png" alt="" /></p>
-
-<p>在命令行中选3</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-1.png" alt="" /></p>
-
-<p>检查是否安装成功，windows命令行运行</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby <span class="nt">-v</span>
-gem <span class="nt">-v</span>
-</code></pre></div></div>
-
-<p>然后更换ruby源为国内源，因为ruby默认的官方源在国外，不用梯子的话，下载速度非常慢！所以先更换为国内源，再下载Jekyll，打开命令行，输入以下命令添加ruby国内源</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources <span class="nt">-a</span> https://gems.ruby-china.com/
-</code></pre></div></div>
-
-<p>然后输入以下命令移除官方源</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources <span class="nt">-r</span> https://rubygems.org/
-</code></pre></div></div>
-
-<p>最后使用以下命令查看已有的源</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources <span class="nt">-l</span>
-</code></pre></div></div>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-3.png" alt="" /></p>
-
-<p>接下来就可以安装Jekyll了，使用以下命令</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
-</code></pre></div></div>
-
-<p>提示安装完成后，检查是否安装成功</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll <span class="nt">-v</span>
-</code></pre></div></div>
-
-<p>至此Jekyll安装完成</p>
-
-<h2 id="安装jekyll-yat主题">安装Jekyll-Yat主题</h2>
-
-<p>在github上新建一个博客仓库，克隆或者直接下载此主题的zip包<a href="https://github.com/jeffreytse/jekyll-theme-yat">Jekyll-yat主题</a>，将此项目中的所有文件复制到自己的博客仓库。</p>
-
-<p>参考<a href="https://github.com/SAIGOUPI/yat-blog/commit/98e81254675ddf3308b2312be9e81b284fefb584">Jekyll-yat主题本地调试修改</a>这个提交的修改，在<code class="language-plaintext highlighter-rouge">Gemfile</code>文件中再修改一次国内源，并添加<code class="language-plaintext highlighter-rouge">gem "logger", "~&gt; 1.7"</code>和
-<code class="language-plaintext highlighter-rouge">gem "bigdecimal", "~&gt; 3.2"</code>，修改后完整文件如下：</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> <span class="s2">"https://gems.ruby-china.com/"</span>
-gemspec
-
-gem <span class="s2">"logger"</span>, <span class="s2">"~&gt; 1.7"</span>
-
-gem <span class="s2">"bigdecimal"</span>, <span class="s2">"~&gt; 3.2"</span>
-</code></pre></div></div>
-
-<p>然后在根目录启动命令行，输入命令</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
-</code></pre></div></div>
-
-<p>开始在本地添加博客网站运行的依赖项，提示安装完成后，执行命令</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
-</code></pre></div></div>
-
-<p>就可以在本地<code class="language-plaintext highlighter-rouge">http://127.0.0.1:4000</code>访问渲染后的博客网站</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-2.png" alt="" /></p>
-
-<p>至此，Yat主题初始化完毕</p>
-
-<h2 id="部署博客到github-pages">部署博客到GitHub Pages</h2>
-
-<p>来到自己的博客仓库，在<code class="language-plaintext highlighter-rouge">Settings</code>里第一行，修改仓库名字成<code class="language-plaintext highlighter-rouge">username.github.io</code>，<code class="language-plaintext highlighter-rouge">username</code>就是github的账户名。一定要按照这个格式输入，这个名字也是访问此博客的域名。</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-4.png" alt="" /></p>
-
-<p>在部署GitHub Pages前，先回到自己的仓库，新建一个分支<code class="language-plaintext highlighter-rouge">gh-pages</code>，这个分支就用来部署博客页面。</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-5.png" alt="" /></p>
-
-<p>分支创建完毕后，回到<code class="language-plaintext highlighter-rouge">master</code>分支上，需要修改一个文件<code class="language-plaintext highlighter-rouge">build-jekyll.yml</code>，路径如下：</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-6.png" alt="" /></p>
-
-<p>然后将以下内容覆盖到<code class="language-plaintext highlighter-rouge">build-jekyll.yml</code>中，此配置来自Yat主题的作者</p>
-
-<p><a href="https://github.com/jeffreytse/jekyll-deploy-action">A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages</a></p>
-
-<p>使用此Action就可以在master分支有更新时，通知github自动更新并部署博客页面到网站上，并且此配置也支持大部分Jekyll主题，部署时不会有报错：</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Build and Deploy to Github Pages</span>
-
-<span class="na">on</span><span class="pi">:</span>
-  <span class="na">push</span><span class="pi">:</span>
-    <span class="na">branches</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">master</span>  <span class="c1"># Here source code branch is `master`, it could be other branch</span>
-  <span class="na">workflow_dispatch</span><span class="pi">:</span>
-    
-<span class="na">jobs</span><span class="pi">:</span>
-  <span class="na">build_and_deploy</span><span class="pi">:</span>
-    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
-    <span class="na">steps</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
-
-      <span class="c1"># Use GitHub Actions' cache to cache dependencies on servers</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v4</span>
-        <span class="na">with</span><span class="pi">:</span>
-          <span class="na">path</span><span class="pi">:</span> <span class="pi">|</span>
-            <span class="s">.asdf/**</span>
-            <span class="s">vendor/bundle</span>
-          <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}</span>
-          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
-            <span class="s">${{ runner.os }}-cache-</span>
-
-      <span class="c1"># Use GitHub Deploy Action to build and deploy to Github</span>
-      <span class="c1"># For latest version: `jeffreytse/jekyll-deploy-action@master`</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">jeffreytse/jekyll-deploy-action@v0.6.0</span>
-        <span class="na">with</span><span class="pi">:</span>
-          <span class="na">provider</span><span class="pi">:</span> <span class="s1">'</span><span class="s">github'</span>         <span class="c1"># Default is github</span>
-          <span class="na">token</span><span class="pi">:</span> <span class="s">${{ secrets.GITHUB_TOKEN }}</span> <span class="c1"># It's your Personal Access Token(PAT)</span>
-          <span class="na">repository</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>             <span class="c1"># Default is current repository</span>
-          <span class="na">branch</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gh-pages'</span>         <span class="c1"># Default is gh-pages for github provider</span>
-          <span class="na">jekyll_src</span><span class="pi">:</span> <span class="s1">'</span><span class="s">./'</span>           <span class="c1"># Default is root directory</span>
-          <span class="na">jekyll_cfg</span><span class="pi">:</span> <span class="s1">'</span><span class="s">_config.yml'</span>  <span class="c1"># Default is _config.yml</span>
-          <span class="na">jekyll_baseurl</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>         <span class="c1"># Default is according to _config.yml</span>
-          <span class="na">ruby_ver</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>               <span class="c1"># Default is 3.2.0 version</span>
-          <span class="na">bundler_ver</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>            <span class="c1"># Default is compatible bundler version (~&gt;2.5.0)</span>
-          <span class="na">cname</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>                  <span class="c1"># Default is to not use a cname</span>
-          <span class="na">actor</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>                  <span class="c1"># Default is the GITHUB_ACTOR</span>
-          <span class="na">pre_build_commands</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>     <span class="c1"># Installing additional dependencies (Arch Linux)</span>
-</code></pre></div></div>
-
-<p>然后又来到项目的<code class="language-plaintext highlighter-rouge">Settings</code>中，进入<code class="language-plaintext highlighter-rouge">Action</code>-<code class="language-plaintext highlighter-rouge">General</code>路径中，找到<code class="language-plaintext highlighter-rouge">Workflow permission</code>，设置为<code class="language-plaintext highlighter-rouge">Read and write permissions</code>。这样在部署时，github就不会有无法操作仓库的权限问题了。</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-7.png" alt="" /></p>
-
-<p>最后一步了！进入<code class="language-plaintext highlighter-rouge">Pages</code>路径，选择<code class="language-plaintext highlighter-rouge">Deploy from a branch</code>，然后选择<code class="language-plaintext highlighter-rouge">gh-pages</code>，保存修改，大功告成~！</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-8.png" alt="" /></p>
-
-<p>来到仓库的<code class="language-plaintext highlighter-rouge">Action</code>页面，找到刚刚修改的Action，点击右侧Run workflow，启动部署流程，部署完成后，可以在下面的<code class="language-plaintext highlighter-rouge">pages-build-deployment</code>里看到，<code class="language-plaintext highlighter-rouge">gh-pages</code>分支已经部署完成</p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-9.png" alt="" /></p>
-
-<p><img src="/assets/img/posts/2025-07-23-build-blog/image-10.png" alt="" /></p>
-
-<p>然后访问域名<code class="language-plaintext highlighter-rouge">username.github.io</code>就可以访问自己的博客了~!</p>
-
-<h2 id="本地写博客并更新到网站">本地写博客并更新到网站</h2>
-
-<p>在本地仓库内根目录下<code class="language-plaintext highlighter-rouge">\_posts</code>文件内，新建<code class="language-plaintext highlighter-rouge">date-blogTitle.md</code>文件，<code class="language-plaintext highlighter-rouge">date</code>是日期，<code class="language-plaintext highlighter-rouge">blogTitle</code>是文章标题，打开文件，在文章顶部填写基本信息</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
-<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
-<span class="na">title</span><span class="pi">:</span> <span class="s">Another test markdown</span>
-<span class="na">subtitle</span><span class="pi">:</span> <span class="s">Each post also has a subtitle</span>
-<span class="na">categories</span><span class="pi">:</span> <span class="s">markdown</span>
-<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">test</span><span class="pi">]</span>
-<span class="nn">---</span>
-</code></pre></div></div>
-
-<p>具体格式，可以参考<code class="language-plaintext highlighter-rouge">\_posts</code>文件内的其他实例文章，都是主题自带的案例，有图片，视频，Jekyll的基本格式，markdown基础语法等例子可以参考。</p>
-
-<p>写好文章后，推送到github仓库上，就会触发Action的workflow，工作流执行完毕后（大约3分钟），就可以访问域名，查看更新后的博客了~</p>
-
-<p>至此，就已经成功搭建起自己的博客了，完事开头难，基础搭建起来后，之后的各种玩法的探索才有了可能。接下来可以专注于博客的写作上，可以参考markdown的语法:</p>
-
-<p><a href="https://markdown.com.cn/basic-syntax/htmls.html">Markdown语法</a></p>
-
-<p>也可以美化一下自己的博客，学习一下Jekyll主题的修改和制作</p>
-
-<h2 id="写在最后">写在最后</h2>
-
-<p>搭建博客时还是踩了不少坑，所以深知能从零搭起来才是最重要的，其他花里胡哨的外观主题都是次要的。按照这篇文章，应该能顺利地一次性搭建起来，如果有问题，可以看看这个仓库，里面的提交和文件都可以参考。</p>
-
-<p><a href="https://github.com/SAIGOUPI/yat-blog">Yat主题博客案例仓库</a></p>
-
-<p>另外，现在的我在用vscode写这篇文章时，发现vscode写markdown真的非常方便，原生就支持直接粘贴图片到文章内，附上文档链接</p>
-
-<p><a href="https://juejin.cn/post/7244809769794289721">vscode支持Markdwon中直接粘贴图片</a></p>
-
-<p>感谢看到这里~！!</p>]]></content><author><name>赛狗屁</name></author><category term="博客" /><category term="Jekyll" /><category term="博客" /><summary type="html"><![CDATA[写在开头]]></summary></entry></feed>
+<p>认识自己，才能改变自己。谨防提升技术的道路上这些吹毛求疵的行为，不要让他们影响到真正重要的事情。</p>]]></content><author><name>赛狗屁</name></author><category term="博客" /><category term="Jekyll" /><category term="博客" /><summary type="html"><![CDATA[新的主题]]></summary></entry></feed>

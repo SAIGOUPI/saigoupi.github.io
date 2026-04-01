@@ -5,9 +5,322 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 24 Dec 2025 15:15:08 +0000</pubDate>
-    <lastBuildDate>Wed, 24 Dec 2025 15:15:08 +0000</lastBuildDate>
+    <pubDate>Wed, 01 Apr 2026 08:23:50 +0000</pubDate>
+    <lastBuildDate>Wed, 01 Apr 2026 08:23:50 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>游戏开发面试记录</title>
+        <description>&lt;h2 id=&quot;网络同步&quot;&gt;&lt;strong&gt;网络同步&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;帧同步&quot;&gt;帧同步&lt;/h3&gt;
+&lt;h3 id=&quot;tcp-udp&quot;&gt;TCP UDP&lt;/h3&gt;
+
+&lt;h2 id=&quot;骨骼动画&quot;&gt;&lt;strong&gt;骨骼动画&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;ik&quot;&gt;IK&lt;/h3&gt;
+
+&lt;h2 id=&quot;ui数据输入输出闭环&quot;&gt;&lt;strong&gt;UI数据输入输出闭环&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;lua&quot;&gt;&lt;strong&gt;Lua&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;计算机动画&quot;&gt;&lt;strong&gt;计算机动画&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;h2 id=&quot;寻路算法&quot;&gt;&lt;strong&gt;寻路算法&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;a&quot;&gt;A*&lt;/h3&gt;
+&lt;h3 id=&quot;流场寻路&quot;&gt;流场寻路&lt;/h3&gt;
+
+&lt;h2 id=&quot;避障算法&quot;&gt;&lt;strong&gt;避障算法&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;rvo相对速度障碍物算法&quot;&gt;RVO(相对速度障碍物算法)&lt;/h3&gt;
+
+&lt;h2 id=&quot;unreal&quot;&gt;&lt;strong&gt;Unreal&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;tarray&quot;&gt;&lt;strong&gt;TArray&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;为什么ue要自创tarray而不是直接用vector&quot;&gt;为什么UE要自创TArray而不是直接用Vector&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;1. 垃圾回收和反射系统&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;TArray：可以被标记为 UPROPERTY()。这意味着它能被 UE 的反射系统识别。如果 TArray 中存储的是 UObject*，引擎的垃圾回收器（GC）会自动追踪这些引用，防止对象在数组还在使用时被销毁。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;std::vector：无法被 UPROPERTY() 标记，引擎无法追踪其内部存储的指针。如果你在 std::vector 中存储了一个 UObject*，即便数组还在，该对象也可能被 GC 回收，导致悬空指针和崩溃。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 内存分配和对齐&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;FMemory：TArray 使用 UE 的 FMemory 分配器，这允许引擎在不同平台（如 PS5、Xbox、Switch）上执行特定的内存优化，并方便开发者进行内存快照（Memory Profiling）分析。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;对齐要求：在处理 SIMD（单指令多数据流）指令时，数据需要特定字节对齐。TArray 的分配器可以轻松支持这些硬件级的内存对齐要求，而 std::vector 通常使用通用分配器，控制力较弱。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3. 序列化与网络复制&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;序列化：通过 FArchive，TArray 可以实现“一键式”保存和加载，并能自动处理大小端转换等跨平台问题。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;网络同步：UE 的网络架构（Replication）专门针对 TArray 做了同步优化。你可以标记一个 TArray 进行同步，引擎会处理数据的增量更新，而 std::vector 无法直接集成到这个网络协议栈中。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4. 总结&lt;/strong&gt;
+| 特性 | TArray | std::vector |
+|——|——–|————-|
+| UE 反射系统支持 | 支持 (可标记 UPROPERTY) | 不支持 |
+| 垃圾回收 (GC) | 自动追踪内部 UObject | 无法追踪，易导致野指针 |
+| 内存分配器 | FMemory (跨平台优化) | 标准 C++ 分配器 (STL) |
+| 序列化/保存 | 内置支持 | 需手动实现遍历存储 |
+| 网络同步 | 支持属性复制 | 不支持 |&lt;/p&gt;
+
+&lt;p&gt;UE开发中优先使用TArray，使数据和内存都在引擎的管理下，安全和性能都有保证。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add&lt;/code&gt;和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emplace&lt;/code&gt;的区别&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Add()和Emplace()方法向数组末尾添加元素&lt;/li&gt;
+  &lt;li&gt;Emplace 可以使用参数直接构造元素，避免产生临时对象，Emplace()不创建临时变量，在容器内 “原地构造” 元素&lt;/li&gt;
+  &lt;li&gt;Add 底层调用的也是 Emplace，但是会先去构造一个对象，添加时创建临时变量，复制到数组中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;tarray高级用法&quot;&gt;TArray高级用法&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;1. 预分配内存：使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reserve&lt;/code&gt;&lt;/strong&gt;
+当数组元素超过当前容量时，引擎会申请更大的内存块并拷贝旧元素。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;优化逻辑&lt;/strong&gt;：如果你预先知道数组的大致规模，调用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reserve(ExpectedSize)&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;收益&lt;/strong&gt;：将多次昂贵的内存分配和拷贝操作合并为一次。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 避免冗余拷贝：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emplace&lt;/code&gt; 优于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add&lt;/code&gt;&lt;/strong&gt;：通常会先创建一个临时对象，再将其拷贝或移动到数组中。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emplace&lt;/code&gt;&lt;/strong&gt;：利用 C++ 完美转发，直接在数组预留的内存中构造对象。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;收益&lt;/strong&gt;：减少了临时对象的构造与析构开销。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3. 高效删除：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoveAtSwap&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoveAt&lt;/code&gt;&lt;/strong&gt;：删除元素后，后续所有元素都会前移以保持顺序，复杂度为 $O(n)$。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoveAtSwap&lt;/code&gt;&lt;/strong&gt;：将数组最后一个元素覆盖到被删除位置，不保证顺序，复杂度为 $O(1)$。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;收益&lt;/strong&gt;：在大规模数组删除操作中性能提升巨大。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4. 内存池化：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reset&lt;/code&gt; 与 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Empty&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Empty()&lt;/code&gt;&lt;/strong&gt;：删除所有元素并释放内存。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reset()&lt;/code&gt;&lt;/strong&gt;：删除所有元素但&lt;strong&gt;保留内存（Slack）&lt;/strong&gt;。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;收益&lt;/strong&gt;：在循环反复填充同一个数组时，使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reset()&lt;/code&gt; 可避免反复触发堆分配。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;5. 栈空间优化：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TInlineAllocator&lt;/code&gt;&lt;/strong&gt;
+默认情况下 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TArray&lt;/code&gt; 在堆（Heap）上分配内存。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;用法&lt;/strong&gt;：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TArray&amp;lt;FVector, TInlineAllocator&amp;lt;16&amp;gt;&amp;gt; MyArray;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;收益&lt;/strong&gt;：前 16 个元素直接分配在栈上。对于生命周期短、元素少的小数组，完全消除了堆分配的开销。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;6. 参数传递：使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;const TArray&amp;amp;&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;规则&lt;/strong&gt;：函数传参时严禁使用值传递（会触发整组拷贝）。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;写法&lt;/strong&gt;：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;void Process(const TArray&amp;lt;int32&amp;gt;&amp;amp; Data)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;7. 总结&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;场景&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;推荐方式&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;复杂度/收益&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;已知元素数量&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reserve(N)&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;减少内存重新分配&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;添加复杂对象&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emplace(...)&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;避免临时对象拷贝&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;删除（不计顺序）&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoveAtSwap(Index)&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;从 $O(n)$ 降至 $O(1)$&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;高频重用数组&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reset()&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;复用现有内存空间&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;局部临时小数组&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TInlineAllocator&amp;lt;N&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;消除堆分配开销&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;参考文章：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.unrealengine.com/zh-CN/blog/optimizing-tarray-usage-for-performance&quot;&gt;为性能表现最优化TArray的使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;gas网络同步&quot;&gt;&lt;strong&gt;GAS网络同步&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;移动组件网络同步&quot;&gt;&lt;strong&gt;移动组件网络同步&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;ds优化&quot;&gt;&lt;strong&gt;DS优化&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;uobject生命周期&quot;&gt;&lt;strong&gt;UObject生命周期&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;UObject的生命周期可分为以下几个阶段：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. 创建阶段：内存分配和初始化&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UObject通过NewObject&lt;T&gt;()创建&lt;/T&gt;&lt;/li&gt;
+  &lt;li&gt;ClassConstructor()调用类的构造函数，C++成员变量，组件默认值(CreateDefaultSubobject&amp;lt;&amp;gt;())真正被初始化&lt;/li&gt;
+  &lt;li&gt;PostInitProperties() 子类自定义函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;NewObject&lt;T&gt;()
+│
+│  ① 打包参数
+├─→ FStaticConstructObjectParameters
+│
+│  ② 进入引擎内部
+├─→ StaticConstructObject_Internal()
+│   │
+│   │  ▼▼▼ 阶段一：分配 + 注册 ▼▼▼
+│   ├─→ StaticAllocateObject()
+│   │   ├── AllocateUObject()         // 分配原始内存
+│   │   ├── Memzero()                 // 清零（安全保障）
+│   │   ├── placement new UObjectBase // 填充元数据
+│   │   └── AddObject()
+│   │       ├── AllocateUObjectIndex() // 注册到全局数组（GC用）
+│   │       └── HashObject()           // 注册到全局哈希表（查找用）
+│   │
+│   │  ▼▼▼ 阶段二：构造 + 初始化 ▼▼▼
+│   └─→ ClassConstructor(FObjectInitializer)
+│       ├── C++ 构造函数              // 你的代码在这里跑
+│       └── ~FObjectInitializer()     // RAII 自动触发
+│           ├── InitProperties()      // 从 CDO/Template 拷贝属性
+│           ├── PostInitProperties()  // 虚函数回调（子类自定义）
+│           └── ClearFlags(RF_NeedInitialization)  // 标记：完成！
+│
+▼
+返回完全可用的 UObject*&lt;/T&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 激活阶段：BeginPlay和Tick&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;AActor或者UActorComponent会触发BeginPlay()和Tick&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3. 标记阶段：标记准备GC&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;当没有任何被UPROPERTY()宏标记的指针指向该对象时，下一次GC扫描中会被标记销毁&lt;/li&gt;
+  &lt;li&gt;对于 AActor，调用 Destroy()&lt;/li&gt;
+  &lt;li&gt;对于普通 UObject，可以调用 MarkAsGarbage() 或 ConditionalBeginDestroy()。&lt;/li&gt;
+  &lt;li&gt;对象被标记销毁后，并不会立即从内存消失，而是进入一个“待回收”的队列。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4. 回收阶段：销毁和内存回收&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;BeginDestroy()：销毁前最后一次机会处理非托管资源&lt;/li&gt;
+  &lt;li&gt;IsReadyForFinishDestroy()：检查异步操作（如物理线程计算）是否完成&lt;/li&gt;
+  &lt;li&gt;FinishDestroy()：UObject释放内部资源&lt;/li&gt;
+  &lt;li&gt;调用C++析构函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;参考文章：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.jcmz.art/archives/ue-uobject-system-reflection-gc-memory&quot;&gt;UE UObject 系统底层机制解析：反射、GC 与内存管理&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/2020970695018979988&quot;&gt;UE UObject 创建流程详解&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;行为树&quot;&gt;行为树&lt;/h3&gt;
+
+&lt;h2 id=&quot;数据结构和算法&quot;&gt;&lt;strong&gt;数据结构和算法&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;求二维平面上一个点p是否在一个三角形abc内&quot;&gt;求二维平面上一个点P是否在一个三角形ABC内&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;用向量叉乘 P和三角形的各个顶点，检查向量是否都在在三角形边的同侧&lt;/li&gt;
+  &lt;li&gt;面积法 底*高/2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;洗牌算法&quot;&gt;洗牌算法&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;100个数内，取n个数字，要求不能重复。
+解法：先对数组洗牌，然后取头n个树&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;c&quot;&gt;&lt;strong&gt;C++&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;引用&quot;&gt;引用&lt;/h3&gt;
+&lt;p&gt;参考文章：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/335994370]&quot;&gt;一文读懂C++右值引用和std::move&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;内存对齐&quot;&gt;内存对齐&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1. 什么是内存对齐&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;现代计算机系统对于基本类型数据在内存中存放的位置有限制，要求这些数据的首地址的值是4或者8的倍数。因为处理器在读取内存时，一般按照双字节,四字节,8字节,16字节甚至32字节为单位来存取内存。按照内存对齐的规则存放数据后，处理器读取数据时能更快，且避免内存浪费&lt;/p&gt;
+
+&lt;p&gt;比如一个数据地址以2开头，占4个字节，那处理器按照4字节读取内存时，就要先从0地址开始读，然后截取地址2开头后的数据，再从4地址读取，截取地址5前面的数据，两次数据拼凑才能获得原始数据；如果数据从地址0或者地址4开始存储，那么处理器一次就能读取完整的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 内存对齐规则&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;有的数据就只有1个字节，那么要满足上面的内存对齐原则，方便处理器读取，就要对源数据进行内存对齐的操作，这样的操作要遵守一定的规则：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;基本类型的对齐值就是sizeof值&lt;/li&gt;
+  &lt;li&gt;结构体的对齐值是结构体的sizeof值&lt;/li&gt;
+  &lt;li&gt;编译器可以设置一个最大对齐值(#pragma pack(n))，实际对齐值是此类型与最大对齐值中的最小值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#pragma pack(4) //默认对齐数修改成4
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;One&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//0-7偏移&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//8偏移&lt;/span&gt;
+	           &lt;span class=&quot;c1&quot;&gt;//9-11偏移浪费&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//12-15偏移&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体one占16字节&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Two&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//0偏移&lt;/span&gt;
+	           &lt;span class=&quot;c1&quot;&gt;//1-3偏移浪费&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//4-11偏移&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//12-15偏移&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体two占16字节&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#pragma pack(8) //默认对齐数修改成8
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;One&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//0-7偏移&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//8偏移&lt;/span&gt;
+			   &lt;span class=&quot;c1&quot;&gt;//9-11偏移浪费&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//12-15偏移&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体one占16字节&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Two&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//0偏移&lt;/span&gt;
+			   &lt;span class=&quot;c1&quot;&gt;//1-3偏移浪费&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//8-15偏移&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//16-19偏移&lt;/span&gt;
+	           &lt;span class=&quot;c1&quot;&gt;//20-23偏移浪费&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体two占24字节&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+        <link>https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html</link>
+        <guid isPermaLink="true">https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html</guid>
+        
+        <category>游戏开发</category>
+        
+        
+        <category>游戏开发</category>
+        
+      </item>
     
       <item>
         <title>Python实现监控BSC链上FOUR平台发射的代币</title>
@@ -886,273 +1199,6 @@ Click Ok.&lt;/p&gt;
         <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
         <link>https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/new-blog-theme.html</link>
         <guid isPermaLink="true">https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/new-blog-theme.html</guid>
-        
-        <category>Jekyll</category>
-        
-        <category>博客</category>
-        
-        
-        <category>博客</category>
-        
-      </item>
-    
-      <item>
-        <title>使用Github Pages + Jekyll搭建个人博客</title>
-        <description>&lt;h2 id=&quot;写在开头&quot;&gt;写在开头&lt;/h2&gt;
-
-&lt;p&gt;最近在研究使用GitHub Pages搭建博客，好处有两点：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;免费，简单，不用租服务器买域名，一键部署&lt;/li&gt;
-  &lt;li&gt;教程多，出问题方便在网上找解决方案&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;GitHub Pages也支持很多博客框架，这里我用的官方推荐的Jekyll，当然用其他的Hexo，gitbook等等也都是可以的，网上教程也很多，部署流程也大同小异。&lt;/p&gt;
-
-&lt;p&gt;今天总结一下我的搭建过程，以及中途遇到的一些坑，照着这篇文档，应该能一次搭建成功。&lt;/p&gt;
-
-&lt;h2 id=&quot;参考文档&quot;&gt;参考文档&lt;/h2&gt;
-
-&lt;p&gt;如果只是搭建一个最简单的博客，直接参考官方教程和以下教程即可，十分钟搞定直接开写：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/zzy979481894/article/details/132678717&quot;&gt;使用Jekyll + GitHub Pages搭建个人博客&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://docs.github.com/zh/pages/quickstart&quot;&gt;GitHub Pages快速入门&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;但是刚开始搭建博客时，总喜欢折腾一些好看的主题，Jekyll的主题很多，更换主题也很方便，但是还是会有一些小坑。&lt;/p&gt;
-
-&lt;p&gt;最主要的问题就是&lt;a href=&quot;https://docs.github.com/zh/actions/tutorials&quot;&gt;GitHub Action&lt;/a&gt;的配置，Jekyll可以使用在线主题，但是github默认支持的在线主题很少，如果想用其他的主题，就要修改博客项目中的默认的Action和workflow的配置，保证博客仓库有更新时，github可以自动部署博客到网页上。&lt;/p&gt;
-
-&lt;p&gt;解决问题的方式很简单，只是第一次遇到有点懵而已。具体参考了以下链接：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;在这里找到自己喜欢的主题：&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll主题大全&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;我使用的主题：&lt;a href=&quot;https://github.com/jeffreytse/jekyll-theme-yat&quot;&gt;Jekyll-yat主题&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用以上主题时，需要使用配套的Github Action配置：&lt;a href=&quot;https://github.com/jeffreytse/jekyll-deploy-action&quot;&gt;A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;安装Jekyll：&lt;a href=&quot;https://jekyllrb.com/docs/installation/windows/&quot;&gt;Jekyll On Windows&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一些疑难杂症的解决方案：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.ixiqin.com/2023/02/18/how-to-deal-with-making-the-action-report-remote-permission-denied-to-xx-x-to-making-the-actions-bot-problem/&quot;&gt;如何处理 Github Action 报出的 remote: Permission to xx x denied to github-actions[bot] 问题&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/jeffreytse/jekyll-theme-yat/issues/177&quot;&gt;Error: Invalid CSS after “ @if meta”: expected “{“, was “.function-exist…” on line 72&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/jeffreytse/jekyll-theme-yat/issues/173&quot;&gt;css conversion error with github pages&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;安装jekyll&quot;&gt;安装Jekyll&lt;/h2&gt;
-
-&lt;p&gt;先在Ruby官网下载安装Ruby&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/installation/windows/&quot;&gt;Jekyll On Windows&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;在安装最后一步勾选以下选项&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在命令行中选3&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;检查是否安装成功，windows命令行运行&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-gem &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后更换ruby源为国内源，因为ruby默认的官方源在国外，不用梯子的话，下载速度非常慢！所以先更换为国内源，再下载Jekyll，打开命令行，输入以下命令添加ruby国内源&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem sources &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; https://gems.ruby-china.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后输入以下命令移除官方源&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem sources &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; https://rubygems.org/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;最后使用以下命令查看已有的源&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem sources &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;接下来就可以安装Jekyll了，使用以下命令&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll bundler
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;提示安装完成后，检查是否安装成功&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;至此Jekyll安装完成&lt;/p&gt;
-
-&lt;h2 id=&quot;安装jekyll-yat主题&quot;&gt;安装Jekyll-Yat主题&lt;/h2&gt;
-
-&lt;p&gt;在github上新建一个博客仓库，克隆或者直接下载此主题的zip包&lt;a href=&quot;https://github.com/jeffreytse/jekyll-theme-yat&quot;&gt;Jekyll-yat主题&lt;/a&gt;，将此项目中的所有文件复制到自己的博客仓库。&lt;/p&gt;
-
-&lt;p&gt;参考&lt;a href=&quot;https://github.com/SAIGOUPI/yat-blog/commit/98e81254675ddf3308b2312be9e81b284fefb584&quot;&gt;Jekyll-yat主题本地调试修改&lt;/a&gt;这个提交的修改，在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;文件中再修改一次国内源，并添加&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gem &quot;logger&quot;, &quot;~&amp;gt; 1.7&quot;&lt;/code&gt;和
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gem &quot;bigdecimal&quot;, &quot;~&amp;gt; 3.2&quot;&lt;/code&gt;，修改后完整文件如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://gems.ruby-china.com/&quot;&lt;/span&gt;
-gemspec
-
-gem &lt;span class=&quot;s2&quot;&gt;&quot;logger&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.7&quot;&lt;/span&gt;
-
-gem &lt;span class=&quot;s2&quot;&gt;&quot;bigdecimal&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 3.2&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后在根目录启动命令行，输入命令&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;开始在本地添加博客网站运行的依赖项，提示安装完成后，执行命令&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;就可以在本地&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://127.0.0.1:4000&lt;/code&gt;访问渲染后的博客网站&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;至此，Yat主题初始化完毕&lt;/p&gt;
-
-&lt;h2 id=&quot;部署博客到github-pages&quot;&gt;部署博客到GitHub Pages&lt;/h2&gt;
-
-&lt;p&gt;来到自己的博客仓库，在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Settings&lt;/code&gt;里第一行，修改仓库名字成&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;username&lt;/code&gt;就是github的账户名。一定要按照这个格式输入，这个名字也是访问此博客的域名。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在部署GitHub Pages前，先回到自己的仓库，新建一个分支&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;，这个分支就用来部署博客页面。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;分支创建完毕后，回到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt;分支上，需要修改一个文件&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build-jekyll.yml&lt;/code&gt;，路径如下：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;然后将以下内容覆盖到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build-jekyll.yml&lt;/code&gt;中，此配置来自Yat主题的作者&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/jeffreytse/jekyll-deploy-action&quot;&gt;A GitHub Action to deploy the Jekyll site conveniently for GitHub Pages&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;使用此Action就可以在master分支有更新时，通知github自动更新并部署博客页面到网站上，并且此配置也支持大部分Jekyll主题，部署时不会有报错：&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build and Deploy to Github Pages&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Here source code branch is `master`, it could be other branch&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;workflow_dispatch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    
-&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;build_and_deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v4&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;# Use GitHub Actions&apos; cache to cache dependencies on servers&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/cache@v4&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;.asdf/**&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;vendor/bundle&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-cache-${{ hashFiles(&apos;**/cache.key&apos;) }}&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;restore-keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-cache-&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;# Use GitHub Deploy Action to build and deploy to Github&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# For latest version: `jeffreytse/jekyll-deploy-action@master`&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jeffreytse/jekyll-deploy-action@v0.6.0&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;github&apos;&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;# Default is github&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ secrets.GITHUB_TOKEN }}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# It&apos;s your Personal Access Token(PAT)&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;# Default is current repository&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gh-pages&apos;&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;# Default is gh-pages for github provider&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;jekyll_src&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;./&apos;&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;# Default is root directory&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;jekyll_cfg&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;_config.yml&apos;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Default is _config.yml&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;jekyll_baseurl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;# Default is according to _config.yml&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;ruby_ver&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;               &lt;span class=&quot;c1&quot;&gt;# Default is 3.2.0 version&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;bundler_ver&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;            &lt;span class=&quot;c1&quot;&gt;# Default is compatible bundler version (~&amp;gt;2.5.0)&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;cname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;# Default is to not use a cname&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;actor&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;                  &lt;span class=&quot;c1&quot;&gt;# Default is the GITHUB_ACTOR&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;pre_build_commands&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# Installing additional dependencies (Arch Linux)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后又来到项目的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Settings&lt;/code&gt;中，进入&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Action&lt;/code&gt;-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;General&lt;/code&gt;路径中，找到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Workflow permission&lt;/code&gt;，设置为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Read and write permissions&lt;/code&gt;。这样在部署时，github就不会有无法操作仓库的权限问题了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最后一步了！进入&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pages&lt;/code&gt;路径，选择&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Deploy from a branch&lt;/code&gt;，然后选择&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;，保存修改，大功告成~！&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;来到仓库的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Action&lt;/code&gt;页面，找到刚刚修改的Action，点击右侧Run workflow，启动部署流程，部署完成后，可以在下面的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pages-build-deployment&lt;/code&gt;里看到，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;分支已经部署完成&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2025-07-23-build-blog/image-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;然后访问域名&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;就可以访问自己的博客了~!&lt;/p&gt;
-
-&lt;h2 id=&quot;本地写博客并更新到网站&quot;&gt;本地写博客并更新到网站&lt;/h2&gt;
-
-&lt;p&gt;在本地仓库内根目录下&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\_posts&lt;/code&gt;文件内，新建&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;date-blogTitle.md&lt;/code&gt;文件，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;date&lt;/code&gt;是日期，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blogTitle&lt;/code&gt;是文章标题，打开文件，在文章顶部填写基本信息&lt;/p&gt;
-
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Another test markdown&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;subtitle&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Each post also has a subtitle&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;categories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;markdown&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;具体格式，可以参考&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\_posts&lt;/code&gt;文件内的其他实例文章，都是主题自带的案例，有图片，视频，Jekyll的基本格式，markdown基础语法等例子可以参考。&lt;/p&gt;
-
-&lt;p&gt;写好文章后，推送到github仓库上，就会触发Action的workflow，工作流执行完毕后（大约3分钟），就可以访问域名，查看更新后的博客了~&lt;/p&gt;
-
-&lt;p&gt;至此，就已经成功搭建起自己的博客了，完事开头难，基础搭建起来后，之后的各种玩法的探索才有了可能。接下来可以专注于博客的写作上，可以参考markdown的语法:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://markdown.com.cn/basic-syntax/htmls.html&quot;&gt;Markdown语法&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;也可以美化一下自己的博客，学习一下Jekyll主题的修改和制作&lt;/p&gt;
-
-&lt;h2 id=&quot;写在最后&quot;&gt;写在最后&lt;/h2&gt;
-
-&lt;p&gt;搭建博客时还是踩了不少坑，所以深知能从零搭起来才是最重要的，其他花里胡哨的外观主题都是次要的。按照这篇文章，应该能顺利地一次性搭建起来，如果有问题，可以看看这个仓库，里面的提交和文件都可以参考。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/SAIGOUPI/yat-blog&quot;&gt;Yat主题博客案例仓库&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;另外，现在的我在用vscode写这篇文章时，发现vscode写markdown真的非常方便，原生就支持直接粘贴图片到文章内，附上文档链接&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://juejin.cn/post/7244809769794289721&quot;&gt;vscode支持Markdwon中直接粘贴图片&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;感谢看到这里~！!&lt;/p&gt;
-</description>
-        <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-        <link>https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html</link>
-        <guid isPermaLink="true">https://saigoupi.github.io/%E5%8D%9A%E5%AE%A2/build-blog.html</guid>
         
         <category>Jekyll</category>
         

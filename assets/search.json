@@ -1,5 +1,11 @@
 [
   {
+    "title"    : "游戏开发面试记录",
+    "tags"     : "游戏开发",
+    "url"      : "/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html"
+  } ,
+
+  {
     "title"    : "Python实现监控BSC链上FOUR平台发射的代币",
     "tags"     : "web3 加密货币",
     "url"      : "/web3/bscscan.html"

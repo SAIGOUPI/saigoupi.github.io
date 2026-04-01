@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏开发面试记录 - 赛狗屁的技术空间 | 游戏 WEB 金融</title>
+    <meta name="author" content="赛狗屁">
+    
+    <meta name="description" content="游戏开发面试记录">
+    <meta name="keywords"
+        content="游戏开发">
+    
+    
+    <meta property="og:next_url" content="/web3/bscscan.html">
+    
+    
+    <meta property="post-date-format" content="0">
+    
+    <meta property="post-date" content="2026-03-11 00:00:00 +0000" />
+    
+    
+    <meta property="calendar-scale" content="year" />
+    <meta property="calendar-scheme" content="null" />
+    <meta property="calendar-color" content="null" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="游戏开发面试记录 - 赛狗屁的技术空间 | 游戏 WEB 金融">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html">
+    <meta property="og:baseurl" content="">
+    <meta property="og:description" content="欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。">
+    <meta property="og:site_name" content="赛狗屁的技术空间 | 游戏 WEB 金融">
+    <meta property="og:gray" content="false">
+    <meta property="og:lang" content="zh-Hans">
+    
+    <meta name="alivestart" content="7/26/2025">
+    
+    
+    <meta name="theme-color" content="#81BBFF" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/assets/img/touch/apple-touch-icon.png" />
+    <link rel="Shortcut Icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.min.css" async>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown-light.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css">
+    
+    
+
+
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/prism-themes/themes/prism-one-light.min.css" />
+
+
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
+
+    
+
+    
+    
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+</head>
+    
+    <body class="line-numbers" ontouchstart="">
+    
+    <!--[if lt IE 10]>
+    <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+    <![endif]-->
+        
+        
+        <div id="all" class="post" data-theme="default">
+        
+            
+            
+            <div class="alert-tip" id="no-previous">已经是最新一篇文章了！</div>
+            <div class="alert-tip" id="no-next">已经是最后一篇文章了！</div>
+        
+            <input id="nm-switch" type="hidden" value="false">
+            <header class="g-header" data-theme="default">
+    <div class="g-logo">
+      <a href="/" aria-label="logo"></a>
+    </div>
+    <!-- <i id="menu-toggle" class="iconfont icon-menu"></i> -->
+    
+    
+    <div id="mode-toggle">
+        <svg class="icon icon-day" aria-hidden="true">
+            <use xlink:href="#icon-day"></use>
+        </svg>
+        <svg class="icon icon-night" aria-hidden="true">
+            <use xlink:href="#icon-night"></use>
+        </svg>
+    </div>
+    <svg id="menu-toggle" class="icon-menu" aria-hidden="true">
+        <use xlink:href="#icon-menu"></use>
+    </svg>
+    <nav class="g-nav">
+        <ul>
+            
+                
+                <li>
+                    <a href="/" aria-label="home">
+                        home
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a href="/blog/index.html" aria-label="blog">
+                        blog
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a href="/archives.html" aria-label="archives">
+                        archives
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a href="/tags.html" aria-label="tags">
+                        tags
+                    </a>
+                </li>
+                
+            
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);"> about </a>
+                    <ul class="dropdown-menu">
+                    
+                        <li>
+                            <a href="/feed.xml" aria-label="RSS">
+                                RSS
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/links.html" aria-label="links">
+                                links
+                            </a>
+                        </li>
+                    
+                    </ul> 
+                </li>
+                
+            
+            <li class="random">
+                <a href="#" aria-label="Random Article" target="_blank">🎲</a>
+            </li>
+            
+            <li class="mode">
+                <svg class="icon day" aria-hidden="true">
+                    <use xlink:href="#icon-day"></use>
+                </svg>
+                <svg class="icon night" aria-hidden="true">
+                    <use xlink:href="#icon-night"></use>
+                </svg>
+            </li>
+            
+        </ul>
+    </nav>
+</header>
+
+            
+
+
+<div class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default">
+    <div class="post-wrapper">
+        <div class="post-tags">
+            
+            
+            <a href="/%20/tags.html#%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91" class="post-tag">游戏开发</a>
+            
+            
+        </div>
+        <h1>游戏开发面试记录</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-user"></use>
+                </svg>
+                赛狗屁
+            </span>
+            <time class="post-meta-item" datetime=" 26-03-11">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-calendar"></use>
+                </svg>
+                <span class="create-at"></span>
+            </time>
+            <time class="post-meta-item" datetime=" 26-03-11">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-update"></use>
+                </svg>
+                <span class="update-at"></span>
+            </time>
+            <span class="post-meta-item">
+                <svg class="icon words" aria-hidden="true">
+                    <use xlink:href="#icon-words"></use>
+                </svg>
+                
+                本文总共  4.2k  字 </span>
+                    <span class="post-meta-item">
+                        <svg class="icon time" aria-hidden="true">
+                            <use xlink:href="#icon-time"></use>
+                        </svg>
+                        阅读全文大约需要 12 分钟
+                    </span>
+                    
+                    <span class="post-meta-item">
+                        <svg class="icon pv" aria-hidden="true">
+                            <use xlink:href="#icon-pv"></use>
+                        </svg>
+                        本文总阅读量 
+                        
+                        <span id="busuanzi_value_page_pv"></span>
+                        
+                        次
+                    </span>
+                    
+                    
+        </div>
+    </div>
+    
+</div>
+
+<main class="post-content visible">
+    
+    <h2 class="post-subtitle"></h2>
+    
+
+    
+
+    <div class="container">
+        
+<div class="submenu hidden">
+
+</div>
+        <div class="contents">
+            <article class="markdown-body post">
+                
+
+
+                <h2 id="网络同步"><strong>网络同步</strong></h2>
+<h3 id="帧同步">帧同步</h3>
+<h3 id="tcp-udp">TCP UDP</h3>
+
+<h2 id="骨骼动画"><strong>骨骼动画</strong></h2>
+<h3 id="ik">IK</h3>
+
+<h2 id="ui数据输入输出闭环"><strong>UI数据输入输出闭环</strong></h2>
+
+<h2 id="lua"><strong>Lua</strong></h2>
+
+<h2 id="计算机动画"><strong>计算机动画</strong></h2>
+
+<h2 id="寻路算法"><strong>寻路算法</strong></h2>
+<h3 id="a">A*</h3>
+<h3 id="流场寻路">流场寻路</h3>
+
+<h2 id="避障算法"><strong>避障算法</strong></h2>
+<h3 id="rvo相对速度障碍物算法">RVO(相对速度障碍物算法)</h3>
+
+<h2 id="unreal"><strong>Unreal</strong></h2>
+<h3 id="tarray"><strong>TArray</strong></h3>
+<h4 id="为什么ue要自创tarray而不是直接用vector">为什么UE要自创TArray而不是直接用Vector</h4>
+
+<p><strong>1. 垃圾回收和反射系统</strong></p>
+<ul>
+  <li>
+    <p>TArray：可以被标记为 UPROPERTY()。这意味着它能被 UE 的反射系统识别。如果 TArray 中存储的是 UObject*，引擎的垃圾回收器（GC）会自动追踪这些引用，防止对象在数组还在使用时被销毁。</p>
+  </li>
+  <li>
+    <p>std::vector：无法被 UPROPERTY() 标记，引擎无法追踪其内部存储的指针。如果你在 std::vector 中存储了一个 UObject*，即便数组还在，该对象也可能被 GC 回收，导致悬空指针和崩溃。</p>
+  </li>
+</ul>
+
+<p><strong>2. 内存分配和对齐</strong></p>
+<ul>
+  <li>
+    <p>FMemory：TArray 使用 UE 的 FMemory 分配器，这允许引擎在不同平台（如 PS5、Xbox、Switch）上执行特定的内存优化，并方便开发者进行内存快照（Memory Profiling）分析。</p>
+  </li>
+  <li>
+    <p>对齐要求：在处理 SIMD（单指令多数据流）指令时，数据需要特定字节对齐。TArray 的分配器可以轻松支持这些硬件级的内存对齐要求，而 std::vector 通常使用通用分配器，控制力较弱。</p>
+  </li>
+</ul>
+
+<p><strong>3. 序列化与网络复制</strong></p>
+<ul>
+  <li>
+    <p>序列化：通过 FArchive，TArray 可以实现“一键式”保存和加载，并能自动处理大小端转换等跨平台问题。</p>
+  </li>
+  <li>
+    <p>网络同步：UE 的网络架构（Replication）专门针对 TArray 做了同步优化。你可以标记一个 TArray 进行同步，引擎会处理数据的增量更新，而 std::vector 无法直接集成到这个网络协议栈中。</p>
+  </li>
+</ul>
+
+<p><strong>4. 总结</strong>
+| 特性 | TArray | std::vector |
+|——|——–|————-|
+| UE 反射系统支持 | 支持 (可标记 UPROPERTY) | 不支持 |
+| 垃圾回收 (GC) | 自动追踪内部 UObject | 无法追踪，易导致野指针 |
+| 内存分配器 | FMemory (跨平台优化) | 标准 C++ 分配器 (STL) |
+| 序列化/保存 | 内置支持 | 需手动实现遍历存储 |
+| 网络同步 | 支持属性复制 | 不支持 |</p>
+
+<p>UE开发中优先使用TArray，使数据和内存都在引擎的管理下，安全和性能都有保证。</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Add</code>和<code class="language-plaintext highlighter-rouge">Emplace</code>的区别</strong></p>
+<ul>
+  <li>Add()和Emplace()方法向数组末尾添加元素</li>
+  <li>Emplace 可以使用参数直接构造元素，避免产生临时对象，Emplace()不创建临时变量，在容器内 “原地构造” 元素</li>
+  <li>Add 底层调用的也是 Emplace，但是会先去构造一个对象，添加时创建临时变量，复制到数组中</li>
+</ul>
+
+<h4 id="tarray高级用法">TArray高级用法</h4>
+<p><strong>1. 预分配内存：使用 <code class="language-plaintext highlighter-rouge">Reserve</code></strong>
+当数组元素超过当前容量时，引擎会申请更大的内存块并拷贝旧元素。</p>
+<ul>
+  <li>
+<strong>优化逻辑</strong>：如果你预先知道数组的大致规模，调用 <code class="language-plaintext highlighter-rouge">Reserve(ExpectedSize)</code>。</li>
+  <li>
+<strong>收益</strong>：将多次昂贵的内存分配和拷贝操作合并为一次。</li>
+</ul>
+
+<p><strong>2. 避免冗余拷贝：<code class="language-plaintext highlighter-rouge">Emplace</code> 优于 <code class="language-plaintext highlighter-rouge">Add</code></strong></p>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">Add</code></strong>：通常会先创建一个临时对象，再将其拷贝或移动到数组中。</li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">Emplace</code></strong>：利用 C++ 完美转发，直接在数组预留的内存中构造对象。</li>
+  <li>
+<strong>收益</strong>：减少了临时对象的构造与析构开销。</li>
+</ul>
+
+<p><strong>3. 高效删除：<code class="language-plaintext highlighter-rouge">RemoveAtSwap</code></strong></p>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">RemoveAt</code></strong>：删除元素后，后续所有元素都会前移以保持顺序，复杂度为 $O(n)$。</li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">RemoveAtSwap</code></strong>：将数组最后一个元素覆盖到被删除位置，不保证顺序，复杂度为 $O(1)$。</li>
+  <li>
+<strong>收益</strong>：在大规模数组删除操作中性能提升巨大。</li>
+</ul>
+
+<p><strong>4. 内存池化：<code class="language-plaintext highlighter-rouge">Reset</code> 与 <code class="language-plaintext highlighter-rouge">Empty</code></strong></p>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">Empty()</code></strong>：删除所有元素并释放内存。</li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">Reset()</code></strong>：删除所有元素但<strong>保留内存（Slack）</strong>。</li>
+  <li>
+<strong>收益</strong>：在循环反复填充同一个数组时，使用 <code class="language-plaintext highlighter-rouge">Reset()</code> 可避免反复触发堆分配。</li>
+</ul>
+
+<p><strong>5. 栈空间优化：<code class="language-plaintext highlighter-rouge">TInlineAllocator</code></strong>
+默认情况下 <code class="language-plaintext highlighter-rouge">TArray</code> 在堆（Heap）上分配内存。</p>
+<ul>
+  <li>
+<strong>用法</strong>：<code class="language-plaintext highlighter-rouge">TArray&lt;FVector, TInlineAllocator&lt;16&gt;&gt; MyArray;</code>
+</li>
+  <li>
+<strong>收益</strong>：前 16 个元素直接分配在栈上。对于生命周期短、元素少的小数组，完全消除了堆分配的开销。</li>
+</ul>
+
+<p><strong>6. 参数传递：使用 <code class="language-plaintext highlighter-rouge">const TArray&amp;</code></strong></p>
+<ul>
+  <li>
+<strong>规则</strong>：函数传参时严禁使用值传递（会触发整组拷贝）。</li>
+  <li>
+<strong>写法</strong>：<code class="language-plaintext highlighter-rouge">void Process(const TArray&lt;int32&gt;&amp; Data)</code>。</li>
+</ul>
+
+<p><strong>7. 总结</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">场景</th>
+      <th style="text-align: left">推荐方式</th>
+      <th style="text-align: left">复杂度/收益</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>已知元素数量</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Reserve(N)</code></td>
+      <td style="text-align: left">减少内存重新分配</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>添加复杂对象</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Emplace(...)</code></td>
+      <td style="text-align: left">避免临时对象拷贝</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>删除（不计顺序）</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">RemoveAtSwap(Index)</code></td>
+      <td style="text-align: left">从 $O(n)$ 降至 $O(1)$</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>高频重用数组</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Reset()</code></td>
+      <td style="text-align: left">复用现有内存空间</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>局部临时小数组</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TInlineAllocator&lt;N&gt;</code></td>
+      <td style="text-align: left">消除堆分配开销</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>参考文章：</strong></p>
+<ul>
+  <li><a href="https://www.unrealengine.com/zh-CN/blog/optimizing-tarray-usage-for-performance" rel="nofollow" target="_blank" class="extlinks">为性能表现最优化TArray的使用</a></li>
+</ul>
+
+<h3 id="gas网络同步"><strong>GAS网络同步</strong></h3>
+<h3 id="移动组件网络同步"><strong>移动组件网络同步</strong></h3>
+<h3 id="ds优化"><strong>DS优化</strong></h3>
+
+<h3 id="uobject生命周期"><strong>UObject生命周期</strong></h3>
+<p>UObject的生命周期可分为以下几个阶段：</p>
+
+<p><strong>1. 创建阶段：内存分配和初始化</strong></p>
+<ul>
+  <li>UObject通过NewObject<t>()创建</t>
+</li>
+  <li>ClassConstructor()调用类的构造函数，C++成员变量，组件默认值(CreateDefaultSubobject&lt;&gt;())真正被初始化</li>
+  <li>PostInitProperties() 子类自定义函数</li>
+</ul>
+
+<p>NewObject<t>()
+│
+│  ① 打包参数
+├─→ FStaticConstructObjectParameters
+│
+│  ② 进入引擎内部
+├─→ StaticConstructObject_Internal()
+│   │
+│   │  ▼▼▼ 阶段一：分配 + 注册 ▼▼▼
+│   ├─→ StaticAllocateObject()
+│   │   ├── AllocateUObject()         // 分配原始内存
+│   │   ├── Memzero()                 // 清零（安全保障）
+│   │   ├── placement new UObjectBase // 填充元数据
+│   │   └── AddObject()
+│   │       ├── AllocateUObjectIndex() // 注册到全局数组（GC用）
+│   │       └── HashObject()           // 注册到全局哈希表（查找用）
+│   │
+│   │  ▼▼▼ 阶段二：构造 + 初始化 ▼▼▼
+│   └─→ ClassConstructor(FObjectInitializer)
+│       ├── C++ 构造函数              // 你的代码在这里跑
+│       └── ~FObjectInitializer()     // RAII 自动触发
+│           ├── InitProperties()      // 从 CDO/Template 拷贝属性
+│           ├── PostInitProperties()  // 虚函数回调（子类自定义）
+│           └── ClearFlags(RF_NeedInitialization)  // 标记：完成！
+│
+▼
+返回完全可用的 UObject*</t></p>
+
+<p><strong>2. 激活阶段：BeginPlay和Tick</strong></p>
+<ul>
+  <li>AActor或者UActorComponent会触发BeginPlay()和Tick</li>
+</ul>
+
+<p><strong>3. 标记阶段：标记准备GC</strong></p>
+<ul>
+  <li>当没有任何被UPROPERTY()宏标记的指针指向该对象时，下一次GC扫描中会被标记销毁</li>
+  <li>对于 AActor，调用 Destroy()</li>
+  <li>对于普通 UObject，可以调用 MarkAsGarbage() 或 ConditionalBeginDestroy()。</li>
+  <li>对象被标记销毁后，并不会立即从内存消失，而是进入一个“待回收”的队列。</li>
+</ul>
+
+<p><strong>4. 回收阶段：销毁和内存回收</strong></p>
+<ul>
+  <li>BeginDestroy()：销毁前最后一次机会处理非托管资源</li>
+  <li>IsReadyForFinishDestroy()：检查异步操作（如物理线程计算）是否完成</li>
+  <li>FinishDestroy()：UObject释放内部资源</li>
+  <li>调用C++析构函数</li>
+</ul>
+
+<p><strong>参考文章：</strong></p>
+
+<ul>
+  <li><a href="https://blog.jcmz.art/archives/ue-uobject-system-reflection-gc-memory" rel="nofollow" target="_blank" class="extlinks">UE UObject 系统底层机制解析：反射、GC 与内存管理</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/2020970695018979988" rel="nofollow" target="_blank" class="extlinks">UE UObject 创建流程详解</a></li>
+</ul>
+
+<h3 id="行为树">行为树</h3>
+
+<h2 id="数据结构和算法"><strong>数据结构和算法</strong></h2>
+<h3 id="求二维平面上一个点p是否在一个三角形abc内">求二维平面上一个点P是否在一个三角形ABC内</h3>
+<ul>
+  <li>用向量叉乘 P和三角形的各个顶点，检查向量是否都在在三角形边的同侧</li>
+  <li>面积法 底*高/2</li>
+</ul>
+
+<h3 id="洗牌算法">洗牌算法</h3>
+<ul>
+  <li>100个数内，取n个数字，要求不能重复。
+解法：先对数组洗牌，然后取头n个树</li>
+</ul>
+
+<h2 id="c"><strong>C++</strong></h2>
+
+<h3 id="引用">引用</h3>
+<p>参考文章：</p>
+<ul>
+  <li><a href="https://zhuanlan.zhihu.com/p/335994370]" rel="nofollow" target="_blank" class="extlinks">一文读懂C++右值引用和std::move</a></li>
+</ul>
+
+<h3 id="内存对齐">内存对齐</h3>
+<p><strong>1. 什么是内存对齐</strong></p>
+
+<p>现代计算机系统对于基本类型数据在内存中存放的位置有限制，要求这些数据的首地址的值是4或者8的倍数。因为处理器在读取内存时，一般按照双字节,四字节,8字节,16字节甚至32字节为单位来存取内存。按照内存对齐的规则存放数据后，处理器读取数据时能更快，且避免内存浪费</p>
+
+<p>比如一个数据地址以2开头，占4个字节，那处理器按照4字节读取内存时，就要先从0地址开始读，然后截取地址2开头后的数据，再从4地址读取，截取地址5前面的数据，两次数据拼凑才能获得原始数据；如果数据从地址0或者地址4开始存储，那么处理器一次就能读取完整的数据</p>
+
+<p><strong>2. 内存对齐规则</strong></p>
+
+<p>有的数据就只有1个字节，那么要满足上面的内存对齐原则，方便处理器读取，就要对源数据进行内存对齐的操作，这样的操作要遵守一定的规则：</p>
+
+<ul>
+  <li>基本类型的对齐值就是sizeof值</li>
+  <li>结构体的对齐值是结构体的sizeof值</li>
+  <li>编译器可以设置一个最大对齐值(#pragma pack(n))，实际对齐值是此类型与最大对齐值中的最小值</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别</span>
+<span class="cp">#pragma pack(4) //默认对齐数修改成4
+</span><span class="k">struct</span> <span class="nc">One</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//0-7偏移</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//8偏移</span>
+	           <span class="c1">//9-11偏移浪费</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
+<span class="p">};</span>             <span class="c1">//结构体one占16字节</span>
+<span class="k">struct</span> <span class="nc">Two</span> <span class="p">{</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//0偏移</span>
+	           <span class="c1">//1-3偏移浪费</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//4-11偏移</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
+<span class="p">};</span>             <span class="c1">//结构体two占16字节</span>
+
+<span class="cp">#pragma pack(8) //默认对齐数修改成8
+</span><span class="k">struct</span> <span class="nc">One</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//0-7偏移</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//8偏移</span>
+			   <span class="c1">//9-11偏移浪费</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
+<span class="p">};</span>             <span class="c1">//结构体one占16字节</span>
+<span class="k">struct</span> <span class="nc">Two</span> <span class="p">{</span>
+	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//0偏移</span>
+			   <span class="c1">//1-3偏移浪费</span>
+	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//8-15偏移</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//16-19偏移</span>
+	           <span class="c1">//20-23偏移浪费</span>
+<span class="p">};</span>             <span class="c1">//结构体two占24字节</span>
+
+</code></pre></div></div>
+
+                <div class="post-copyright">
+                    <p>
+                        <span>版权声明：</span>
+                        如无特别声明，本文版权归
+                        <a href="https://saigoupi.github.io" class="cplink">赛狗屁的技术空间 | 游戏 WEB 金融</a>
+                        所有，转载请注明本文链接。
+                    </p>
+                    
+                    <p>
+                        （采用 
+                        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="extlinks">CC
+                            BY-NC-SA 4.0</a>
+                        许可协议进行授权）
+                    </p>
+                    
+                    <p><span>本文标题：</span>《 游戏开发面试记录 》</p>
+                    <p><span>本文链接：</span><a href="https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html" class="cplink">https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html</a></p>
+                    <p class="tips">本文最后一次更新为 <span></span> 天前，文章中的某些内容可能已过时！
+                    </p>
+                </div>
+            </article>
+        </div>
+        
+            <div class="table-of-contents">
+                <div class="toc-header"><h2>目录</h2></div>
+                <div class="toc-body">
+                    <ul><li><a onclick="scrollToAdjust('<strong>网络同步</strong>')"><strong>网络同步</strong></a><ul><li><a onclick="scrollToAdjust('帧同步')">帧同步</a></li><li><a onclick="scrollToAdjust('tcp-udp')">TCP UDP</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>骨骼动画</strong>')"><strong>骨骼动画</strong></a><ul><li><a onclick="scrollToAdjust('ik')">IK</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>ui数据输入输出闭环</strong>')"><strong>UI数据输入输出闭环</strong></a></li><li><a onclick="scrollToAdjust('<strong>lua</strong>')"><strong>Lua</strong></a></li><li><a onclick="scrollToAdjust('<strong>计算机动画</strong>')"><strong>计算机动画</strong></a></li><li><a onclick="scrollToAdjust('<strong>寻路算法</strong>')"><strong>寻路算法</strong></a><ul><li><a onclick="scrollToAdjust('a*')">A*</a></li><li><a onclick="scrollToAdjust('流场寻路')">流场寻路</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>避障算法</strong>')"><strong>避障算法</strong></a><ul><li><a onclick="scrollToAdjust('rvo(相对速度障碍物算法)')">RVO(相对速度障碍物算法)</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>unreal</strong>')"><strong>Unreal</strong></a><ul><li><a onclick="scrollToAdjust('<strong>tarray</strong>')"><strong>TArray</strong></a><ul><li><a onclick="scrollToAdjust('为什么ue要自创tarray而不是直接用vector')">为什么UE要自创TArray而不是直接用Vector</a></li><li><a onclick="scrollToAdjust('tarray高级用法')">TArray高级用法</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>gas网络同步</strong>')"><strong>GAS网络同步</strong></a></li><li><a onclick="scrollToAdjust('<strong>移动组件网络同步</strong>')"><strong>移动组件网络同步</strong></a></li><li><a onclick="scrollToAdjust('<strong>ds优化</strong>')"><strong>DS优化</strong></a></li><li><a onclick="scrollToAdjust('<strong>uobject生命周期</strong>')"><strong>UObject生命周期</strong></a></li><li><a onclick="scrollToAdjust('行为树')">行为树</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>数据结构和算法</strong>')"><strong>数据结构和算法</strong></a><ul><li><a onclick="scrollToAdjust('求二维平面上一个点p是否在一个三角形abc内')">求二维平面上一个点P是否在一个三角形ABC内</a></li><li><a onclick="scrollToAdjust('洗牌算法')">洗牌算法</a></li></ul></li><li><a onclick="scrollToAdjust('<strong>c++</strong>')"><strong>C++</strong></a><ul><li><a onclick="scrollToAdjust('引用')">引用</a></li><li><a onclick="scrollToAdjust('内存对齐')">内存对齐</a></li></ul></li></ul>
+                </div>
+        
+            </div>
+        </div>
+        
+<div class="social-share-wrapper">
+    <div class="social-share"></div>
+</div>
+
+</main>
+
+<section class="author-detail">
+    <section class="post-footer-item author-card">
+        <div class="avatar">
+            <img src="/assets/img/profile.webp" alt="">
+        </div>
+        <div class="author-name" rel="author">赛狗屁</div>
+        <div class="bio">
+            <p>游戏行业老兵 | Web开发新手 | 金融学徒</p>
+        </div>
+        
+        <ul class="sns-links">
+            
+            <li>
+                <a href="https://github.com/SAIGOUPI" target="_blank" aria-label="github">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://x.com/SSSAIGOUPI" target="_blank" aria-label="twitter">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-twitter"></use>
+                    </svg>
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://www.cnblogs.com/saigoupi/" target="_blank" aria-label="cnblogs">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-cnblogs"></use>
+                    </svg>
+                </a>
+            </li>
+            
+        </ul>
+        
+    </section>
+    <section class="post-footer-item read-next">
+        
+
+        
+        <div class="read-next-item">
+            <a href="/web3/bscscan.html" class="read-next-link"
+                aria-label="Python实现监控BSC链上FOUR平台发射的代币"></a>
+            <section>
+                <span>Python实现监控BSC链上FOUR平台发射的代币</span>
+                <p>为什么要做这个  Python的web3库的练习  最近BSC的MEME很火，写这个工具玩一玩</p>
+            </section>
+            
+        </div>
+        
+    </section>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+</section>
+            
+
+
+<footer class="g-footer">
+  <div class="g-container">
+    <div class="g-left">
+      <section class="links">
+        本站由 <a href="//jekyllrb.com" target="_blank" class="extlinks">Jekyll</a> 和 (基于 <a href="https://github.com/kaeyleo/jekyll-theme-H2O" target="_blank" class="extlinks">H2O</a> 的) <a href="https://github.com/zhonger/jekyll-theme-H2O-ac" target="_blank" class="extlinks">H2O-ac</a> 强力驱动
+         (<a href="https://github.com/zhonger/jekyll-theme-H2O-ac/releases/tag/v1.5.1"
+          target="_blank" class="extlinks">v1.5.1</a>)
+        
+      </section>
+      <section class="links">赛狗屁的技术空间 | 游戏 WEB 金融 ©
+        <input type="hidden" id="footer-since" value="2025">
+        <span id="footer-year"></span>
+        
+        
+        <a href="/rss.xml" target="_blank" aria-label="Terms of Service" class="others">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-rss"></use>
+          </svg> RSS
+        </a>
+        <a href="/tos" target="_blank" aria-label="Terms of Service" class="others">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-tos"></use>
+          </svg> 使用条款
+        </a>
+      </section>
+      
+      <section class="links">
+        <span id="busuanzi_container_site_pv">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-pv"></use>
+          </svg> 总浏览量
+          
+            <span id="busuanzi_value_site_pv"></span>
+            
+            <b>·</b>
+          </span>
+        </span>
+        <span id="busuanzi_container_site_uv">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-user"></use>
+          </svg> 总访问量
+          
+          <span id="busuanzi_value_site_uv"></span>
+          
+        </span>
+      </section>
+      
+      <section>
+        
+        本站已运行
+        <span class="alivetime_days"></span> 天
+        <span class="alivetime_hours"></span> 小时
+        <span class="alivetime_minutes"></span> 分
+        <span class="alivetime_seconds"></span> 秒
+        
+      </section>
+    </div>
+    <div class="g-right">
+      
+      
+      
+    </div>
+    
+  </div>
+</footer>
+<div class="cookie-tip">
+   为了提升本站的使用体验和必要功能的正常使用，本站会使用本地 Cookie。详细请查看「 <a href="/tos.html">本站使用条款</a> 」了解更多。
+
+  <button id="accept-tos">同意</button>
+</div>
+
+<section id="tools">
+  
+  
+  <div class="tool toc">
+    <svg class="icon b1 active" aria-hidden="true">
+      <use xlink:href="#icon-toc"></use>
+    </svg>
+    <svg class="icon b2" aria-hidden="true">
+      <use xlink:href="#icon-exit"></use>
+    </svg>
+  </div>
+  
+</section>
+<section id="bttb" aria-label="Scroll back to top" class="bttb">
+  <div class="tool">
+    <svg class="icon top" aria-hidden="true">
+      <use xlink:href="#icon-top"></use>
+    </svg>
+  </div>
+</section>
+        </div>
+        
+<div class="modal">
+    <div class="modal-content">
+        <header>
+            <span class="close">&times;</span>
+        </header>
+        <div class="container"></div>
+    </div>
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lazysizes/lazysizes.min.js" async></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/dayjs/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/customParseFormat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/relativeTime.js"></script>
+<script>
+    $(document).ready(function () {
+        var time_formats = ['YYYY-MM-DD HH:mm:ss ZZ', 'YYYY DD MMM HH:mm:ss ZZ', 'YYYY年MM月DD日 HH:mm:ss ZZ'];
+        function dateFormat(date, format) {
+            var date_org = dayjs(date, time_formats[format]);
+            var date = date_org.format(time_formats[format]);
+            return { "date_org": date_org, "date": date }
+        }
+
+        dayjs.extend(window.dayjs_plugin_customParseFormat);
+        dayjs.extend(window.dayjs_plugin_relativeTime);
+        var post_date = $("meta[property='post-date']").attr('content');
+        var post_date_format = $("meta[property='post-date-format']").attr('content');
+        var local_post_date = dateFormat(post_date, post_date_format);
+
+        $(".post time span.create-at").html(local_post_date["date"]);
+
+        fetch("https://api.github.com/repos/SAIGOUPI/saigoupi.github.io/commits?path=_posts/2026-03-11-interview.md").then((response) => {
+            return response.json();
+        }).then((commits) => {
+            if (commits.length != 0) {
+                var update_at = dayjs(commits[0]['commit']['committer']['date']);
+            } else {
+                var update_at = post_date
+            }
+
+            var local_update_at = dateFormat(update_at, post_date_format);
+            $('.post time span.update-at').html(local_update_at["date"]);
+
+            var relative_time = dayjs().diff(local_update_at["date_org"], 'day');
+            $(".post-copyright .tips span").append(relative_time);
+            if (relative_time > 365) {
+                $(".post-copyright .tips").addClass("active");
+            }
+        });
+    });
+</script>
+            <script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+<script>
+    socialShare('.social-share', {
+        sites: [
+            
+            'wechat', 
+            
+            'twitter'
+            
+        ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+        wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+      });
+    $("a.social-share-icon").each(function () {
+        $(this).attr("aria-label", $(this).attr("class").split(' ')[1])
+    });
+</script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script>
+        <script>
+            /**
+            * Better Scroll Experience
+            */
+            function scrollToAdjust(id){
+              var element = document.getElementById(id);
+              var headerOffset = 90;
+              var elementPosition = element.getBoundingClientRect().top;
+              var offsetPosition = elementPosition + window.scrollY - headerOffset;
+              window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth"
+              });
+            }
+        </script>
+        <script src="/assets/js/app.min.js"></script>
+        <script src="https://at.alicdn.com/t/c/font_3046306_ujr2yq34hw.js"></script>
+        
+
+
+
+
+
+
+
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax-full/es5/tex-mml-svg.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [['$', '$'], ["\\(", "\\)"]],
+			processEscapes: true,
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var baseurl = $("meta[property='og:baseurl']").attr('content');
+        $("p img").each(function () {
+            $(this).attr('data-src', $(this).attr('src')).removeAttr('src').addClass("lazyload").attr('src', baseurl + '/assets/img/loading.gif');
+            var strA = "<a data-fancybox='gallery' ref='gallery' href='" + $(this).attr('data-src') + "' data-caption='" + $(this).attr('alt') + "'></a>";
+            $(this).wrapAll(strA);
+            var caption = $(this)[0].alt;
+            $(this).parent().after('<span class="caption">' + caption + '</span>');
+        });
+        Fancybox.bind('[data-fancybox]', {
+            on: {
+                load: (fancybox, slide) => {
+                    var gray = $("meta[property='og:gray']").attr('content');
+                    if (gray == "true") {
+                        $(".fancybox__content img").addClass("gray");
+                        $(".carousel__track .fancybox__thumb").addClass("gray");
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/hotkeys-js/dist/hotkeys.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var previous_url = $("meta[property='og:previous_url']").attr('content');
+        var next_url = $("meta[property='og:next_url']").attr('content');
+
+        hotkeys('left', function (event, handler) {
+            // Prevent the default refresh event under WINDOWS system
+            event.preventDefault();
+            if (previous_url) {
+                console.log('you pressed left!');
+                window.location.href = previous_url;
+            } else {
+                $("#no-previous").addClass("active");
+                setTimeout(function () { $("#no-previous").removeClass("active"); }, 1500);
+            }
+        });
+
+        hotkeys('right', function (event, handler) {
+            // Prevent the default refresh event under WINDOWS system
+            event.preventDefault();
+            if (next_url) {
+                console.log('you pressed right!');
+                window.location.href = next_url;
+            } else {
+                $("#no-next").addClass("active");
+                setTimeout(function () { $("#no-next").removeClass("active"); }, 1500);
+            }
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    $(document).ready(function () {
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: "default",
+        });
+        mermaid.init(undefined, $('.mermaid2'));
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+        
+
+
+
+
+<script>
+    $(document).ready(function () {
+        if ($(".comment").length == 3) {
+            var comment_status = $("#cmn-toggle-4")[0].checked;
+            if (comment_status) {
+                $(".comment:last > div").addClass("active");
+            } else {
+                $(".comment:nth-last-child(2) > div").addClass("active");
+            }
+            $("#cmn-toggle-4").click(function () {
+                $(".comment:nth-last-child(2) > div").toggleClass("active");
+                $(".comment:last > div").toggleClass("active");
+            })
+        } else {
+            if ($(".comment").length == 2) {
+                $(".comment:last > div").addClass("active")
+            }
+        }
+    })
+</script>
+        <script>
+    if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+            console.log("An active service worker found, no need to register");
+        } else {
+            // Register the service worker
+            navigator.serviceWorker
+            .register("/sw.js", {
+                scope: "/"
+            })
+            .then(function (reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    }
+
+// 检测浏览器是否支持SW
+// if(navigator.serviceWorker != null){
+//     navigator.serviceWorker.register("/sw.js")
+//         .then(function(registartion){
+//             console.log('支持sw:',registartion.scope)
+//         })
+// } else {
+//     console.log('不支持sw')
+// }
+</script>
+        
+        
+  </body>
+
+</html>
