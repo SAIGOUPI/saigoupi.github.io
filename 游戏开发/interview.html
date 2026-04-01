@@ -214,7 +214,7 @@
                     <use xlink:href="#icon-words"></use>
                 </svg>
                 
-                本文总共  4.2k  字 </span>
+                本文总共  4.1k  字 </span>
                     <span class="post-meta-item">
                         <svg class="icon time" aria-hidden="true">
                             <use xlink:href="#icon-time"></use>
@@ -310,14 +310,44 @@
   </li>
 </ul>
 
-<p><strong>4. 总结</strong>
-| 特性 | TArray | std::vector |
-|——|——–|————-|
-| UE 反射系统支持 | 支持 (可标记 UPROPERTY) | 不支持 |
-| 垃圾回收 (GC) | 自动追踪内部 UObject | 无法追踪，易导致野指针 |
-| 内存分配器 | FMemory (跨平台优化) | 标准 C++ 分配器 (STL) |
-| 序列化/保存 | 内置支持 | 需手动实现遍历存储 |
-| 网络同步 | 支持属性复制 | 不支持 |</p>
+<p><strong>4. 总结</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">特性</th>
+      <th style="text-align: left">TArray</th>
+      <th style="text-align: left">std::vector</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>UE 反射系统支持</strong></td>
+      <td style="text-align: left">支持 (可标记 UPROPERTY)</td>
+      <td style="text-align: left">不支持</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>垃圾回收 (GC)</strong></td>
+      <td style="text-align: left">自动追踪内部 UObject</td>
+      <td style="text-align: left">无法追踪，易导致野指针</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>内存分配器</strong></td>
+      <td style="text-align: left">FMemory (跨平台优化)</td>
+      <td style="text-align: left">标准 C++ 分配器 (STL)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>序列化/保存</strong></td>
+      <td style="text-align: left">内置支持</td>
+      <td style="text-align: left">需手动实现遍历存储</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>网络同步</strong></td>
+      <td style="text-align: left">支持属性复制</td>
+      <td style="text-align: left">不支持</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>UE开发中优先使用TArray，使数据和内存都在引擎的管理下，安全和性能都有保证。</p>
 
@@ -541,37 +571,37 @@
   <li>编译器可以设置一个最大对齐值(#pragma pack(n))，实际对齐值是此类型与最大对齐值中的最小值</li>
 </ul>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别</span>
-<span class="cp">#pragma pack(4) //默认对齐数修改成4
-</span><span class="k">struct</span> <span class="nc">One</span> <span class="p">{</span>
-	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//0-7偏移</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//8偏移</span>
-	           <span class="c1">//9-11偏移浪费</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
-<span class="p">};</span>             <span class="c1">//结构体one占16字节</span>
-<span class="k">struct</span> <span class="nc">Two</span> <span class="p">{</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//0偏移</span>
-	           <span class="c1">//1-3偏移浪费</span>
-	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//4-11偏移</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
-<span class="p">};</span>             <span class="c1">//结构体two占16字节</span>
+<pre><code class="language-C++">//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别
+#pragma pack(4) //默认对齐数修改成4
+struct One {
+	double d;  //0-7偏移
+	char c;    //8偏移
+	           //9-11偏移浪费
+	int i;     //12-15偏移
+};             //结构体one占16字节
+struct Two {
+	char c;    //0偏移
+	           //1-3偏移浪费
+	double d;  //4-11偏移
+	int i;     //12-15偏移
+};             //结构体two占16字节
 
-<span class="cp">#pragma pack(8) //默认对齐数修改成8
-</span><span class="k">struct</span> <span class="nc">One</span> <span class="p">{</span>
-	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//0-7偏移</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//8偏移</span>
-			   <span class="c1">//9-11偏移浪费</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//12-15偏移</span>
-<span class="p">};</span>             <span class="c1">//结构体one占16字节</span>
-<span class="k">struct</span> <span class="nc">Two</span> <span class="p">{</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>    <span class="c1">//0偏移</span>
-			   <span class="c1">//1-3偏移浪费</span>
-	<span class="kt">double</span> <span class="n">d</span><span class="p">;</span>  <span class="c1">//8-15偏移</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">//16-19偏移</span>
-	           <span class="c1">//20-23偏移浪费</span>
-<span class="p">};</span>             <span class="c1">//结构体two占24字节</span>
+#pragma pack(8) //默认对齐数修改成8
+struct One {
+	double d;  //0-7偏移
+	char c;    //8偏移
+			   //9-11偏移浪费
+	int i;     //12-15偏移
+};             //结构体one占16字节
+struct Two {
+	char c;    //0偏移
+			   //1-3偏移浪费
+	double d;  //8-15偏移
+	int i;     //16-19偏移
+	           //20-23偏移浪费
+};             //结构体two占24字节
 
-</code></pre></div></div>
+</code></pre>
 
                 <div class="post-copyright">
                     <p>

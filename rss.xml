@@ -5,8 +5,8 @@
     <description>欢迎来到赛狗屁的个人博客！这里是一个关于游戏开发、Web开发、经济学和金融的知识分享平台。</description>
     <link>https://saigoupi.github.io//</link>
     <atom:link href="https://saigoupi.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 01 Apr 2026 08:24:37 +0000</pubDate>
-    <lastBuildDate>Wed, 01 Apr 2026 08:24:37 +0000</lastBuildDate>
+    <pubDate>Wed, 01 Apr 2026 08:29:43 +0000</pubDate>
+    <lastBuildDate>Wed, 01 Apr 2026 08:29:43 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -65,14 +65,44 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;4. 总结&lt;/strong&gt;
-| 特性 | TArray | std::vector |
-|——|——–|————-|
-| UE 反射系统支持 | 支持 (可标记 UPROPERTY) | 不支持 |
-| 垃圾回收 (GC) | 自动追踪内部 UObject | 无法追踪，易导致野指针 |
-| 内存分配器 | FMemory (跨平台优化) | 标准 C++ 分配器 (STL) |
-| 序列化/保存 | 内置支持 | 需手动实现遍历存储 |
-| 网络同步 | 支持属性复制 | 不支持 |&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. 总结&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;特性&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;TArray&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;std::vector&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;UE 反射系统支持&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;支持 (可标记 UPROPERTY)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;不支持&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;垃圾回收 (GC)&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;自动追踪内部 UObject&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;无法追踪，易导致野指针&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;内存分配器&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;FMemory (跨平台优化)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;标准 C++ 分配器 (STL)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;序列化/保存&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;内置支持&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;需手动实现遍历存储&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;网络同步&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;支持属性复制&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;不支持&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;UE开发中优先使用TArray，使数据和内存都在引擎的管理下，安全和性能都有保证。&lt;/p&gt;
 
@@ -279,37 +309,37 @@
   &lt;li&gt;编译器可以设置一个最大对齐值(#pragma pack(n))，实际对齐值是此类型与最大对齐值中的最小值&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;#pragma pack(4) //默认对齐数修改成4
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;One&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//0-7偏移&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//8偏移&lt;/span&gt;
-	           &lt;span class=&quot;c1&quot;&gt;//9-11偏移浪费&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//12-15偏移&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体one占16字节&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Two&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//0偏移&lt;/span&gt;
-	           &lt;span class=&quot;c1&quot;&gt;//1-3偏移浪费&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//4-11偏移&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//12-15偏移&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体two占16字节&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C++&quot;&gt;//下面两个结构体, 在#pragmapack(4)和#pragmapack(8)的情况下，结构体的大小分别
+#pragma pack(4) //默认对齐数修改成4
+struct One {
+	double d;  //0-7偏移
+	char c;    //8偏移
+	           //9-11偏移浪费
+	int i;     //12-15偏移
+};             //结构体one占16字节
+struct Two {
+	char c;    //0偏移
+	           //1-3偏移浪费
+	double d;  //4-11偏移
+	int i;     //12-15偏移
+};             //结构体two占16字节
 
-&lt;span class=&quot;cp&quot;&gt;#pragma pack(8) //默认对齐数修改成8
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;One&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//0-7偏移&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//8偏移&lt;/span&gt;
-			   &lt;span class=&quot;c1&quot;&gt;//9-11偏移浪费&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//12-15偏移&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体one占16字节&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Two&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//0偏移&lt;/span&gt;
-			   &lt;span class=&quot;c1&quot;&gt;//1-3偏移浪费&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//8-15偏移&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//16-19偏移&lt;/span&gt;
-	           &lt;span class=&quot;c1&quot;&gt;//20-23偏移浪费&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;//结构体two占24字节&lt;/span&gt;
+#pragma pack(8) //默认对齐数修改成8
+struct One {
+	double d;  //0-7偏移
+	char c;    //8偏移
+			   //9-11偏移浪费
+	int i;     //12-15偏移
+};             //结构体one占16字节
+struct Two {
+	char c;    //0偏移
+			   //1-3偏移浪费
+	double d;  //8-15偏移
+	int i;     //16-19偏移
+	           //20-23偏移浪费
+};             //结构体two占24字节
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
         <link>https://saigoupi.github.io/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/interview.html</link>
